@@ -1,0 +1,5305 @@
+{
+  "baseball": {
+    "standings": {
+      "key": "baseball_team_scoring",
+      "position": 5,
+      "sport_id": 4,
+      "team_only": true,
+      "types": {
+        "runs": {
+          "abbrev": "Runs",
+          "formatter": "integer",
+          "formula": "",
+          "game_or_season": "both",
+          "name": "Runs",
+          "position": 1,
+          "score_value": true,
+          "interval_score": true,
+          "match_score": true
+        },
+        "wins": {
+          "abbrev": "W",
+          "formatter": "integer",
+          "formula": "",
+          "game_or_season": "both",
+          "name": "Wins",
+          "position": 2,
+          "score_value": false
+        },
+        "losses": {
+          "abbrev": "L",
+          "formatter": "integer",
+          "formula": "",
+          "game_or_season": "both",
+          "name": "Losses",
+          "position": 3,
+          "score_value": false
+        },
+        "ties": {
+          "abbrev": "T",
+          "formatter": "integer",
+          "formula": "",
+          "game_or_season": "both",
+          "name": "Ties",
+          "position": 4,
+          "score_value": false
+        }
+      },
+      "name": "Team Scoring"
+    },
+    "stats": {
+      "batter": {
+        "key": "baseball_batter",
+        "name": "Batter",
+        "position": 1,
+        "sport_id": 4,
+        "types": {
+          "bsbgp": {
+            "abbrev": "GP",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "season",
+            "games_stat": true,
+            "name": "Games Played",
+            "position": 1,
+            "required_fields": null,
+            "team_callbacks": "team_games_played"
+          },
+          "bsbab": {
+            "abbrev": "AB",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "At Bats",
+            "position": 2
+          },
+          "bsbrun": {
+            "abbrev": "R",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Runs",
+            "position": 3
+          },
+          "bsbhit": {
+            "abbrev": "H",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Hits",
+            "position": 4
+          },
+          "bsb1b": {
+            "abbrev": "1B",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Singles",
+            "position": 5
+          },
+          "bsb2b": {
+            "abbrev": "2B",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Doubles",
+            "position": 6
+          },
+          "bsb3b": {
+            "abbrev": "3B",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Triples",
+            "position": 7
+          },
+          "bsbhr": {
+            "abbrev": "HR",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Home Runs",
+            "position": 8
+          },
+          "bsbtb": {
+            "abbrev": "TB",
+            "formatter": "integer",
+            "formula": "(function () { return (acc.values['bsb1b'] + (acc.values['bsb2b'] * 2) + (acc.values['bsb3b'] * 3) + (acc.values['bsbhr'] * 4))})()",
+            "game_or_season": "both",
+            "name": "Total Bases",
+            "position": 9,
+            "required_fields": [
+              "bsb1b",
+              "bsb2b",
+              "bsb3b",
+              "bsbhr"
+            ]
+          },
+          "bsbbb": {
+            "abbrev": "BB",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Base on Balls",
+            "position": 10
+          },
+          "bsbibb": {
+            "abbrev": "IBB",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Intentional Base on Balls",
+            "player_only": false,
+            "position": 11
+          },
+          "bsbrbi": {
+            "abbrev": "RBI",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Runs Batted In",
+            "position": 12
+          },
+          "bsbhbp": {
+            "abbrev": "HBP",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Hit By Pitch",
+            "position": 13
+          },
+          "bsbso": {
+            "abbrev": "SO",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Strikeouts",
+            "position": 14
+          },
+          "bsbsb": {
+            "abbrev": "SB",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Stolen Bases",
+            "position": 15
+          },
+          "bsbcs": {
+            "abbrev": "CS",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Caught Stealing",
+            "position": 16
+          },
+          "bsbgdp": {
+            "abbrev": "GDP",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Ground Into Double Play",
+            "position": 17
+          },
+          "bsbavg": {
+            "abbrev": "AVG",
+            "formatter": "decimal_3",
+            "formula": "(function () { if (acc.values['bsbab'] == 0){ return 0 } else{ return (acc.values['bsbhit'] / acc.values['bsbab'])}})()",
+            "game_or_season": "both",
+            "name": "Batting Average",
+            "position": 18,
+            "required_fields": [
+              "bsbab",
+              "bsbhit"
+            ]
+          },
+          "bsbobp": {
+            "abbrev": "OBP",
+            "formatter": "decimal_3",
+            "formula": "(function () { if (acc.values['bsbab'] + acc.values['bsbhbp'] + acc.values['bsbbb'] + acc.values['bsbsac'] == 0){ return 0 } else{ return ((acc.values['bsbhit'] + acc.values['bsbbb'] + acc.values['bsbhbp']) /   (acc.values['bsbab'] + acc.values['bsbhbp'] + acc.values['bsbbb'] + acc.values['bsbsac'])   )}})()",
+            "game_or_season": "both",
+            "name": "On-Base Percentage",
+            "position": 19,
+            "required_fields": [
+              "bsbab",
+              "bsbhit",
+              "bsbbb",
+              "bsbhbp",
+              "bsbsac"
+            ]
+          },
+          "bsbslg": {
+            "abbrev": "SLG",
+            "formatter": "float_or_decimal_3",
+            "formula": "(function () { if (acc.values['bsbab'] == 0){ return 0 } else{ return ((acc.values['bsb1b'] + (acc.values['bsb2b'] * 2) + (acc.values['bsb3b'] * 3) + (acc.values['bsbhr'] * 4)) / acc.values['bsbab'])}})()",
+            "game_or_season": "both",
+            "name": "Slugging Percentage",
+            "position": 20,
+            "required_fields": [
+              "bsbab",
+              "bsb1b",
+              "bsb2b",
+              "bsb3b",
+              "bsbhr"
+            ]
+          },
+          "bsbops": {
+            "abbrev": "OPS",
+            "formatter": "float_3",
+            "formula": "(function () { var slg = 0.0; var obp = 0.0; if (acc.values['bsbab'] + acc.values['bsbbb'] + acc.values['bsbhbp'] + acc.values['bsbsac'] > 0) { obp = ((acc.values['bsbhit'] + acc.values['bsbbb'] + acc.values['bsbhbp']) / (acc.values['bsbab'] + acc.values['bsbbb'] + acc.values['bsbhbp'] + acc.values['bsbsac']) );} if (acc.values['bsbab'] > 0) { slg = (acc.values['bsb1b'] + (acc.values['bsb2b'] * 2) + (acc.values['bsb3b'] * 3) + (acc.values['bsbhr'] * 4)) / acc.values['bsbab'];} return obp + slg; })()",
+            "game_or_season": "both",
+            "name": "On-Base Plus Slugging",
+            "position": 21,
+            "required_fields": [
+              "bsbab",
+              "bsbhit",
+              "bsb1b",
+              "bsb2b",
+              "bsb3b",
+              "bsbhr",
+              "bsbbb",
+              "bsbhbp",
+              "bsbsac"
+            ]
+          },
+          "bsbsach": {
+            "abbrev": "SAC",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Sacrifice Hit",
+            "player_only": false,
+            "position": 22
+          },
+          "bsbsac": {
+            "abbrev": "SF",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Sacrifice Fly",
+            "position": 23
+          },
+          "bsbpa": {
+            "abbrev": "PA",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Plate Appearances",
+            "position": 24
+          },
+          "bsbord": {
+            "abbrev": "ORD",
+            "formatter": "integer",
+            "game_or_season": "game",
+            "player_only": true,
+            "name": "Batting Order",
+            "position": 25
+          },
+          "bsbph": {
+            "abbrev": "PH",
+            "formatter": "boolean",
+            "game_or_season": "game",
+            "player_only": true,
+            "name": "Pinch Hitter",
+            "position": 26
+          }
+        }
+      },
+      "catcher": {
+        "key": "baseball_catcher",
+        "name": "Catcher",
+        "position": 4,
+        "sport_id": 4,
+        "types": {
+          "bscpb": {
+            "abbrev": "PB",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Passed Balls",
+            "position": 2
+          },
+          "bscsba": {
+            "abbrev": "SBA",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Stolen Bases Against",
+            "position": 3
+          },
+          "bsccs": {
+            "abbrev": "CS",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Caught Stealing",
+            "position": 4
+          },
+          "bsccsp": {
+            "abbrev": "CSP",
+            "formatter": "float_2",
+            "formula": "(function () { if ((acc.values['bscsba'] + acc.values['bsccs']) == 0){ return 0 } else{ return (acc.values['bsccs'] / (acc.values['bscsba'] + acc.values['bsccs']))}})()",
+            "game_or_season": "both",
+            "name": "Caught Stealing Percentage",
+            "position": 5,
+            "required_fields": [
+              "bscsba",
+              "bsccs"
+            ]
+          }
+        }
+      },
+      "fielder": {
+        "key": "baseball_fielder",
+        "name": "Fielder",
+        "position": 3,
+        "sport_id": 4,
+        "types": {
+          "bsfgp": {
+            "abbrev": "GP",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "season",
+            "games_stat": true,
+            "name": "Games Played",
+            "position": 1,
+            "required_fields": null,
+            "team_callbacks": "team_games_played"
+          },
+          "bsfip": {
+            "abbrev": "IP",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Innings Played",
+            "position": 2
+          },
+          "bsftc": {
+            "abbrev": "TC",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Total Chances",
+            "position": 3
+          },
+          "bsfpo": {
+            "abbrev": "PO",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Putouts",
+            "position": 4
+          },
+          "bsfast": {
+            "abbrev": "A",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Assists",
+            "position": 5
+          },
+          "bsferr": {
+            "abbrev": "E",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Errors",
+            "position": 6
+          },
+          "bsfdp": {
+            "abbrev": "DP",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Double Plays",
+            "position": 7
+          },
+          "bsfgs": {
+            "abbrev": "GS",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Games Started",
+            "player_only": true,
+            "position": 8
+          },
+          "bsffp": {
+            "abbrev": "FP",
+            "formatter": "decimal_3",
+            "formula": "(function () { if ((acc.values['bsfast'] + acc.values['bsfpo'] + acc.values['bsferr']) == 0){ return 0 } else{ return ((acc.values['bsfast'] + acc.values['bsfpo']) / (acc.values['bsfast'] + acc.values['bsfpo'] + acc.values['bsferr']))}})()",
+            "game_or_season": "both",
+            "name": "Fielding Percentage",
+            "position": 9,
+            "required_fields": [
+              "bsfast",
+              "bsfpo",
+              "bsferr"
+            ]
+          },
+          "bsfrf": {
+            "abbrev": "RF",
+            "formatter": "float_2",
+            "formula": "(function () { if (acc.values['bsfgp'] == 0){ return 0 } else{ return ((acc.values['bsfast'] + acc.values['bsfpo']) / acc.values['bsfgp'])}})()",
+            "game_or_season": "season",
+            "name": "Range Factor",
+            "position": 10,
+            "required_fields": [
+              "bsfast",
+              "bsfpo"
+            ]
+          }
+        }
+      },
+      "pitcher": {
+        "key": "baseball_pitcher",
+        "name": "Pitcher",
+        "position": 2,
+        "sport_id": 4,
+        "types": {
+          "bspgp": {
+            "abbrev": "GP",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "season",
+            "games_stat": true,
+            "name": "Games Played",
+            "position": 1,
+            "required_fields": null,
+            "team_callbacks": "team_games_played"
+          },
+          "bspwin": {
+            "abbrev": "W",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Wins",
+            "player_only": true,
+            "position": 2
+          },
+          "bsploss": {
+            "abbrev": "L",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Losses",
+            "player_only": true,
+            "position": 3
+          },
+          "bspsv": {
+            "abbrev": "SV",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Saves",
+            "player_only": true,
+            "position": 4
+          },
+          "bspsvo": {
+            "abbrev": "SVO",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Save Opportunities",
+            "player_only": true,
+            "position": 5
+          },
+          "bspsho": {
+            "abbrev": "SHO",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Shutouts",
+            "position": 6
+          },
+          "bspip": {
+            "abbrev": "IP",
+            "formatter": "IP",
+            "game_or_season": "both",
+            "name": "Innings Pitched",
+            "player_only": true,
+            "position": 7
+          },
+          "bsphit": {
+            "abbrev": "H",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Hits",
+            "position": 8
+          },
+          "bsprun": {
+            "abbrev": "R",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Runs",
+            "position": 9
+          },
+          "bsper": {
+            "abbrev": "ER",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Earned Runs",
+            "position": 10
+          },
+          "bspera": {
+            "abbrev": "ERA",
+            "formatter": "float_2",
+            "formula": "(function () { var innings = acc.regulation_duration ? acc.regulation_duration : 27; if (acc.values['bspip'] == 0){ return 0 } else{ return ((acc.values['bsper'] * innings) / acc.values['bspip'])}})()",
+            "game_or_season": "both",
+            "name": "Earned Run Average",
+            "position": 11,
+            "required_fields": [
+              "bspip",
+              "bsper"
+            ]
+          },
+          "bsphr": {
+            "abbrev": "HR",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Home Runs",
+            "position": 12
+          },
+          "bspbb": {
+            "abbrev": "BB",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Base on Balls",
+            "position": 13
+          },
+          "bspibb": {
+            "abbrev": "IBB",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Intentional Base on Balls",
+            "player_only": false,
+            "position": 14
+          },
+          "bspso": {
+            "abbrev": "K",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Strikeouts",
+            "position": 15
+          },
+          "bspqs": {
+            "abbrev": "QS",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Quality Starts",
+            "position": 16
+          },
+          "bspgs": {
+            "abbrev": "GS",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Games Started",
+            "player_only": true,
+            "position": 17
+          },
+          "bspcg": {
+            "abbrev": "CG",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Complete Games",
+            "player_only": true,
+            "position": 18
+          },
+          "bsphbp": {
+            "abbrev": "HBP",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Hit Batter",
+            "position": 19
+          },
+          "bspstrk": {
+            "abbrev": "S",
+            "formatter": "integer",
+            "game_or_season": "game",
+            "name": "Strikes Thrown",
+            "player_only": true,
+            "position": 20
+          },
+          "bsppc": {
+            "abbrev": "PC",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Pitch Count",
+            "position": 21
+          },
+          "bspbll": {
+            "abbrev": "B",
+            "formatter": "integer",
+            "game_or_season": "game",
+            "name": "Balls Thrown",
+            "player_only": true,
+            "position": 22
+          },
+          "bspwp": {
+            "abbrev": "WP",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Wild Pitch",
+            "position": 23
+          },
+          "bspab": {
+            "abbrev": "AB",
+            "description": "At Bats",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "At Bats",
+            "position": 24
+          },
+          "bspbaa": {
+            "abbrev": "BAA",
+            "formatter": "decimal_3",
+            "formula": "(function (){if (acc.values['bspab'] == 0){return 0} else{return (acc.values['bsphit'] / acc.values['bspab'])}})()",
+            "game_or_season": "both",
+            "name": "Batting Average Against",
+            "position": 25,
+            "required_fields": [
+              "bspab",
+              "bsphit"
+            ]
+          },
+          "bspwhip": {
+            "abbrev": "WHIP",
+            "formatter": "float_2",
+            "formula": "(function () {if (acc.values['bspip'] == 0){return 0} else {return (acc.values['bspbb'] + acc.values['bsphit']) * 3 / acc.values['bspip']}})()",
+            "game_or_season": "both",
+            "name": "Walks & Hits Per Inning",
+            "position": 26,
+            "required_fields": [
+              "bspip",
+              "bspbb",
+              "bsphit"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "basic": {
+    "standings": {
+      "key": "basic_team_scoring",
+      "name": "Team Scoring",
+      "position": 3,
+      "sport_id": 24,
+      "types": {
+        "wins": {
+          "position": 1,
+          "abbrev": "W",
+          "name": "Wins",
+          "formatter": "integer",
+          "game_or_season": "both",
+          "score_value": false
+        },
+        "losses": {
+          "position": 2,
+          "abbrev": "L",
+          "name": "Losses",
+          "formatter": "integer",
+          "game_or_season": "both",
+          "score_value": false
+        },
+        "ties": {
+          "position": 3,
+          "abbrev": "T",
+          "name": "Ties",
+          "formatter": "integer",
+          "game_or_season": "both",
+          "score_value": false
+        },
+        "goals": {
+          "position": 4,
+          "abbrev": "G",
+          "name": "Goals",
+          "formatter": "integer",
+          "game_or_season": "both",
+          "score_value": true,
+          "interval_score": true,
+          "match_score": true
+        },
+        "bcsgpg": {
+          "position": 5,
+          "abbrev": "GPG Avg",
+          "name": "Goals Per Game",
+          "formatter": "float_2",
+          "required_fields": [
+            "wins",
+            "losses",
+            "ties",
+            "goals"
+          ],
+          "formula": "(function () { \n  var games = acc.values['wins'] + acc.values['losses'] + acc.values['ties'];\n  if (games == 0) return 0;\n  return acc.values['goals'] / games;\n})()\n",
+          "game_or_season": "season",
+          "score_value": false
+        }
+      }
+    },
+    "stats": {
+      "individual": {
+        "key": "basic_individual",
+        "name": "Individual",
+        "position": 1,
+        "sport_id": 24,
+        "types": {
+          "bcigp": {
+            "position": 1,
+            "abbrev": "GP",
+            "name": "Games Played",
+            "formatter": "integer",
+            "team_callbacks": "team_games_played",
+            "game_or_season": "season",
+            "games_stat": true,
+            "player_only": false
+          },
+          "bcimin": {
+            "position": 2,
+            "abbrev": "MIN",
+            "name": "Minutes Played",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "player_only": true
+          },
+          "bcig": {
+            "position": 3,
+            "abbrev": "G",
+            "name": "Goals",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "player_only": false
+          }
+        }
+      }
+    }
+  },
+  "basketball": {
+    "standings": {
+      "key": "basketball_team_scoring",
+      "position": 1,
+      "sport_id": 7,
+      "team_only": true,
+      "types": {
+        "pts": {
+          "abbrev": "Pts",
+          "formatter": "integer",
+          "game_or_season": "both",
+          "name": "Points",
+          "position": 1,
+          "score_value": true,
+          "interval_score": true,
+          "match_score": true
+        },
+        "wins": {
+          "abbrev": "W",
+          "formatter": "integer",
+          "game_or_season": "both",
+          "name": "Wins",
+          "position": 2
+        },
+        "losses": {
+          "abbrev": "L",
+          "formatter": "integer",
+          "game_or_season": "both",
+          "name": "Losses",
+          "position": 3
+        },
+        "ties": {
+          "abbrev": "T",
+          "formatter": "integer",
+          "game_or_season": "both",
+          "name": "Ties",
+          "position": 4
+        }
+      },
+      "name": "Team Scoring"
+    },
+    "stats": {
+      "misc": {
+        "key": "basketball_misc",
+        "position": 5,
+        "sport_id": 7,
+        "team_only": false,
+        "types": {
+          "bkmgp": {
+            "abbrev": "GP",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "season",
+            "games_stat": true,
+            "name": "Games Played",
+            "position": 1,
+            "team_callbacks": "team_games_played"
+          },
+          "bkmast": {
+            "abbrev": "AST",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Assists",
+            "position": 1
+          },
+          "bkmapg": {
+            "abbrev": "APG",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['bkmgp'] == 0){ return 0 } else{ return (acc.values['bkmast'] / acc.values['bkmgp'])} })() ",
+            "game_or_season": "season",
+            "name": "Assists Per Game",
+            "position": 3,
+            "required_fields": [
+              "bkmast",
+              "bkpgp"
+            ]
+          },
+          "bkmto": {
+            "abbrev": "TO",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Turnovers",
+            "position": 4
+          },
+          "bkmtopg": {
+            "abbrev": "TOPG",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['bkmgp'] == 0){ return 0 } else{ return (acc.values['bkmto'] / acc.values['bkmgp'])} })() ",
+            "game_or_season": "season",
+            "name": "Turnovers Per Game",
+            "position": 5,
+            "required_fields": [
+              "bkmto"
+            ]
+          },
+          "bkmstl": {
+            "abbrev": "STL",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Steals",
+            "position": 6
+          },
+          "bkmstlpg": {
+            "abbrev": "SPG",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['bkmgp'] == 0){ return 0 } else{ return (acc.values['bkmstl'] / acc.values['bkmgp'])} })() ",
+            "game_or_season": "season",
+            "name": "Steals Per Game",
+            "position": 7,
+            "required_fields": [
+              "bkmstl",
+              "bkpgp"
+            ]
+          },
+          "bkmblk": {
+            "abbrev": "BLK",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Blocks",
+            "position": 8
+          },
+          "bkmblkpg": {
+            "abbrev": "BLKPG",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['bkmgp'] == 0){ return 0 } else{ return (acc.values['bkmblk'] / acc.values['bkmgp'])} })() ",
+            "game_or_season": "season",
+            "name": "Blocks Per Game",
+            "position": 9,
+            "required_fields": [
+              "bkmblk",
+              "bkpgp"
+            ]
+          },
+          "bkmpf": {
+            "abbrev": "PF",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Fouls",
+            "position": 10
+          },
+          "bkmpfpg": {
+            "abbrev": "PFPG",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['bkmgp'] == 0){ return 0 } else{ return (acc.values['bkmpf'] / acc.values['bkmgp'])} })() ",
+            "game_or_season": "season",
+            "name": "Average Fouls Per Game",
+            "position": 11,
+            "required_fields": [
+              "bkmpf",
+              "bkpgp"
+            ]
+          },
+          "bkmtf": {
+            "abbrev": "TF",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Technical Fouls",
+            "position": 12
+          }
+        },
+        "name": "Misc"
+      },
+      "player": {
+        "key": "basketball_player",
+        "position": 2,
+        "sport_id": 7,
+        "team_only": false,
+        "types": {
+          "bkpgp": {
+            "abbrev": "GP",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "season",
+            "games_stat": true,
+            "name": "Games Played",
+            "position": 1,
+            "team_callbacks": "team_games_played"
+          },
+          "bkpgs": {
+            "abbrev": "GS",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Games Started",
+            "player_only": true,
+            "position": 2
+          },
+          "bkpmin": {
+            "abbrev": "MIN",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Minutes Played",
+            "player_only": true,
+            "position": 3
+          },
+          "bkpavemin": {
+            "abbrev": "MPG",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['bkpgp'] == 0){ return 0 } else{ return (acc.values['bkpmin'] / acc.values['bkpgp'])} })() ",
+            "game_or_season": "season",
+            "name": "Minutes Per Game",
+            "player_only": true,
+            "position": 4,
+            "required_fields": [
+              "bkpmin",
+              "bkpgp"
+            ]
+          }
+        },
+        "name": "Player"
+      },
+      "rebounds": {
+        "key": "basketball_rebounds",
+        "position": 4,
+        "sport_id": 7,
+        "team_only": false,
+        "types": {
+          "bkrgp": {
+            "abbrev": "GP",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "season",
+            "games_stat": true,
+            "name": "Games Played",
+            "position": 1,
+            "team_callbacks": "team_games_played"
+          },
+          "bkrrpg": {
+            "abbrev": "RPG",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['bkrgp'] == 0){ return 0 } else{ return (acc.values['bkrreb'] / acc.values['bkrgp'])} })() ",
+            "game_or_season": "season",
+            "name": "Rebounds Per Game",
+            "position": 1,
+            "required_fields": [
+              "bkrreb",
+              "bkrgp"
+            ]
+          },
+          "bkrorb": {
+            "abbrev": false,
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Offensive Rebounds",
+            "position": 2
+          },
+          "bkrdrb": {
+            "abbrev": "DEF",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Defensive Rebounds",
+            "position": 3
+          },
+          "bkrreb": {
+            "abbrev": "REB",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Total Rebounds",
+            "position": 4
+          }
+        },
+        "name": "Rebounds"
+      },
+      "scoring": {
+        "key": "basketball_scoring",
+        "position": 3,
+        "sport_id": 7,
+        "team_only": false,
+        "types": {
+          "bksgp": {
+            "abbrev": "GP",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "season",
+            "games_stat": true,
+            "name": "Games Played",
+            "position": 1,
+            "team_callbacks": "team_games_played"
+          },
+          "bksppg": {
+            "abbrev": "PPG",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['bksgp'] == 0){ return 0 } else{ return acc.values['bkspts']/ acc.values['bksgp'] } })() ",
+            "game_or_season": "season",
+            "name": "Points Per Game",
+            "player_only": true,
+            "position": 2,
+            "required_fields": [
+              "bkspts",
+              "bksgp"
+            ]
+          },
+          "bksfgm": {
+            "abbrev": "FGM",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Field Goals Made",
+            "position": 3
+          },
+          "bksfga": {
+            "abbrev": "FGA",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Field Goals Attempted",
+            "position": 4
+          },
+          "bksfgpct": {
+            "abbrev": "FG%",
+            "formatter": "decimal_3",
+            "formula": "(function () { if (acc.values['bksfga'] == 0){ return 0 } else{ return (acc.values['bksfgm'] / acc.values['bksfga'])} })() ",
+            "game_or_season": "season",
+            "name": "Field Goal Percent",
+            "position": 5,
+            "required_fields": [
+              "bksfgm",
+              "bksfga"
+            ]
+          },
+          "bksftm": {
+            "abbrev": "FTM",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Free Throws Made",
+            "position": 6
+          },
+          "bksfta": {
+            "abbrev": "FTA",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Free Throws Attempted",
+            "position": 7
+          },
+          "bksftpct": {
+            "abbrev": "FT%",
+            "formatter": "decimal_3",
+            "formula": "(function () { if (acc.values['bksfta'] == 0){ return 0 } else{ return (acc.values['bksftm'] / acc.values['bksfta'])} })() ",
+            "game_or_season": "season",
+            "name": "Freethrow Percentage",
+            "position": 8,
+            "required_fields": [
+              "bksftm",
+              "bksfta"
+            ]
+          },
+          "bks3pm": {
+            "abbrev": "3PM",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Three Point Made",
+            "position": 9
+          },
+          "bks3pa": {
+            "abbrev": "3PA",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Three Point Attempted",
+            "position": 10
+          },
+          "bks3ppct": {
+            "abbrev": "3P%",
+            "formatter": "decimal_3",
+            "formula": "(function () { if (acc.values['bks3pa'] == 0){ return 0 } else{ return (acc.values['bks3pm'] / acc.values['bks3pa'])} })() ",
+            "game_or_season": "season",
+            "name": "Three Point Percentage",
+            "position": 11,
+            "required_fields": [
+              "bks3pm",
+              "bks3pa"
+            ]
+          },
+          "bkspts": {
+            "abbrev": "PTS",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Total Points",
+            "position": 12
+          },
+          "bksptshi": {
+            "abbrev": "High",
+            "formatter": "integer",
+            "formula": "(function () { return doc.values['bkspts']})() ",
+            "function": "max",
+            "game_or_season": "season",
+            "name": "Game High Points",
+            "player_only": true,
+            "position": 14,
+            "required_fields": [
+              "bkspts"
+            ]
+          }
+        },
+        "name": "Scoring"
+      }
+    }
+  },
+  "canadian_football": {
+    "standings": {
+      "key": "canadian_football_team_scoring",
+      "position": 9,
+      "sport_id": 26,
+      "team_only": true,
+      "types": {
+        "tsgames": {
+          "abbrev": "G",
+          "formatter": "integer",
+          "formula": "",
+          "game_or_season": "season",
+          "games_stat": true,
+          "name": "Games played",
+          "position": 1,
+          "required_fields": null,
+          "team_callbacks": "team_games_played"
+        },
+        "pts": {
+          "abbrev": "Pts",
+          "formatter": "integer",
+          "formula": "",
+          "game_or_season": "both",
+          "interval_score": true,
+          "match_score": true,
+          "name": "Points",
+          "position": 2,
+          "score_value": true
+        },
+        "wins": {
+          "abbrev": "W",
+          "formatter": "integer",
+          "formula": "",
+          "game_or_season": "both",
+          "name": "Wins",
+          "position": 3
+        },
+        "losses": {
+          "abbrev": "L",
+          "formatter": "integer",
+          "formula": "",
+          "game_or_season": "both",
+          "name": "Losses",
+          "position": 4
+        },
+        "ties": {
+          "abbrev": "T",
+          "formatter": "integer",
+          "formula": "",
+          "game_or_season": "both",
+          "name": "Ties",
+          "position": 5
+        },
+        "points_per_game": {
+          "abbrev": "PPG",
+          "formatter": "float_1",
+          "formula": "(function () { if (acc.values['tsgames'] == 0){ return 0 } else{ return (acc.values['pts'] / acc.values['tsgames'])}})()",
+          "game_or_season": "season",
+          "name": "Points Per Game",
+          "position": 6,
+          "required_fields": [
+            "pts"
+          ]
+        }
+      },
+      "name": "Team Scoring"
+    },
+    "stats": {
+      "defensive": {
+        "key": "canadian_football_defensive",
+        "position": 4,
+        "sport_id": 26,
+        "team_only": false,
+        "types": {
+          "defgames": {
+            "abbrev": "G",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "season",
+            "games_stat": true,
+            "name": "Games played",
+            "position": 1,
+            "required_fields": null,
+            "team_callbacks": "team_games_played"
+          },
+          "deftck": {
+            "abbrev": "Tck",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Solo Tackles",
+            "position": 2
+          },
+          "defatck": {
+            "abbrev": "ATck",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Assisted Tackles",
+            "position": 3
+          },
+          "defsttck": {
+            "abbrev": "STTck",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Special Team Tackles",
+            "position": 4
+          },
+          "defstatck": {
+            "abbrev": "STATck",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Special Team Assisted Tackles",
+            "position": 5
+          },
+          "defttck": {
+            "abbrev": "TTck",
+            "formatter": "integer",
+            "formula": "(function () { return acc.values['deftck'] + acc.values['defatck'] + acc.values['defsttck'] + acc.values['defstatck'] })()",
+            "game_or_season": "both",
+            "name": "Total Tackles",
+            "position": 6,
+            "required_fields": [
+              "deftck",
+              "defatck",
+              "defsttck",
+              "defstatck"
+            ]
+          },
+          "deftfl": {
+            "abbrev": "TFL",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Tackles For Loss",
+            "position": 7
+          },
+          "defsck": {
+            "abbrev": "Sck",
+            "formatter": "float_1",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Sacks",
+            "position": 8
+          },
+          "deffum": {
+            "abbrev": "Fum",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Fumble Recoveries",
+            "position": 9
+          },
+          "deffcfm": {
+            "abbrev": "FF",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Forced Fumbles",
+            "position": 10
+          },
+          "deftdfmb": {
+            "abbrev": "FmbTD",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Fumbles recovered for touchdowns",
+            "position": 11
+          },
+          "defint": {
+            "abbrev": "Int",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Interceptions",
+            "position": 12
+          },
+          "deftdint": {
+            "abbrev": "IntTD",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Interceptions returned for touchdowns",
+            "position": 13
+          },
+          "deftdtot": {
+            "abbrev": "TotTD",
+            "formatter": "integer",
+            "formula": "(function () { return acc.values['deftdint'] + acc.values['deftdfmb'] + acc.values['defbktd']})()",
+            "game_or_season": "both",
+            "name": "Total defensive touchdowns",
+            "position": 14,
+            "required_fields": [
+              "deftdint",
+              "deftdfmb"
+            ]
+          },
+          "defsfty": {
+            "abbrev": "Sfty",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Safeties",
+            "position": 15
+          },
+          "defblkck": {
+            "abbrev": "BK",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Blocked Kicks",
+            "position": 16
+          },
+          "defbktd": {
+            "abbrev": "BKTD",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Blocked Kick Return TD",
+            "position": 17
+          },
+          "defbkpd": {
+            "abbrev": "BKPD",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Blocked Punt Return TD",
+            "position": 18
+          },
+          "defpdef": {
+            "abbrev": "PDef",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Passes Defended",
+            "position": 19
+          }
+        },
+        "name": "Defensive"
+      },
+      "returning": {
+        "key": "canadian_football_punt_returning",
+        "position": 5,
+        "sport_id": 26,
+        "team_only": false,
+        "types": {
+          "krgames": {
+            "abbrev": "G",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "season",
+            "games_stat": true,
+            "name": "Games played",
+            "position": 1,
+            "required_fields": null,
+            "team_callbacks": "team_games_played"
+          },
+          "krrtrn": {
+            "abbrev": "Returns",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Returns",
+            "position": 2
+          },
+          "kryds": {
+            "abbrev": "Yds",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Yards",
+            "position": 3
+          },
+          "krypr": {
+            "abbrev": "Yds/Ret",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['krrtrn'] == 0){return 0} else{return (acc.values['kryds'] / acc.values['krrtrn'])}})()",
+            "game_or_season": "both",
+            "name": "Yards/Return",
+            "position": 4,
+            "required_fields": [
+              "krrtrn",
+              "kryds"
+            ]
+          },
+          "krtd": {
+            "abbrev": "TD",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Touchdowns",
+            "position": 5
+          },
+          "krlng": {
+            "abbrev": "Long",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Longest Play",
+            "position": 6
+          },
+          "krmfgr": {
+            "abbrev": "MFGR",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Missed Field Goal Return",
+            "position": 7
+          },
+          "krmfgtd": {
+            "abbrev": "MFGTD",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Missed Field Goal Touch Down",
+            "position": 8
+          },
+          "prgames": {
+            "abbrev": "G",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "season",
+            "games_stat": true,
+            "name": "Games played",
+            "position": 1,
+            "required_fields": null,
+            "team_callbacks": "team_games_played"
+          },
+          "prrtrn": {
+            "abbrev": "Returns",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Returns",
+            "position": 2
+          },
+          "pryds": {
+            "abbrev": "Yds",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Yards",
+            "position": 3
+          },
+          "prypr": {
+            "abbrev": "Yds/Ret",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['prrtrn'] == 0){return 0}else{return (acc.values['pryds'] / acc.values['prrtrn'])}})()",
+            "game_or_season": "both",
+            "name": "Yards/Return",
+            "position": 4,
+            "required_fields": [
+              "prrtrn",
+              "pryds"
+            ]
+          },
+          "prtd": {
+            "abbrev": "TD",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Touchdowns",
+            "position": 5
+          },
+          "prlng": {
+            "abbrev": "Long",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Longest Play",
+            "position": 6
+          }
+        },
+        "name": "Punt Returning"
+      },
+      "kicking": {
+        "key": "canadian_football_kicking",
+        "position": 8,
+        "sport_id": 26,
+        "team_only": false,
+        "types": {
+          "kcgames": {
+            "abbrev": "G",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "season",
+            "games_stat": true,
+            "name": "Games played",
+            "position": 1,
+            "required_fields": null,
+            "team_callbacks": "team_games_played"
+          },
+          "kcfgatt": {
+            "abbrev": "FGA",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Field Goal Attempts",
+            "position": 2,
+            "required_fields": null
+          },
+          "kcfgmd": {
+            "abbrev": "FGM",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Field Goals Made",
+            "position": 3,
+            "required_fields": null
+          },
+          "kcfgpct": {
+            "abbrev": "FG Pct",
+            "formatter": "float_1",
+            "formula": "(function () {  if (acc.values['kcfgatt'] == 0){ return 0 } else{ return (acc.values['kcfgmd'] / acc.values['kcfgatt'])}})()",
+            "game_or_season": "both",
+            "name": "Field Goal Pct",
+            "position": 4,
+            "required_fields": [
+              "kcfgatt",
+              "kcfgmd"
+            ]
+          },
+          "kccatt": {
+            "abbrev": "CA",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Convert Attempts",
+            "position": 5
+          },
+          "kccmd": {
+            "abbrev": "CM",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Convert Made",
+            "position": 6
+          },
+          "kccpct": {
+            "abbrev": "Convert Pct",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['kccatt'] == 0){ return 0 } else{ return (acc.values['kccmd'] / acc.values['kccatt'])}})()",
+            "game_or_season": "both",
+            "name": "Convert Pct",
+            "position": 7,
+            "required_fields": [
+              "kccatt",
+              "kccmd"
+            ]
+          },
+          "kcatt1_19": {
+            "abbrev": "1-19A",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "1-19 Attempts",
+            "position": 8
+          },
+          "kcmd1_19": {
+            "abbrev": "1-19M",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "1-19 Made",
+            "position": 9
+          },
+          "kcatt20_29": {
+            "abbrev": "20-29A",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "20-29 Attempts",
+            "position": 10
+          },
+          "kcmd20_29": {
+            "abbrev": "20-29M",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "20-29 Made",
+            "position": 11
+          },
+          "kcatt30_39": {
+            "abbrev": "30-39A",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "30-39 Attempts",
+            "position": 12
+          },
+          "kcmd30_39": {
+            "abbrev": "30-39M",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "30-39 Made",
+            "position": 13
+          },
+          "kcatt40_49": {
+            "abbrev": "40-49A",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "40-49 Attempts",
+            "position": 14
+          },
+          "kcmd40_49": {
+            "abbrev": "40-49M",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "40-49 Made",
+            "position": 15
+          },
+          "kcatt50": {
+            "abbrev": "50+ A",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "50+ Attempts",
+            "position": 16
+          },
+          "kcmd50": {
+            "abbrev": "50+ M",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "50+ Made",
+            "position": 17
+          },
+          "kcsngl": {
+            "abbrev": "Single",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Single",
+            "position": 18
+          }
+        },
+        "name": "Kicking"
+      },
+      "passing": {
+        "key": "canadian_football_passing",
+        "position": 1,
+        "sport_id": 26,
+        "team_only": false,
+        "types": {
+          "psgames": {
+            "abbrev": "G",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "season",
+            "games_stat": true,
+            "name": "Games played",
+            "position": 1,
+            "required_fields": null,
+            "team_callbacks": "team_games_played"
+          },
+          "pscomp": {
+            "abbrev": "Comp",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Completions",
+            "position": 2
+          },
+          "psatt": {
+            "abbrev": "Att",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Attempts",
+            "position": 3
+          },
+          "pspct": {
+            "abbrev": "Comp %",
+            "formatter": "percentage",
+            "formula": "(function () { if (acc.values['psatt'] == 0) {return 0} else{  return (acc.values['pscomp'] / acc.values['psatt'])}})()",
+            "game_or_season": "both",
+            "name": "Completion Percentage",
+            "position": 4,
+            "required_fields": [
+              "psatt",
+              "pscomp"
+            ]
+          },
+          "psyds": {
+            "abbrev": "Yds",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Yards",
+            "position": 5
+          },
+          "psavgyds": {
+            "abbrev": "Yds/Att",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['psatt'] == 0) {return 0} else {  return (acc.values['psyds'] / acc.values['psatt'])}})()",
+            "game_or_season": "both",
+            "name": "Average Yards",
+            "position": 6,
+            "required_fields": [
+              "psatt",
+              "psyds"
+            ]
+          },
+          "ps2pc": {
+            "abbrev": "2PM",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Two-Point Conversions Made",
+            "position": 7
+          },
+          "psypg": {
+            "abbrev": "Pass YPG",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['psgames'] == 0){ return 0 } else{ return (acc.values['psyds'] / acc.values['psgames'])}})()",
+            "game_or_season": "season",
+            "name": "Pass Yards Per Game",
+            "position": 8,
+            "required_fields": [
+              "psyds"
+            ]
+          },
+          "pstd": {
+            "abbrev": "TD",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Touchdowns",
+            "position": 9
+          },
+          "psint": {
+            "abbrev": "Int",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Interceptions",
+            "position": 10
+          },
+          "psrat": {
+            "abbrev": "Rate",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['psatt'] == 0) {return 0} else{  var num1 = (((acc.values['pscomp'] / acc.values['psatt']) * 100 - 30) * 0.05); var num2 = ((acc.values['psyds'] / acc.values['psatt'] - 3) * 0.25); var num3 = (acc.values['pstd'] / acc.values['psatt'] / 0.05); var num4 = (2.375 - (acc.values['psint'] / acc.values['psatt'] * 25)); num1 = num1 < 0 ? 0.0 : (num1 > 2.375 ? 2.375 : num1); num2 = num2 < 0 ? 0.0 : (num2 > 2.375 ? 2.375 : num2); num3 = num3 < 0 ? 0.0 : (num3 > 2.375 ? 2.375 : num3); num4 = num4 < 0 ? 0.0 : (num4 > 2.375 ? 2.375 : num4); return ((num1 + num2 + num3 + num4) * 100.0 /6.0)}})()",
+            "game_or_season": "both",
+            "name": "QB Rating",
+            "position": 11,
+            "required_fields": [
+              "psatt",
+              "pscomp",
+              "psyds",
+              "pstd",
+              "psint"
+            ]
+          },
+          "pssck": {
+            "abbrev": "Sck",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Sacks",
+            "position": 12
+          },
+          "pslng": {
+            "abbrev": "Long",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Longest Play",
+            "position": 13
+          }
+        },
+        "name": "Passing"
+      },
+      "punting": {
+        "key": "canadian_football_punting",
+        "position": 7,
+        "sport_id": 26,
+        "team_only": false,
+        "types": {
+          "ptgames": {
+            "abbrev": "G",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "season",
+            "games_stat": true,
+            "name": "Games played",
+            "position": 1,
+            "required_fields": null,
+            "team_callbacks": "team_games_played"
+          },
+          "ptpunts": {
+            "abbrev": "Punts",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Punts",
+            "position": 2
+          },
+          "ptyds": {
+            "abbrev": "Yds",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Yards",
+            "position": 3
+          },
+          "yds_per_punt": {
+            "abbrev": "Avg",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['ptpunts'] == 0){return 0} else{return (acc.values['ptyds'] / acc.values['ptpunts'])}})()",
+            "game_or_season": "both",
+            "name": "Yards Per Punt",
+            "position": 4,
+            "required_fields": [
+              "ptpunts",
+              "ptyds"
+            ]
+          },
+          "ptin20": {
+            "abbrev": "In 20",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Punts Not Returned Past 20 yard line",
+            "position": 6
+          },
+          "ptblk": {
+            "abbrev": "Blcks",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Blocked Punts",
+            "position": 7
+          }
+        },
+        "name": "Punting"
+      },
+      "receiving": {
+        "key": "canadian_football_receiving",
+        "position": 3,
+        "sport_id": 26,
+        "team_only": false,
+        "types": {
+          "rcgames": {
+            "abbrev": "G",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "season",
+            "games_stat": true,
+            "name": "Games played",
+            "position": 1,
+            "required_fields": null,
+            "team_callbacks": "team_games_played"
+          },
+          "rcrec": {
+            "abbrev": "Rec",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Receptions",
+            "position": 2
+          },
+          "rcyd": {
+            "abbrev": "Yds",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Yards",
+            "position": 3
+          },
+          "rcavg": {
+            "abbrev": "Yds/Rec",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['rcrec'] == 0){ return 0} else{return (acc.values['rcyd'] / acc.values['rcrec'])}})()",
+            "game_or_season": "both",
+            "name": "Average Yards",
+            "position": 4,
+            "required_fields": [
+              "rcrec",
+              "rcyd"
+            ]
+          },
+          "rctd": {
+            "abbrev": "TD",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Touchdowns",
+            "position": 5
+          },
+          "rclng": {
+            "abbrev": "Long",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Longest Play",
+            "position": 6
+          },
+          "rc2pc": {
+            "abbrev": "2PM",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Two-Point Conversions Made",
+            "position": 7
+          },
+          "rcypg": {
+            "abbrev": "YPG",
+            "formatter": "integer",
+            "formula": "(function () { if (acc.values['rcgames'] == 0){ return 0 } else{ return (acc.values['rcyd'] / acc.values['rcgames'])}})()",
+            "game_or_season": "season",
+            "name": "Yards per game",
+            "position": 8,
+            "required_fields": [
+              "rcyd"
+            ]
+          },
+          "rcyac": {
+            "abbrev": "YAC",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Yards after catch",
+            "position": 9
+          }
+        },
+        "name": "Receiving"
+      },
+      "rushing": {
+        "key": "canadian_football_rushing",
+        "position": 2,
+        "sport_id": 26,
+        "team_only": false,
+        "types": {
+          "rshgames": {
+            "abbrev": "G",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "season",
+            "games_stat": true,
+            "name": "Games played",
+            "position": 1,
+            "required_fields": null,
+            "team_callbacks": "team_games_played"
+          },
+          "rshatt": {
+            "abbrev": "Att",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Attempts",
+            "position": 2
+          },
+          "rshyd": {
+            "abbrev": "Yds",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Yards",
+            "position": 3
+          },
+          "rshavg": {
+            "abbrev": "Yds/Att",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['rshatt'] == 0){ return 0 } else{ return (acc.values['rshyd'] / acc.values['rshatt'])}})()",
+            "game_or_season": "both",
+            "name": "Average Yards",
+            "position": 4,
+            "required_fields": [
+              "rshatt",
+              "rshyd"
+            ]
+          },
+          "rshtd": {
+            "abbrev": "TD",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Touchdowns",
+            "position": 5
+          },
+          "rshfum": {
+            "abbrev": "FUM",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Fumbles Lost",
+            "position": 6
+          },
+          "rsh2pc": {
+            "abbrev": "2PM",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Two-Point Conversions Made",
+            "position": 7
+          },
+          "rshypg": {
+            "abbrev": "Rush YPG",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['rshgames'] == 0){ return 0 } else{ return (acc.values['rshyd'] / acc.values['rshgames'])}})()",
+            "game_or_season": "season",
+            "name": "Rushing Yards Per Game",
+            "position": 8,
+            "required_fields": [
+              "rshyd"
+            ]
+          },
+          "rslng": {
+            "abbrev": "Long",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Longest Play",
+            "position": 9
+          }
+        },
+        "name": "Rushing"
+      },
+      "offense": {
+        "key": "canadian_football_team_offense",
+        "position": 10,
+        "requires": "canadian_football_passing canadian_football_rushing",
+        "sport_id": 26,
+        "team_only": true,
+        "types": {
+          "togames": {
+            "abbrev": "G",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "season",
+            "games_stat": true,
+            "name": "Games played",
+            "position": 1,
+            "required_fields": null,
+            "team_callbacks": "team_games_played"
+          },
+          "tmo1d": {
+            "abbrev": "1st Downs",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "First Downs",
+            "position": 2
+          },
+          "tmo3da": {
+            "abbrev": "3rd Down Att",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Third Down Attempts",
+            "position": 3
+          },
+          "tmo3dc": {
+            "abbrev": "3rd Down Conv",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Third Down Conversions",
+            "position": 4
+          },
+          "tmo3dpct": {
+            "abbrev": "3rd Down Conv %",
+            "formatter": "percentage",
+            "formula": "(function () { if (acc.values['tmo3da'] == 0){return 0} else{return (acc.values['tmo3dc'] / acc.values['tmo3da'])}})()",
+            "game_or_season": "both",
+            "name": "Third Down Conversions Percentage",
+            "position": 5,
+            "required_fields": [
+              "tmo3da",
+              "tmo3dc"
+            ]
+          },
+          "tmotod": {
+            "abbrev": "Turnover on Downs",
+            "formatter": "integer",
+            "formula": "(function () { return acc.values['tmo3da'] - acc.values['tmo3dc']})()",
+            "game_or_season": "both",
+            "name": "Turnover on Downs",
+            "position": 6,
+            "required_fields": [
+              "tmo3da",
+              "tmo3dc"
+            ]
+          },
+          "tmotop": {
+            "abbrev": "Time of Pos",
+            "description": "Time of Possession",
+            "formatter": "minutes_and_seconds",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Time of Possession",
+            "position": 7
+          },
+          "tmotot": {
+            "abbrev": "TOT YRD",
+            "description": "Total Offense",
+            "formatter": "integer",
+            "formula": "(function () { return acc.values['psyds'] + acc.values['rshyd']})()",
+            "game_or_season": "both",
+            "name": "Total Offense",
+            "position": 8,
+            "required_fields": [
+              "psyds",
+              "rshyd"
+            ]
+          },
+          "tmoloss": {
+            "abbrev": "Loss",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Team Loss",
+            "position": 9
+          },
+          "tmonet": {
+            "abbrev": "Net Offense",
+            "formatter": "integer",
+            "formula": "(function () { return acc.values['tmotot'] - acc.values['tmoloss']})()",
+            "game_or_season": "both",
+            "name": "Net Offense",
+            "position": 10,
+            "required_fields": [
+              "tmoloss",
+              "tmotot"
+            ]
+          },
+          "tmopen": {
+            "abbrev": "PEN",
+            "description": "Total Penalties",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Penalties",
+            "position": 11
+          },
+          "tmopyd": {
+            "abbrev": "PEN YRD",
+            "description": "Total Penalty Yards",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Penalty Yards",
+            "position": 12
+          }
+        },
+        "name": "Team Stats"
+      }
+    }
+  },
+  "football": {
+    "standings": {
+      "key": "football_team_scoring",
+      "position": 9,
+      "sport_id": 11,
+      "team_only": true,
+      "types": {
+        "tsgames": {
+          "abbrev": "G",
+          "formatter": "integer",
+          "formula": "",
+          "game_or_season": "season",
+          "games_stat": true,
+          "name": "Games played",
+          "position": 1,
+          "required_fields": null,
+          "team_callbacks": "team_games_played"
+        },
+        "pts": {
+          "abbrev": "Pts",
+          "formatter": "integer",
+          "formula": "",
+          "game_or_season": "both",
+          "name": "Points",
+          "position": 2,
+          "score_value": true,
+          "interval_score": true,
+          "match_score": true
+        },
+        "wins": {
+          "abbrev": "W",
+          "formatter": "integer",
+          "formula": "",
+          "game_or_season": "both",
+          "name": "Wins",
+          "position": 3
+        },
+        "losses": {
+          "abbrev": "L",
+          "formatter": "integer",
+          "formula": "",
+          "game_or_season": "both",
+          "name": "Losses",
+          "position": 4
+        },
+        "ties": {
+          "abbrev": "T",
+          "formatter": "integer",
+          "formula": "",
+          "game_or_season": "both",
+          "name": "Ties",
+          "position": 5
+        },
+        "points_per_game": {
+          "abbrev": "PPG",
+          "formatter": "float_1",
+          "formula": "(function () { if (acc.values['tsgames'] == 0){ return 0 } else{ return (acc.values['pts'] / acc.values['tsgames'])}})()",
+          "game_or_season": "season",
+          "name": "Points Per Game",
+          "position": 6,
+          "required_fields": [
+            "pts"
+          ]
+        }
+      },
+      "name": "Team Scoring"
+    },
+    "stats": {
+      "defensive": {
+        "key": "football_defensive",
+        "position": 4,
+        "sport_id": 11,
+        "team_only": false,
+        "types": {
+          "defgames": {
+            "abbrev": "G",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "season",
+            "games_stat": true,
+            "name": "Games played",
+            "position": 1,
+            "required_fields": null,
+            "team_callbacks": "team_games_played"
+          },
+          "deftck": {
+            "abbrev": "Tck",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Solo Tackles",
+            "position": 2
+          },
+          "defatck": {
+            "abbrev": "ATck",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Assisted Tackles",
+            "position": 3
+          },
+          "defttck": {
+            "abbrev": "TTck",
+            "formatter": "integer",
+            "formula": "(function () { return acc.values['deftck'] + acc.values['defatck']})()",
+            "game_or_season": "both",
+            "name": "Total Tackles",
+            "position": 4,
+            "required_fields": [
+              "deftck",
+              "defatck"
+            ]
+          },
+          "deftfl": {
+            "abbrev": "TFL",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Tackles For Loss",
+            "position": 5
+          },
+          "defsck": {
+            "abbrev": "Sck",
+            "formatter": "float_1",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Sacks",
+            "position": 6
+          },
+          "deffum": {
+            "abbrev": "Fum",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Fumble Recoveries",
+            "position": 7
+          },
+          "deffcfm": {
+            "abbrev": "FF",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Forced Fumbles",
+            "position": 8
+          },
+          "deftdfmb": {
+            "abbrev": "FmbTD",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Fumbles recovered for touchdowns",
+            "position": 9
+          },
+          "defint": {
+            "abbrev": "Int",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Interceptions",
+            "position": 10
+          },
+          "deftdint": {
+            "abbrev": "IntTD",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Interceptions returned for touchdowns",
+            "position": 11
+          },
+          "deftdtot": {
+            "abbrev": "TotTD",
+            "formatter": "integer",
+            "formula": "(function () { return acc.values['deftdint'] + acc.values['deftdfmb'] + acc.values['defbktd']})()",
+            "game_or_season": "both",
+            "name": "Total defensive touchdowns",
+            "position": 12,
+            "required_fields": [
+              "deftdint",
+              "deftdfmb"
+            ]
+          },
+          "defsfty": {
+            "abbrev": "Sfty",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Safeties",
+            "position": 13
+          },
+          "defblkck": {
+            "abbrev": "BK",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Blocked Kicks",
+            "position": 14
+          },
+          "defbktd": {
+            "abbrev": "BKTD",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Blocked Kick/Punt Return TD",
+            "position": 15
+          },
+          "defpdef": {
+            "abbrev": "PDef",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Passes Defended",
+            "position": 16
+          }
+        },
+        "name": "Defensive"
+      },
+      "returning": {
+        "key": "football_punt_returning",
+        "position": 5,
+        "sport_id": 11,
+        "team_only": false,
+        "types": {
+          "krgames": {
+            "abbrev": "G",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "season",
+            "games_stat": true,
+            "name": "Games played",
+            "position": 1,
+            "required_fields": null,
+            "team_callbacks": "team_games_played"
+          },
+          "krrtrn": {
+            "abbrev": "Returns",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Returns",
+            "position": 2
+          },
+          "kryds": {
+            "abbrev": "Yds",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Yards",
+            "position": 3
+          },
+          "krypr": {
+            "abbrev": "Yds/Ret",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['krrtrn'] == 0){return 0} else{return (acc.values['kryds'] / acc.values['krrtrn'])}})()",
+            "game_or_season": "both",
+            "name": "Yards/Return",
+            "position": 4,
+            "required_fields": [
+              "krrtrn",
+              "kryds"
+            ]
+          },
+          "krtd": {
+            "abbrev": "TD",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Touchdowns",
+            "position": 5
+          },
+          "prgames": {
+            "abbrev": "G",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "season",
+            "games_stat": true,
+            "name": "Games played",
+            "position": 1,
+            "required_fields": null,
+            "team_callbacks": "team_games_played"
+          },
+          "prrtrn": {
+            "abbrev": "Returns",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Returns",
+            "position": 2
+          },
+          "prfc": {
+            "abbrev": "FC",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Fair Catches",
+            "position": 3
+          },
+          "pryds": {
+            "abbrev": "Yds",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Yards",
+            "position": 4
+          },
+          "prypr": {
+            "abbrev": "Yds/Ret",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['prrtrn'] == 0){return 0}else{return (acc.values['pryds'] / acc.values['prrtrn'])}})()",
+            "game_or_season": "both",
+            "name": "Yards/Return",
+            "position": 5,
+            "required_fields": [
+              "prrtrn",
+              "pryds"
+            ]
+          },
+          "prtd": {
+            "abbrev": "TD",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Touchdowns",
+            "position": 6
+          }
+        },
+        "name": "Punt Returning"
+      },
+      "kicking": {
+        "key": "football_kicking",
+        "position": 8,
+        "sport_id": 11,
+        "team_only": false,
+        "types": {
+          "kcgames": {
+            "abbrev": "G",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "season",
+            "games_stat": true,
+            "name": "Games played",
+            "position": 1,
+            "required_fields": null,
+            "team_callbacks": "team_games_played"
+          },
+          "kcfgatt": {
+            "abbrev": "FGA",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Field Goal Attempts",
+            "position": 2,
+            "required_fields": null
+          },
+          "kcfgmd": {
+            "abbrev": "FGM",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Field Goals Made",
+            "position": 3,
+            "required_fields": null
+          },
+          "kcfgpct": {
+            "abbrev": "FG Pct",
+            "formatter": "float_1",
+            "formula": "(function () {  if (acc.values['kcfgatt'] == 0){ return 0 } else{ return (acc.values['kcfgmd'] / acc.values['kcfgatt'])}})()",
+            "game_or_season": "both",
+            "name": "Field Goal Pct",
+            "position": 4,
+            "required_fields": [
+              "kcfgatt",
+              "kcfgmd"
+            ]
+          },
+          "kcxpatt": {
+            "abbrev": "XPA",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Extra Point Attempts",
+            "position": 5
+          },
+          "kcxpmd": {
+            "abbrev": "XPM",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Extra Points Made",
+            "position": 6
+          },
+          "kcxppct": {
+            "abbrev": "XP Pct",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['kcxpatt'] == 0){ return 0 } else{ return (acc.values['kcxpmd'] / acc.values['kcxpatt'])}})()",
+            "game_or_season": "both",
+            "name": "Extra Point Pct",
+            "position": 7,
+            "required_fields": [
+              "kcxpatt",
+              "kcxpmd"
+            ]
+          },
+          "kcatt1_19": {
+            "abbrev": "1-19A",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "1-19 Attempts",
+            "position": 8
+          },
+          "kcmd1_19": {
+            "abbrev": "1-19M",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "1-19 Made",
+            "position": 9
+          },
+          "kcatt20_29": {
+            "abbrev": "20-29A",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "20-29 Attempts",
+            "position": 10
+          },
+          "kcmd20_29": {
+            "abbrev": "20-29M",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "20-29 Made",
+            "position": 11
+          },
+          "kcatt30_39": {
+            "abbrev": "30-39A",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "30-39 Attempts",
+            "position": 12
+          },
+          "kcmd30_39": {
+            "abbrev": "30-39M",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "30-39 Made",
+            "position": 13
+          },
+          "kcatt40_49": {
+            "abbrev": "40-49A",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "40-49 Attempts",
+            "position": 14
+          },
+          "kcmd40_49": {
+            "abbrev": "40-49M",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "40-49 Made",
+            "position": 15
+          },
+          "kcatt50": {
+            "abbrev": "50+ A",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "50+ Attempts",
+            "position": 16
+          },
+          "kcmd50": {
+            "abbrev": "50+ M",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "50+ Made",
+            "position": 17
+          },
+          "kcrg": {
+            "abbrev": "Rouge",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Rouge",
+            "position": 18
+          }
+        },
+        "name": "Kicking"
+      },
+      "passing": {
+        "key": "football_passing",
+        "position": 1,
+        "sport_id": 11,
+        "team_only": false,
+        "types": {
+          "psgames": {
+            "abbrev": "G",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "season",
+            "games_stat": true,
+            "name": "Games played",
+            "position": 1,
+            "required_fields": null,
+            "team_callbacks": "team_games_played"
+          },
+          "pscomp": {
+            "abbrev": "Comp",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Completions",
+            "position": 2
+          },
+          "psatt": {
+            "abbrev": "Att",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Attempts",
+            "position": 3
+          },
+          "pspct": {
+            "abbrev": "Comp %",
+            "formatter": "percentage",
+            "formula": "(function () { if (acc.values['psatt'] == 0) {return 0} else{  return (acc.values['pscomp'] / acc.values['psatt'])}})()",
+            "game_or_season": "both",
+            "name": "Completion Percentage",
+            "position": 4,
+            "required_fields": [
+              "psatt",
+              "pscomp"
+            ]
+          },
+          "psyds": {
+            "abbrev": "Yds",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Yards",
+            "position": 5
+          },
+          "psavgyds": {
+            "abbrev": "Yds/Att",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['psatt'] == 0) {return 0} else {  return (acc.values['psyds'] / acc.values['psatt'])}})()",
+            "game_or_season": "both",
+            "name": "Average Yards",
+            "position": 6,
+            "required_fields": [
+              "psatt",
+              "psyds"
+            ]
+          },
+          "ps2pc": {
+            "abbrev": "2PM",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Two-Point Conversions Made",
+            "position": 7
+          },
+          "psypg": {
+            "abbrev": "Pass YPG",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['psgames'] == 0){ return 0 } else{ return (acc.values['psyds'] / acc.values['psgames'])}})()",
+            "game_or_season": "season",
+            "name": "Pass Yards Per Game",
+            "position": 8,
+            "required_fields": [
+              "psyds"
+            ]
+          },
+          "pstd": {
+            "abbrev": "TD",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Touchdowns",
+            "position": 8
+          },
+          "psint": {
+            "abbrev": "Int",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Interceptions",
+            "position": 9
+          },
+          "psrat": {
+            "abbrev": "Rate",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['psatt'] == 0) {return 0} else{  var num1 = (((acc.values['pscomp'] / acc.values['psatt']) * 100 - 30) * 0.05); var num2 = ((acc.values['psyds'] / acc.values['psatt'] - 3) * 0.25); var num3 = (acc.values['pstd'] / acc.values['psatt'] / 0.05); var num4 = (2.375 - (acc.values['psint'] / acc.values['psatt'] * 25)); num1 = num1 < 0 ? 0.0 : (num1 > 2.375 ? 2.375 : num1); num2 = num2 < 0 ? 0.0 : (num2 > 2.375 ? 2.375 : num2); num3 = num3 < 0 ? 0.0 : (num3 > 2.375 ? 2.375 : num3); num4 = num4 < 0 ? 0.0 : (num4 > 2.375 ? 2.375 : num4); return ((num1 + num2 + num3 + num4) * 100.0 /6.0)}})()",
+            "game_or_season": "both",
+            "name": "QB Rating",
+            "position": 10,
+            "required_fields": [
+              "psatt",
+              "pscomp",
+              "psyds",
+              "pstd",
+              "psint"
+            ]
+          },
+          "pssck": {
+            "abbrev": "Sck",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Sacks",
+            "position": 11
+          },
+          "pssckyd": {
+            "abbrev": "SckY",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Yards Lost Due to Sacks",
+            "position": 12
+          }
+        },
+        "name": "Passing"
+      },
+      "punting": {
+        "key": "football_punting",
+        "position": 7,
+        "sport_id": 11,
+        "team_only": false,
+        "types": {
+          "ptgames": {
+            "abbrev": "G",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "season",
+            "games_stat": true,
+            "name": "Games played",
+            "position": 1,
+            "required_fields": null,
+            "team_callbacks": "team_games_played"
+          },
+          "ptpunts": {
+            "abbrev": "Punts",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Punts",
+            "position": 2
+          },
+          "ptyds": {
+            "abbrev": "Yds",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Yards",
+            "position": 3
+          },
+          "yds_per_punt": {
+            "abbrev": "Avg",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['ptpunts'] == 0){return 0} else{return (acc.values['ptyds'] / acc.values['ptpunts'])}})()",
+            "game_or_season": "both",
+            "name": "Yards Per Punt",
+            "position": 4,
+            "required_fields": [
+              "ptpunts",
+              "ptyds"
+            ]
+          },
+          "pttb": {
+            "abbrev": "Touchbacks",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Touchbacks",
+            "position": 5
+          },
+          "ptin20": {
+            "abbrev": "In 20",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Punts Not Returned Past 20 yard line",
+            "position": 6
+          },
+          "ptblk": {
+            "abbrev": "Blcks",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Blocked Punts",
+            "position": 7
+          }
+        },
+        "name": "Punting"
+      },
+      "receiving": {
+        "key": "football_receiving",
+        "position": 3,
+        "sport_id": 11,
+        "team_only": false,
+        "types": {
+          "rcgames": {
+            "abbrev": "G",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "season",
+            "games_stat": true,
+            "name": "Games played",
+            "position": 1,
+            "required_fields": null,
+            "team_callbacks": "team_games_played"
+          },
+          "rcrec": {
+            "abbrev": "Rec",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Receptions",
+            "position": 2
+          },
+          "rctar": {
+            "abbrev": "Tar",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Targets",
+            "position": 3
+          },
+          "rcyd": {
+            "abbrev": "Yds",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Yards",
+            "position": 4
+          },
+          "rcavg": {
+            "abbrev": "Yds/Rec",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['rcrec'] == 0){ return 0} else{return (acc.values['rcyd'] / acc.values['rcrec'])}})()",
+            "game_or_season": "both",
+            "name": "Average Yards",
+            "position": 5,
+            "required_fields": [
+              "rcrec",
+              "rcyd"
+            ]
+          },
+          "rctd": {
+            "abbrev": "TD",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Touchdowns",
+            "position": 6
+          },
+          "rc2pc": {
+            "abbrev": "2PM",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Two-Point Conversions Made",
+            "position": 7
+          },
+          "rcypg": {
+            "abbrev": "YPG",
+            "formatter": "integer",
+            "formula": "(function () { if (acc.values['rcgames'] == 0){ return 0 } else{ return (acc.values['rcyd'] / acc.values['rcgames'])}})()",
+            "game_or_season": "season",
+            "name": "Yards per game",
+            "position": 8,
+            "required_fields": [
+              "rcyd"
+            ]
+          },
+          "rcyac": {
+            "abbrev": "YAC",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Yards after catch",
+            "position": 9
+          }
+        },
+        "name": "Receiving"
+      },
+      "rushing": {
+        "key": "football_rushing",
+        "position": 2,
+        "sport_id": 11,
+        "team_only": false,
+        "types": {
+          "rshgames": {
+            "abbrev": "G",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "season",
+            "games_stat": true,
+            "name": "Games played",
+            "position": 1,
+            "required_fields": null,
+            "team_callbacks": "team_games_played"
+          },
+          "rshatt": {
+            "abbrev": "Att",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Attempts",
+            "position": 2
+          },
+          "rshyd": {
+            "abbrev": "Yds",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Yards",
+            "position": 3
+          },
+          "rshavg": {
+            "abbrev": "Yds/Att",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['rshatt'] == 0){ return 0 } else{ return (acc.values['rshyd'] / acc.values['rshatt'])}})()",
+            "game_or_season": "both",
+            "name": "Average Yards",
+            "position": 4,
+            "required_fields": [
+              "rshatt",
+              "rshyd"
+            ]
+          },
+          "rshtd": {
+            "abbrev": "TD",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Touchdowns",
+            "position": 5
+          },
+          "rshfum": {
+            "abbrev": "FUM",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Fumbles Lost",
+            "position": 6
+          },
+          "rsh2pc": {
+            "abbrev": "2PM",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Two-Point Conversions Made",
+            "position": 7
+          },
+          "rshypg": {
+            "abbrev": "Rush YPG",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['rshgames'] == 0){ return 0 } else{ return (acc.values['rshyd'] / acc.values['rshgames'])}})()",
+            "game_or_season": "season",
+            "name": "Rushing Yards Per Game",
+            "position": 8,
+            "required_fields": [
+              "rshyd"
+            ]
+          }
+        },
+        "name": "Rushing"
+      },
+      "offense": {
+        "key": "football_team_offense",
+        "position": 10,
+        "requires": "football_passing football_rushing",
+        "sport_id": 11,
+        "team_only": true,
+        "types": {
+          "togames": {
+            "abbrev": "G",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "season",
+            "games_stat": true,
+            "name": "Games played",
+            "position": 1,
+            "required_fields": null,
+            "team_callbacks": "team_games_played"
+          },
+          "tmo1d": {
+            "abbrev": "1st Downs",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "First Downs",
+            "position": 2
+          },
+          "tmo3da": {
+            "abbrev": "3rd Down Att",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Third Down Attempts",
+            "position": 3
+          },
+          "tmo3dc": {
+            "abbrev": "3rd Down Conv",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Third Down Conversions",
+            "position": 4
+          },
+          "tmo3dpct": {
+            "abbrev": "3rd Down Conv %",
+            "formatter": "percentage",
+            "formula": "(function () { if (acc.values['tmo3da'] == 0){return 0} else{return (acc.values['tmo3dc'] / acc.values['tmo3da'])}})()",
+            "game_or_season": "both",
+            "name": "Third Down Conversions Percentage",
+            "position": 5,
+            "required_fields": [
+              "tmo3da",
+              "tmo3dc"
+            ]
+          },
+          "tmo4dpct": {
+            "abbrev": "4th Down Conv %",
+            "formatter": "percentage",
+            "formula": "(function () { if (acc.values['tmo4da'] == 0){return 0} else{return (acc.values['tmo4dc'] / acc.values['tmo4da'])}})()",
+            "game_or_season": "both",
+            "name": "Fourth Down Conversions Percentage",
+            "position": 6,
+            "required_fields": [
+              "tmo4da",
+              "tmo4dc"
+            ]
+          },
+          "tmo4da": {
+            "abbrev": "4th Down Att",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Fourth Down Attempts",
+            "position": 10
+          },
+          "tmotop": {
+            "abbrev": "Time of Pos",
+            "description": "Time of Possession",
+            "formatter": "minutes_and_seconds",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Time of Possession",
+            "position": 11
+          },
+          "tmo4dc": {
+            "abbrev": "4th Down Conv",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Fourth Down Conversions",
+            "position": 11
+          },
+          "tmotot": {
+            "abbrev": "TOT YRD",
+            "description": "Total Offense",
+            "formatter": "integer",
+            "formula": "(function () { return acc.values['psyds'] + acc.values['rshyd']})()",
+            "game_or_season": "both",
+            "name": "Total Offense",
+            "position": 12,
+            "required_fields": [
+              "psyds",
+              "rshyd"
+            ]
+          },
+          "tmopen": {
+            "abbrev": "PEN",
+            "description": "Total Penalties",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Penalties",
+            "position": 13
+          },
+          "tmopyd": {
+            "abbrev": "PEN YRD",
+            "description": "Total Penalty Yards",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Penalty Yards",
+            "position": 14
+          }
+        },
+        "name": "Team Stats"
+      }
+    }
+  },
+  "gymnastics": {
+    "standings": {
+      "key": "gymnastics_team_scoring",
+      "name": "Team Scoring",
+      "position": 3,
+      "sport_id": 29,
+      "types": {
+        "wins": {
+          "position": 1,
+          "abbrev": "W",
+          "name": "Wins",
+          "formatter": "integer",
+          "game_or_season": "both",
+          "score_value": false
+        },
+        "losses": {
+          "position": 2,
+          "abbrev": "L",
+          "name": "Losses",
+          "formatter": "integer",
+          "game_or_season": "both",
+          "score_value": false
+        },
+        "ties": {
+          "position": 3,
+          "abbrev": "T",
+          "name": "Ties",
+          "formatter": "integer",
+          "game_or_season": "both",
+          "score_value": false
+        },
+        "goals": {
+          "position": 4,
+          "abbrev": "G",
+          "name": "Goals",
+          "formatter": "integer",
+          "game_or_season": "both",
+          "score_value": true,
+          "interval_score": true,
+          "match_score": true
+        },
+        "gysgpg": {
+          "position": 5,
+          "abbrev": "GPG Avg",
+          "name": "Goals Per Game",
+          "formatter": "float_2",
+          "required_fields": [
+            "wins",
+            "losses",
+            "ties",
+            "goals"
+          ],
+          "formula": "(function () {\n  var games = acc.values['wins'] + acc.values['losses'] + acc.values['ties'];\n  if (games == 0) return 0;\n  return acc.values['goals'] / games;\n})()\n",
+          "game_or_season": "season",
+          "score_value": false
+        }
+      }
+    },
+    "stats": {
+      "individual": {
+        "key": "gymnastics_individual",
+        "name": "Individual",
+        "position": 1,
+        "sport_id": 29,
+        "types": {
+          "gyigp": {
+            "position": 1,
+            "abbrev": "GP",
+            "name": "Games Played",
+            "formatter": "integer",
+            "team_callbacks": "team_games_played",
+            "game_or_season": "season",
+            "games_stat": true,
+            "player_only": false
+          },
+          "gyimin": {
+            "position": 2,
+            "abbrev": "MIN",
+            "name": "Minutes Played",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "player_only": true
+          },
+          "gyig": {
+            "position": 3,
+            "abbrev": "G",
+            "name": "Goals",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "player_only": false
+          }
+        }
+      }
+    }
+  },
+  "ice_hockey": {
+    "standings": {
+      "key": "ice_hockey_team_scoring",
+      "position": 0,
+      "sport_id": 1,
+      "team_only": true,
+      "types": {
+        "pts": {
+          "abbrev": "Pts",
+          "formatter": "integer",
+          "formula": "",
+          "game_or_season": "both",
+          "name": "Points",
+          "position": 1,
+          "score_value": true,
+          "interval_score": true,
+          "match_score": true
+        },
+        "wins": {
+          "abbrev": "W",
+          "formatter": "integer",
+          "formula": "",
+          "game_or_season": "both",
+          "name": "Wins",
+          "position": 2,
+          "score_value": false
+        },
+        "losses": {
+          "abbrev": "L",
+          "formatter": "integer",
+          "formula": "",
+          "game_or_season": "both",
+          "name": "Losses",
+          "position": 3,
+          "score_value": false
+        },
+        "ties": {
+          "abbrev": "T",
+          "formatter": "integer",
+          "formula": "",
+          "game_or_season": "both",
+          "name": "Ties",
+          "position": 4,
+          "score_value": false
+        },
+        "overtime_losses": {
+          "abbrev": "OTL",
+          "formatter": "integer",
+          "formula": "",
+          "game_or_season": "both",
+          "name": "Overtime Losses",
+          "position": 5,
+          "score_value": false
+        }
+      },
+      "name": "Team Record"
+    },
+    "stats": {
+      "goalie": {
+        "key": "ice_hockey_goalie",
+        "name": "Goalie",
+        "position": 2,
+        "regulation_duration_required": true,
+        "sport_id": 1,
+        "types": {
+          "hkggm": {
+            "abbrev": "GP",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "season",
+            "games_stat": true,
+            "name": "Games Played",
+            "position": 1,
+            "required_fields": null,
+            "team_callbacks": "team_games_played"
+          },
+          "hkgmin": {
+            "abbrev": "MIN",
+            "formatter": "minutes_and_seconds",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Minutes",
+            "position": 2
+          },
+          "hkgwin": {
+            "abbrev": "W",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Wins",
+            "player_only": true,
+            "position": 3
+          },
+          "hkgloss": {
+            "abbrev": "L",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Losses",
+            "player_only": true,
+            "position": 4
+          },
+          "hkgtie": {
+            "abbrev": "T",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Ties",
+            "player_only": true,
+            "position": 5
+          },
+          "hkgsol": {
+            "abbrev": "SOL",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Shootout Loss",
+            "player_only": true,
+            "position": 6
+          },
+          "hkgsog": {
+            "abbrev": "SOG",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Shots on Goal",
+            "position": 7
+          },
+          "hkgsv": {
+            "abbrev": "SV",
+            "formatter": "integer",
+            "formula": "(function () { var total = acc.values['hkgsog'] - acc.values['hkggla']; if(total >= 0) { return total } else { return 0 } })()",
+            "game_or_season": "both",
+            "name": "Saves",
+            "position": 8,
+            "required_fields": [
+              "hkgsog",
+              "hkggla"
+            ]
+          },
+          "hkggla": {
+            "abbrev": "GA",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Goals Against",
+            "position": 9
+          },
+          "hkggaa": {
+            "abbrev": "GAA",
+            "formatter": "float_2",
+            "formula": "(function () { var duration = acc.regulation_duration ? acc.regulation_duration : 3600; if (acc.values['hkgmin'] == 0){ return 0 } else{ return (acc.values['hkggla'] * duration / acc.values['hkgmin'])}})()",
+            "game_or_season": "both",
+            "name": "Goals Against Average",
+            "position": 10,
+            "required_fields": [
+              "hkgmin",
+              "hkggla"
+            ]
+          },
+          "hkgspct": {
+            "abbrev": "SV %",
+            "formatter": "decimal_3",
+            "formula": "(function () { if (acc.values['hkgsog'] == 0){ return 0 } else{ return ((acc.values['hkgsog'] - acc.values['hkggla']) / acc.values['hkgsog'])}})()",
+            "game_or_season": "both",
+            "name": "Save Percentage",
+            "position": 11,
+            "required_fields": [
+              "hkgsog",
+              "hkggla"
+            ]
+          },
+          "hkgsot": {
+            "abbrev": "SO",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Shut Outs",
+            "position": 12
+          },
+          "hkgmvp": {
+            "abbrev": "MVP",
+            "formatter": "MVP",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Player of the Game Award",
+            "player_only": true,
+            "position": 13
+          }
+        }
+      },
+      "skater": {
+        "key": "ice_hockey_skater",
+        "name": "Skater",
+        "position": 1,
+        "sport_id": 1,
+        "types": {
+          "hksgm": {
+            "abbrev": "GP",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "season",
+            "games_stat": true,
+            "name": "Games Played",
+            "position": 1,
+            "required_fields": null,
+            "team_callbacks": "team_games_played"
+          },
+          "hksgl": {
+            "abbrev": "G",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Goals",
+            "position": 2
+          },
+          "hksast": {
+            "abbrev": "A",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Assists",
+            "position": 3
+          },
+          "hkspts": {
+            "abbrev": "PTS",
+            "formatter": "integer",
+            "formula": "(function () {return (acc.values['hksgl'] + acc.values['hksast'])})()",
+            "game_or_season": "both",
+            "name": "Points",
+            "position": 4,
+            "required_fields": [
+              "hksgl",
+              "hksast"
+            ]
+          },
+          "hkssog": {
+            "abbrev": "SOG",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Shots on Goal",
+            "position": 5
+          },
+          "hksshtpct": {
+            "abbrev": "SOG %",
+            "formatter": "percentage",
+            "formula": "(function () { if (acc.values['hkssog'] == 0){ return 0 } else{ return (acc.values['hksgl'] / acc.values['hkssog'])}})()",
+            "game_or_season": "both",
+            "name": "Shooting Percentage",
+            "position": 6,
+            "required_fields": [
+              "hkssog",
+              "hksgl"
+            ]
+          },
+          "hksppg": {
+            "abbrev": "PPG",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Power Play Goals",
+            "position": 7
+          },
+          "hksppa": {
+            "abbrev": "PPA",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Power Play Assists",
+            "position": 8
+          },
+          "hksshg": {
+            "abbrev": "SH",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Short Handed Goals",
+            "position": 9
+          },
+          "hkssha": {
+            "abbrev": "SHA",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Short Handed Assists",
+            "position": 10
+          },
+          "hkspen": {
+            "abbrev": "PEN",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Penalties",
+            "position": 11
+          },
+          "hkspim": {
+            "abbrev": "PIM",
+            "formatter": "integer_or_float_1",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Penalty Minutes",
+            "position": 12
+          },
+          "hksfow": {
+            "abbrev": "FOW",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Faceoffs Won",
+            "position": 13
+          },
+          "hksfol": {
+            "abbrev": "FOL",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Faceoffs Lost",
+            "position": 14
+          },
+          "hksto": {
+            "abbrev": "TO",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Turnovers",
+            "position": 15
+          },
+          "hkshit": {
+            "abbrev": "HIT",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Hits",
+            "position": 16
+          },
+          "hksbs": {
+            "abbrev": "BS",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Blocked Shots",
+            "position": 17
+          },
+          "hkspm": {
+            "abbrev": "+ / -",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Plus / Minus",
+            "player_only": true,
+            "position": 18
+          },
+          "hksmvp": {
+            "abbrev": "MVP",
+            "formatter": "MVP",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Player of the Game Award",
+            "player_only": true,
+            "position": 19
+          },
+          "hksgwg": {
+            "abbrev": "GW",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Game Winning Goals",
+            "player_only": true,
+            "position": 20
+          },
+          "hksfgs": {
+            "abbrev": "FG",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "First Goal",
+            "player_only": true,
+            "position": 21
+          },
+          "hksavgpts": {
+            "abbrev": "AVG PTS",
+            "formatter": "float_2",
+            "formula": "(function () { if (acc.values['hksgm'] == 0){ return 0 } else{ return ((acc.values['hksgl'] + acc.values['hksast']) / acc.values['hksgm'])}})()",
+            "game_or_season": "season",
+            "name": "Points Per Game",
+            "player_only": true,
+            "position": 22,
+            "required_fields": [
+              "hksgl",
+              "hksast"
+            ]
+          },
+          "hkshtwon": {
+            "abbrev": "SW",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "game",
+            "name": "Shootout Won",
+            "position": 23,
+            "score_value": true
+          }
+        }
+      },
+      "stats": {
+        "key": "ice_hockey_team_stats",
+        "position": 3,
+        "requires": "ice_hockey_skater ice_hockey_goalie",
+        "sport_id": 1,
+        "team_only": true,
+        "types": {
+          "hktgms": {
+            "abbrev": "GP",
+            "formatter": "integer",
+            "game_or_season": "season",
+            "games_stat": true,
+            "name": "Games played",
+            "position": 1,
+            "team_callbacks": "team_games_played"
+          },
+          "hktgpg": {
+            "abbrev": "GPG",
+            "formatter": "float_2",
+            "formula": "(function () { if (acc.values['hktgms'] == 0){ return 0 } else{ return (acc.values['hksgl'] / acc.values['hktgms'])}})()",
+            "game_or_season": "season",
+            "name": "Goals Per Game Avg",
+            "position": 2,
+            "required_fields": [
+              "hksgl"
+            ]
+          },
+          "hktgaa": {
+            "abbrev": "GAPG",
+            "formatter": "float_2",
+            "formula": "(function () { if (acc.values['hktgms'] == 0){ return 0 } else{ return (acc.values['hkggla'] / acc.values['hktgms'])}})()",
+            "game_or_season": "season",
+            "name": "Goals Against Per Game",
+            "position": 3,
+            "required_fields": [
+              "hkggla"
+            ]
+          },
+          "hktppa": {
+            "abbrev": "PP",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Power Plays",
+            "position": 4
+          },
+          "hktpppct": {
+            "abbrev": "PP %",
+            "formatter": "percentage",
+            "formula": "(function () { if (acc.values['hktppa'] == 0){ return 0 } else{ return (acc.values['hksppg'] / acc.values['hktppa'])}})()",
+            "game_or_season": "both",
+            "name": "Power Play Percentage",
+            "position": 5,
+            "required_fields": [
+              "hktppa",
+              "hksppg"
+            ]
+          },
+          "hktpkl": {
+            "abbrev": "PK",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Penalty Kills",
+            "position": 6
+          },
+          "hktpkga": {
+            "abbrev": "PPGA",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Power Play Goals Allowed",
+            "position": 7
+          },
+          "hktpkpct": {
+            "abbrev": "PK %",
+            "formatter": "percentage",
+            "formula": "(function () { if (acc.values['hktpkl'] == 0){ return 0 } else{ return (1.0 - (acc.values['hktpkga'] / acc.values['hktpkl']))}})()",
+            "game_or_season": "both",
+            "name": "Penalty Kill Percentage",
+            "position": 8,
+            "required_fields": [
+              "hktpkl",
+              "hktpkga"
+            ]
+          }
+        },
+        "name": "Team"
+      }
+    }
+  },
+  "lacrosse": {
+    "standings": {
+      "key": "lacrosse_team_scoring",
+      "position": 0,
+      "sport_id": 3,
+      "team_only": true,
+      "types": {
+        "pts": {
+          "abbrev": "Pts",
+          "formatter": "integer",
+          "game_or_season": "both",
+          "name": "Points",
+          "position": 1,
+          "score_value": true,
+          "interval_score": true,
+          "match_score": true
+        },
+        "wins": {
+          "abbrev": "W",
+          "formatter": "integer",
+          "game_or_season": "both",
+          "name": "Wins",
+          "position": 2,
+          "score_value": false
+        },
+        "losses": {
+          "abbrev": "L",
+          "formatter": "integer",
+          "game_or_season": "both",
+          "name": "Losses",
+          "position": 3,
+          "score_value": false
+        },
+        "ties": {
+          "abbrev": "T",
+          "formatter": "integer",
+          "game_or_season": "both",
+          "name": "Ties",
+          "position": 4,
+          "score_value": false
+        }
+      },
+      "name": "Team Record"
+    },
+    "stats": {
+      "goalie": {
+        "key": "lacrosse_goalie",
+        "name": "Goaltender",
+        "position": 2,
+        "regulation_duration_required": true,
+        "sport_id": 3,
+        "types": {
+          "lxggm": {
+            "abbrev": "GP",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "season",
+            "games_stat": true,
+            "name": "Games Played",
+            "player_only": false,
+            "position": 1,
+            "required_fields": null,
+            "team_callbacks": "team_games_played"
+          },
+          "lxgmin": {
+            "abbrev": "MIN",
+            "formatter": "minutes_and_seconds",
+            "game_or_season": "both",
+            "name": "Minutes Played",
+            "player_only": true,
+            "position": 2
+          },
+          "lxgwin": {
+            "abbrev": "W",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Wins",
+            "player_only": true,
+            "position": 3
+          },
+          "lxgloss": {
+            "abbrev": "L",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Losses",
+            "player_only": true,
+            "position": 4
+          },
+          "lxgtie": {
+            "abbrev": "T",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Ties",
+            "player_only": true,
+            "position": 5
+          },
+          "lxgsog": {
+            "abbrev": "SOG",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Shots on Goal Against",
+            "position": 6
+          },
+          "lxggla": {
+            "abbrev": "GA",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Goals Against",
+            "position": 7
+          },
+          "lxgtpgla": {
+            "abbrev": "2GA",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Two Point Goals Against",
+            "position": 8
+          },
+          "lxggaa": {
+            "abbrev": "GAA",
+            "formatter": "float_2",
+            "formula": "(function () { var duration = acc.regulation_duration ? acc.regulation_duration : 3600; if (acc.values['lxgmin'] == 0){ return 0 } else{ return (acc.values['lxggla'] * duration / acc.values['lxgmin'])}})()",
+            "game_or_season": "both",
+            "name": "Goals Against Average",
+            "position": 9,
+            "required_fields": [
+              "lxggla",
+              "lxgmin"
+            ]
+          },
+          "lxgsv": {
+            "abbrev": "SV",
+            "formatter": "integer",
+            "formula": "(function () { return Math.max(0, acc.values['lxgsog'] - acc.values['lxggla']) })()",
+            "game_or_season": "both",
+            "name": "Saves",
+            "position": 10,
+            "required_fields": [
+              "lxgsog",
+              "lxggla"
+            ]
+          },
+          "lxgspct": {
+            "abbrev": "SV%",
+            "formatter": "decimal_3",
+            "formula": "(function () { if (acc.values['lxgsog'] == 0){ return 0 } else{ return Math.max(0, acc.values['lxgsog'] - acc.values['lxggla']) / acc.values['lxgsog']}})()",
+            "game_or_season": "both",
+            "name": "Save Percentage",
+            "position": 11,
+            "required_fields": [
+              "lxggla",
+              "lxgsog"
+            ]
+          },
+          "lxggb": {
+            "abbrev": "GB",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Groundballs",
+            "position": 12
+          },
+          "lxglb": {
+            "abbrev": "LB",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Looseballs",
+            "position": 13
+          },
+          "lxgsho": {
+            "abbrev": "SO",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Shut Outs",
+            "position": 14
+          },
+          "lxgmvp": {
+            "abbrev": "MVP",
+            "formatter": "MVP",
+            "game_or_season": "both",
+            "name": "Player of the Game Award",
+            "player_only": true,
+            "position": 15
+          }
+        }
+      },
+      "individual": {
+        "key": "lacrosse_individual",
+        "name": "Runner",
+        "position": 1,
+        "sport_id": 3,
+        "types": {
+          "lxigp": {
+            "abbrev": "GP",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "season",
+            "games_stat": true,
+            "name": "Games Played",
+            "player_only": false,
+            "position": 1,
+            "required_fields": null,
+            "team_callbacks": "team_games_played"
+          },
+          "lxigl": {
+            "abbrev": "G",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Goals",
+            "player_only": false,
+            "position": 2
+          },
+          "lxitpgl": {
+            "abbrev": "2PG",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Two Point Goals",
+            "player_only": false,
+            "position": 3
+          },
+          "lxiast": {
+            "abbrev": "A",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Assists",
+            "player_only": false,
+            "position": 4
+          },
+          "lxipts": {
+            "abbrev": "PTS",
+            "formatter": "integer",
+            "formula": "(function () {return (acc.values['lxigl'] + acc.values['lxiast'])})()",
+            "game_or_season": "both",
+            "name": "Points",
+            "player_only": false,
+            "position": 5,
+            "required_fields": [
+              "lxigl",
+              "lxiast"
+            ]
+          },
+          "lxipim": {
+            "abbrev": "PIM",
+            "formatter": "integer_or_float_1",
+            "game_or_season": "both",
+            "name": "Penalty Minutes",
+            "player_only": false,
+            "position": 6
+          },
+          "lxiinf": {
+            "abbrev": "INF",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Penalties",
+            "player_only": false,
+            "position": 7
+          },
+          "lxippg": {
+            "abbrev": "PPG",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Power Play Goals",
+            "player_only": false,
+            "position": 8
+          },
+          "lxishg": {
+            "abbrev": "SHG",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Short Handed Goals",
+            "player_only": false,
+            "position": 9
+          },
+          "lxigwg": {
+            "abbrev": "GW",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Game Winning Goals",
+            "player_only": false,
+            "position": 10
+          },
+          "lxipggl": {
+            "abbrev": "G/GP",
+            "formatter": "float_2",
+            "formula": "(function () { if (acc.values['lxigp'] == 0){ return 0 } else{ return (acc.values['lxigl'] / acc.values['lxigp'])}})()",
+            "game_or_season": "season",
+            "name": "Avg Goals Per Game",
+            "player_only": false,
+            "position": 11,
+            "required_fields": [
+              "lxigl"
+            ]
+          },
+          "lxiavepts": {
+            "abbrev": "PTS/GP",
+            "formatter": "float_2",
+            "formula": "(function () { if (acc.values['lxigp'] == 0){ return 0 } else{ return ((acc.values['lxigl'] + acc.values['lxiast']) / acc.values['lxigp'])}})()",
+            "game_or_season": "season",
+            "name": "Avg Points Per Game",
+            "player_only": false,
+            "position": 12,
+            "required_fields": [
+              "lxigl",
+              "lxiast"
+            ]
+          },
+          "lxipgpim": {
+            "abbrev": "PIM/GP",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['lxigp'] == 0){ return 0 } else{ return (acc.values['lxipim'] / acc.values['lxigp'])}})()",
+            "game_or_season": "season",
+            "name": "Avg Penalty Minutes Per Game",
+            "player_only": false,
+            "position": 13,
+            "required_fields": [
+              "lxipim"
+            ]
+          },
+          "lxitsa": {
+            "abbrev": "S",
+            "formatter": "integer",
+            "formula": "(function () { return acc.values['lxisog'] + acc.values['lxisoff']})()",
+            "game_or_season": "both",
+            "name": "Total Shots Attempted",
+            "player_only": false,
+            "position": 14,
+            "required_fields": [
+              "lxisog",
+              "lxisoff"
+            ]
+          },
+          "lxisog": {
+            "abbrev": "SOG",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Shots on Goal",
+            "player_only": false,
+            "position": 15
+          },
+          "lxisoff": {
+            "abbrev": "SOFF",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Shots Off-Target",
+            "player_only": false,
+            "position": 16
+          },
+          "lxishpct": {
+            "abbrev": "SHOT%",
+            "formatter": "percentage",
+            "formula": "(function () { if (acc.values['lxisog'] + acc.values['lxisoff'] == 0){ return 0 } else{ return (acc.values['lxigl']) / (acc.values['lxisog'] + acc.values['lxisoff'])}})()",
+            "game_or_season": "both",
+            "name": "Shooting Percentage",
+            "player_only": false,
+            "position": 17,
+            "required_fields": [
+              "lxisog",
+              "lxisoff",
+              "lxigl"
+            ]
+          },
+          "lxisogpct": {
+            "abbrev": "SOG%",
+            "formatter": "percentage",
+            "formula": "(function () { if (acc.values['lxisog'] + acc.values['lxisoff'] == 0){ return 0 } else{ return acc.values['lxisog'] / (acc.values['lxisog'] + acc.values['lxisoff'])}})()",
+            "game_or_season": "both",
+            "name": "Percentage of Shots On Goal",
+            "player_only": false,
+            "position": 18,
+            "required_fields": [
+              "lxisog",
+              "lxisoff"
+            ]
+          },
+          "lxipgsog": {
+            "abbrev": "SOG/GP",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['lxigp'] == 0){ return 0 } else{ return (acc.values['lxisog'] / acc.values['lxigp'])}})()",
+            "game_or_season": "season",
+            "name": "Avg Shots On Goal Per Game",
+            "player_only": false,
+            "position": 19,
+            "required_fields": [
+              "lxisog"
+            ]
+          },
+          "lxigb": {
+            "abbrev": "GB",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Ground Balls",
+            "player_only": false,
+            "position": 20
+          },
+          "lxilb": {
+            "abbrev": "LB",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Loose Balls",
+            "player_only": false,
+            "position": 21
+          },
+          "lxito": {
+            "abbrev": "TO",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Turnovers",
+            "player_only": false,
+            "position": 22
+          },
+          "lxifto": {
+            "abbrev": "FT",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Forced Turnovers",
+            "player_only": false,
+            "position": 23
+          },
+          "lxita": {
+            "abbrev": "TA",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Take Aways",
+            "player_only": false,
+            "position": 24
+          },
+          "lxifo": {
+            "abbrev": "FO",
+            "formatter": "integer",
+            "formula": "(function () { return acc.values['lxifow'] + acc.values['lxifol'] })()",
+            "game_or_season": "both",
+            "name": "Faceoffs",
+            "player_only": false,
+            "position": 25,
+            "required_fields": [
+              "lxifow",
+              "lxifol"
+            ]
+          },
+          "lxifow": {
+            "abbrev": "FOW",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Faceoffs Won",
+            "player_only": false,
+            "position": 26
+          },
+          "lxifol": {
+            "abbrev": "FOL",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Faceoffs Lost",
+            "player_only": false,
+            "position": 27
+          },
+          "lxifopct": {
+            "abbrev": "FO%",
+            "formatter": "percentage",
+            "formula": "(function () { if (acc.values['lxifow'] + acc.values['lxifol'] == 0){ return 0 } else{ return acc.values['lxifow']/(acc.values['lxifow'] + acc.values['lxifol'])}})()",
+            "game_or_season": "both",
+            "name": "Faceoff Percentage",
+            "player_only": false,
+            "position": 28,
+            "required_fields": [
+              "lxifow",
+              "lxifol"
+            ]
+          },
+          "lximvp": {
+            "abbrev": "MVP",
+            "formatter": "MVP",
+            "game_or_season": "both",
+            "name": "Player of the Game Award",
+            "player_only": true,
+            "position": 29
+          },
+          "lxidc": {
+            "abbrev": "DC",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Draw Controls",
+            "player_only": false,
+            "position": 30
+          }
+        }
+      },
+      "stats": {
+        "key": "lacrosse_team_stats",
+        "position": 4,
+        "requires": "lacrosse_individual",
+        "sport_id": 3,
+        "team_only": true,
+        "types": {
+          "lxtppa": {
+            "abbrev": "PP",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Power Plays Attempted",
+            "position": 1
+          },
+          "lxtpppct": {
+            "abbrev": "PP%",
+            "formatter": "percentage",
+            "formula": "(function () { if (acc.values['lxtppa'] == 0){ return 0 } else{ return (acc.values['lxippg'] / acc.values['lxtppa'])}})()",
+            "game_or_season": "both",
+            "name": "Power Play Percentage",
+            "position": 2,
+            "required_fields": [
+              "lxtppa",
+              "lxippg"
+            ]
+          },
+          "lxtppm": {
+            "abbrev": "PPM",
+            "formatter": "float_1",
+            "game_or_season": "both",
+            "name": "Power Play Minutes",
+            "position": 3
+          },
+          "lxtpkl": {
+            "abbrev": "PK",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Penalty Kills",
+            "position": 4
+          },
+          "lxtpkga": {
+            "abbrev": "PKGA",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Penalty Kill Goals Allowed",
+            "position": 5
+          },
+          "lxtpkpct": {
+            "abbrev": "PK%",
+            "formatter": "percentage",
+            "formula": "(function () { if (acc.values['lxtpkl'] == 0){ return 0 } else{ return (1.0 - (acc.values['lxtpkga'] / acc.values['lxtpkl']))}})()",
+            "game_or_season": "both",
+            "name": "Penalty Kill Percentage",
+            "position": 6,
+            "required_fields": [
+              "lxtpkl",
+              "lxtpkga"
+            ]
+          },
+          "lxtclr": {
+            "abbrev": "C",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Clears",
+            "position": 7
+          },
+          "lxtfclr": {
+            "abbrev": "FC",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Failed Clears",
+            "position": 8
+          },
+          "lxtride": {
+            "abbrev": "R",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Rides",
+            "position": 9
+          }
+        },
+        "name": "Team"
+      }
+    }
+  },
+  "rugby_union": {
+    "standings": {
+      "key": "rugby_union_team_scoring",
+      "name": "Team Scoring",
+      "position": 2,
+      "sport_id": 16,
+      "types": {
+        "wins": {
+          "position": 1,
+          "abbrev": "W",
+          "name": "Wins",
+          "formatter": "integer",
+          "game_or_season": "both",
+          "score_value": false
+        },
+        "losses": {
+          "position": 2,
+          "abbrev": "L",
+          "name": "Losses",
+          "formatter": "integer",
+          "game_or_season": "both",
+          "score_value": false
+        },
+        "ties": {
+          "position": 3,
+          "abbrev": "D",
+          "name": "Draws",
+          "formatter": "integer",
+          "game_or_season": "both",
+          "score_value": false
+        },
+        "pts": {
+          "position": 4,
+          "abbrev": "Pts",
+          "name": "Points",
+          "formatter": "integer",
+          "game_or_season": "both",
+          "score_value": true,
+          "interval_score": true,
+          "match_score": true
+        }
+      }
+    },
+    "stats": {
+      "player": {
+        "key": "rugby_union_player",
+        "name": "Player",
+        "position": 1,
+        "sport_id": 16,
+        "types": {
+          "rupmat": {
+            "position": 1,
+            "abbrev": "MAT",
+            "name": "Matches",
+            "formatter": "integer",
+            "team_callbacks": "team_games_played",
+            "game_or_season": "season",
+            "games_stat": true
+          },
+          "rupst": {
+            "position": 2,
+            "abbrev": "ST",
+            "name": "Starts",
+            "formatter": "integer",
+            "game_or_season": "both"
+          },
+          "rupsb": {
+            "position": 3,
+            "abbrev": "SB",
+            "name": "Subs",
+            "formatter": "integer",
+            "game_or_season": "both"
+          },
+          "ruppts": {
+            "position": 4,
+            "abbrev": "PTS",
+            "name": "Points",
+            "formatter": "integer",
+            "game_or_season": "both"
+          },
+          "rupt": {
+            "position": 5,
+            "abbrev": "T",
+            "name": "Tries",
+            "formatter": "integer",
+            "game_or_season": "both"
+          },
+          "rupconv": {
+            "position": 6,
+            "abbrev": "CONV",
+            "name": "Conversions",
+            "formatter": "integer",
+            "game_or_season": "both"
+          },
+          "rupp": {
+            "position": 7,
+            "abbrev": "P",
+            "name": "Penalties",
+            "formatter": "integer",
+            "game_or_season": "both"
+          },
+          "rupdg": {
+            "position": 8,
+            "abbrev": "DG",
+            "name": "Drop Goals",
+            "formatter": "integer",
+            "game_or_season": "both"
+          },
+          "rupyc": {
+            "position": 9,
+            "abbrev": "YC",
+            "name": "Yellow Cards",
+            "formatter": "integer",
+            "game_or_season": "both"
+          },
+          "ruprc": {
+            "position": 10,
+            "abbrev": "RC",
+            "name": "Red Cards",
+            "formatter": "integer",
+            "game_or_season": "both"
+          },
+          "rupsp": {
+            "position": 11,
+            "abbrev": "SP",
+            "name": "Set Pieces",
+            "formatter": "integer",
+            "game_or_season": "both"
+          },
+          "rupbc": {
+            "position": 12,
+            "abbrev": "BC",
+            "name": "Ball Carries",
+            "formatter": "integer",
+            "game_or_season": "both"
+          },
+          "ruptm": {
+            "position": 13,
+            "abbrev": "TM",
+            "name": "Tackles Made",
+            "formatter": "integer",
+            "game_or_season": "both"
+          },
+          "rupts": {
+            "position": 14,
+            "abbrev": "TS",
+            "name": "Tackles Missed",
+            "formatter": "integer",
+            "game_or_season": "both"
+          },
+          "rupbl": {
+            "position": 15,
+            "abbrev": "BL",
+            "name": "Balls Lost in Contact",
+            "formatter": "integer",
+            "game_or_season": "both"
+          },
+          "rupk": {
+            "position": 16,
+            "abbrev": "K",
+            "name": "Kicks",
+            "formatter": "integer",
+            "game_or_season": "both"
+          },
+          "rupto": {
+            "position": 17,
+            "abbrev": "TO",
+            "name": "Turnovers Won",
+            "formatter": "integer",
+            "game_or_season": "both"
+          },
+          "rupsk": {
+            "position": 18,
+            "abbrev": "SK",
+            "name": "Successful Kicks",
+            "formatter": "integer",
+            "game_or_season": "both"
+          }
+        }
+      }
+    }
+  },
+  "soccer": {
+    "standings": {
+      "key": "soccer_team_scoring",
+      "name": "Team Scoring",
+      "position": 3,
+      "sport_id": 5,
+      "types": {
+        "wins": {
+          "abbrev": "W",
+          "formatter": "integer",
+          "game_or_season": "both",
+          "name": "Wins",
+          "position": 1,
+          "score_value": false
+        },
+        "losses": {
+          "abbrev": "L",
+          "formatter": "integer",
+          "game_or_season": "both",
+          "name": "Losses",
+          "position": 2,
+          "score_value": false
+        },
+        "ties": {
+          "abbrev": "T",
+          "formatter": "integer",
+          "game_or_season": "both",
+          "name": "Ties",
+          "position": 3,
+          "score_value": false
+        },
+        "goals": {
+          "abbrev": "G",
+          "formatter": "integer",
+          "game_or_season": "both",
+          "interval_score": true,
+          "match_score": true,
+          "name": "Goals",
+          "position": 4,
+          "score_value": true
+        },
+        "sosgpg": {
+          "abbrev": "GPG Avg",
+          "formatter": "float_2",
+          "formula": "(function () { var games = acc.values['wins'] + acc.values['losses'] + acc.values['ties']; if (games == 0) return 0; return acc.values['goals'] / games; })() ",
+          "game_or_season": "season",
+          "name": "Goals Per Game",
+          "position": 5,
+          "required_fields": [
+            "wins",
+            "losses",
+            "ties",
+            "goals"
+          ],
+          "score_value": false
+        },
+        "ycard": {
+          "abbrev": "YC",
+          "formatter": "integer",
+          "game_or_season": "both",
+          "interval_score": false,
+          "match_score": false,
+          "name": "Yellow Cards",
+          "position": 6,
+          "score_value": false
+        },
+        "rcard": {
+          "abbrev": "RC",
+          "formatter": "integer",
+          "game_or_season": "both",
+          "interval_score": false,
+          "match_score": false,
+          "name": "Red Cards",
+          "position": 7,
+          "score_value": false
+        }
+      }
+    },
+    "stats": {
+      "goalkeeper": {
+        "key": "soccer_goalkeeper",
+        "name": "Goalkeeper",
+        "position": 2,
+        "regulation_duration_required": true,
+        "sport_id": 5,
+        "types": {
+          "soggp": {
+            "abbrev": "GP",
+            "formatter": "integer",
+            "game_or_season": "season",
+            "games_stat": true,
+            "name": "Games Played",
+            "player_only": false,
+            "position": 1,
+            "team_callbacks": "team_games_played"
+          },
+          "sogmin": {
+            "abbrev": "MIN",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Minutes Played",
+            "player_only": true,
+            "position": 2
+          },
+          "sogga": {
+            "abbrev": "GA",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Goals against",
+            "player_only": false,
+            "position": 3
+          },
+          "sogsv": {
+            "abbrev": "SV",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Saves",
+            "player_only": false,
+            "position": 4
+          },
+          "sogpksv": {
+            "abbrev": "PKSV",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Penalty Kick Saves",
+            "player_only": false,
+            "position": 5
+          },
+          "sogfksv": {
+            "abbrev": "FKSV",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Free Kick Saves",
+            "player_only": false,
+            "position": 6
+          },
+          "sogcksv": {
+            "abbrev": "CKSV",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Corner Kick Saves",
+            "player_only": false,
+            "position": 7
+          },
+          "sogyc": {
+            "abbrev": "YC",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Yellow Cards",
+            "player_only": false,
+            "position": 8,
+            "v1_only": true
+          },
+          "sogrc": {
+            "abbrev": "RC",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Red Cards",
+            "player_only": false,
+            "position": 9,
+            "v1_only": true
+          },
+          "sogfs": {
+            "abbrev": "FS",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Fouls Suffered",
+            "player_only": false,
+            "position": 10
+          },
+          "sogsvp": {
+            "abbrev": "SV%",
+            "formatter": "decimal_3",
+            "formula": "(function () { var sog = acc.values['sogga'] + acc.values['sogsv']; if (sog == 0) return 0; return acc.values['sogsv'] / sog; })() ",
+            "game_or_season": "both",
+            "name": "Save Percentage",
+            "player_only": false,
+            "position": 11,
+            "required_fields": [
+              "sogga",
+              "sogsv"
+            ]
+          },
+          "soggaa": {
+            "abbrev": "GAA",
+            "formatter": "float_2",
+            "formula": "(function () { if (acc.values['sogmin'] == 0) return 0; var duration_minutes = acc.regulation_duration ? acc.regulation_duration / 60 : 90; return acc.values['sogga'] * duration_minutes / acc.values['sogmin'] })() ",
+            "game_or_season": "both",
+            "name": "Goals Against Average",
+            "player_only": false,
+            "position": 12,
+            "required_fields": [
+              "sogga",
+              "sogmin"
+            ]
+          }
+        }
+      },
+      "individual": {
+        "key": "soccer_individual",
+        "name": "Individual",
+        "position": 1,
+        "sport_id": 5,
+        "types": {
+          "soigp": {
+            "abbrev": "GP",
+            "formatter": "integer",
+            "game_or_season": "season",
+            "games_stat": true,
+            "name": "Games Played",
+            "player_only": false,
+            "position": 1,
+            "team_callbacks": "team_games_played"
+          },
+          "soimin": {
+            "abbrev": "MIN",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Minutes Played",
+            "player_only": true,
+            "position": 2
+          },
+          "soig": {
+            "abbrev": "G",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Goals",
+            "player_only": false,
+            "position": 3
+          },
+          "soia": {
+            "abbrev": "A",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Assists",
+            "player_only": false,
+            "position": 4
+          },
+          "soipts": {
+            "abbrev": "PTS",
+            "formatter": "integer",
+            "formula": "(function () { return (2 * acc.values['soig']) + acc.values['soia'] })()",
+            "game_or_season": "both",
+            "name": "Total Points",
+            "player_only": false,
+            "position": 5,
+            "required_fields": [
+              "soig",
+              "soia"
+            ]
+          },
+          "soish": {
+            "abbrev": "SH",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Shots",
+            "player_only": false,
+            "position": 6
+          },
+          "soisog": {
+            "abbrev": "SOG",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Shots on Goal",
+            "player_only": false,
+            "position": 7
+          },
+          "soishp": {
+            "abbrev": "SHOT%",
+            "formatter": "decimal_3",
+            "formula": "(function () { if (acc.values['soisog'] == 0) return 0; return acc.values['soig'] / acc.values['soisog'] })() ",
+            "game_or_season": "both",
+            "name": "Shooting Percentage",
+            "player_only": false,
+            "position": 8,
+            "required_fields": [
+              "soig",
+              "soisog"
+            ]
+          },
+          "soicrn": {
+            "abbrev": "CRN",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Corner Kicks",
+            "player_only": false,
+            "position": 9
+          },
+          "soicrs": {
+            "abbrev": "CRS",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Crosses",
+            "player_only": false,
+            "position": 10
+          },
+          "soifba": {
+            "abbrev": "FBA",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Fast Break Attacks",
+            "player_only": false,
+            "position": 11
+          },
+          "soifc": {
+            "abbrev": "FC",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Fouls Committed",
+            "player_only": false,
+            "position": 12
+          },
+          "soifs": {
+            "abbrev": "FS",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Fouls Suffered",
+            "player_only": false,
+            "position": 13
+          },
+          "soihdr": {
+            "abbrev": "HDR",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Headers",
+            "player_only": false,
+            "position": 14
+          },
+          "soilp": {
+            "abbrev": "LP",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Long Passes",
+            "player_only": false,
+            "position": 15
+          },
+          "soioffs": {
+            "abbrev": "OFFS",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Offsides",
+            "player_only": false,
+            "position": 16
+          },
+          "soifk": {
+            "abbrev": "FK",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Free Kicks",
+            "player_only": false,
+            "position": 17
+          },
+          "soidfk": {
+            "abbrev": "DFK",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Direct Free Kicks",
+            "player_only": false,
+            "position": 18
+          },
+          "soiifk": {
+            "abbrev": "IFK",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Indirect Free Kicks",
+            "player_only": false,
+            "position": 19
+          },
+          "soifkg": {
+            "abbrev": "FKG",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Free Kick Goals",
+            "player_only": false,
+            "position": 20
+          },
+          "soipk": {
+            "abbrev": "PK",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Penalty Kicks",
+            "player_only": false,
+            "position": 21
+          },
+          "soipkg": {
+            "abbrev": "PKG",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Penalty Kick Goals",
+            "player_only": false,
+            "position": 22
+          },
+          "soitc": {
+            "abbrev": "TC",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Tackles Committed",
+            "player_only": false,
+            "position": 23
+          },
+          "soits": {
+            "abbrev": "TS",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Tackles Suffered",
+            "player_only": false,
+            "position": 24
+          },
+          "soiyc": {
+            "abbrev": "YC",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Yellow Cards",
+            "player_only": false,
+            "position": 25
+          },
+          "soiycst": {
+            "abbrev": "YCST",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Yellow Cards Standings",
+            "player_only": false,
+            "position": 26
+          },
+          "soirc": {
+            "abbrev": "RC",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Red Cards",
+            "player_only": false,
+            "position": 27
+          },
+          "soircst": {
+            "abbrev": "RCST",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Red Cards Standings",
+            "player_only": false,
+            "position": 28
+          },
+          "soiog": {
+            "abbrev": "OG",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Own Goals",
+            "player_only": false,
+            "position": 29
+          },
+          "soigwg": {
+            "abbrev": "GWG",
+            "formatter": "integer",
+            "game_or_season": "both",
+            "name": "Game Winning Goals",
+            "player_only": false,
+            "position": 30
+          }
+        }
+      },
+      "stats": {
+        "key": "soccer_team_stats",
+        "name": "Team",
+        "position": 4,
+        "sport_id": 5,
+        "team_only": true,
+        "types": {
+          "sotbp": {
+            "abbrev": "BP%",
+            "formatter": "integer",
+            "game_or_season": "game",
+            "name": "Ball Possession %",
+            "position": 1
+          }
+        }
+      }
+    }
+  },
+  "volleyball": {
+    "standings": {
+      "key": "volleyball_team_scoring",
+      "position": 8,
+      "sport_id": 12,
+      "team_only": true,
+      "types": {
+        "pts": {
+          "abbrev": "Pts",
+          "formatter": "integer",
+          "formula": "",
+          "game_or_season": "both",
+          "name": "Points",
+          "position": 1,
+          "score_value": true,
+          "interval_score": true
+        },
+        "wins": {
+          "abbrev": "W",
+          "formatter": "integer",
+          "formula": "",
+          "game_or_season": "both",
+          "name": "Wins",
+          "position": 2,
+          "score_value": false
+        },
+        "losses": {
+          "abbrev": "L",
+          "formatter": "integer",
+          "formula": "",
+          "game_or_season": "both",
+          "name": "Losses",
+          "position": 3,
+          "score_value": false
+        },
+        "ties": {
+          "abbrev": "T",
+          "formatter": "integer",
+          "formula": "",
+          "game_or_season": "both",
+          "name": "Ties",
+          "position": 4,
+          "score_value": false
+        },
+        "sets": {
+          "abbrev": "Sets",
+          "formatter": "integer",
+          "formula": "",
+          "game_or_season": "game",
+          "name": "Sets",
+          "position": 5,
+          "match_score": true
+        }
+      },
+      "name": "Team Scoring"
+    },
+    "stats": {
+      "attack": {
+        "key": "volleyball_attack",
+        "position": 1,
+        "requires": "volleyball_general",
+        "sport_id": 12,
+        "team_only": false,
+        "types": {
+          "atkkill": {
+            "abbrev": "K",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Kills",
+            "position": 1
+          },
+          "atkerr": {
+            "abbrev": "E",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Errors",
+            "position": 2
+          },
+          "atkatt": {
+            "abbrev": "TA",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Total Attempts",
+            "position": 3
+          },
+          "atkpct": {
+            "abbrev": "PCT",
+            "formatter": "decimal_3",
+            "formula": "(function () { if (acc.values['atkatt'] == 0) {return 0} else{ return ((acc.values['atkkill'] - acc.values['atkerr']) / acc.values['atkatt'])}})()",
+            "game_or_season": "both",
+            "name": "Percentage",
+            "position": 4,
+            "required_fields": [
+              "atkkill",
+              "atkerr",
+              "atkatt"
+            ]
+          },
+          "per_set_kills": {
+            "abbrev": "K/S",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['gensets'] == 0) {return 0} else{ return (acc.values['atkkill'] / acc.values['gensets'])}})()",
+            "game_or_season": "both",
+            "name": "Kills/Set",
+            "position": 5,
+            "required_fields": [
+              "atkkill",
+              "gensets"
+            ]
+          }
+        },
+        "name": "Attack"
+      },
+      "blocks": {
+        "key": "volleyball_blocks",
+        "position": 5,
+        "requires": "volleyball_general",
+        "sport_id": 12,
+        "team_only": false,
+        "types": {
+          "blksolo": {
+            "abbrev": "BS",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Solo Blocks",
+            "position": 1
+          },
+          "blkast": {
+            "abbrev": "BA",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Assist Blocks",
+            "position": 2
+          },
+          "blkerr": {
+            "abbrev": "BE",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Block Errors",
+            "position": 3
+          },
+          "blktot": {
+            "abbrev": "BT",
+            "formatter": "float_1",
+            "formula": "(function () { return (acc.values['blksolo'] + acc.values['blkast'])})()",
+            "game_or_season": "both",
+            "name": "Total Blocks",
+            "position": 4,
+            "required_fields": [
+              "blksolo",
+              "blkast"
+            ],
+            "team_formula": "(function () { return (acc.values['blksolo'] + (acc.values['blkast'] * 0.5))})()"
+          },
+          "blkbps": {
+            "abbrev": "B/S",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['gensets'] == 0) {return 0} else{ return ((acc.values['blksolo'] + (acc.values['blkast'] * 0.5)) / acc.values['gensets'])}})()",
+            "game_or_season": "both",
+            "name": "Blocks/Set",
+            "position": 5,
+            "required_fields": [
+              "blksolo",
+              "blkast",
+              "gensets"
+            ]
+          }
+        },
+        "name": "Blocks"
+      },
+      "defense": {
+        "key": "volleyball_defense",
+        "position": 4,
+        "requires": "volleyball_general",
+        "sport_id": 12,
+        "team_only": false,
+        "types": {
+          "defdig": {
+            "abbrev": "D",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Digs",
+            "position": 1
+          },
+          "defdps": {
+            "abbrev": "D/S",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['gensets'] == 0) {return 0} else{return (acc.values['defdig'] / acc.values['gensets'])}})()",
+            "game_or_season": "both",
+            "name": "Digs/Set",
+            "position": 2,
+            "required_fields": [
+              "defdig",
+              "gensets"
+            ]
+          }
+        },
+        "name": "Defense"
+      },
+      "general": {
+        "key": "volleyball_general",
+        "position": 7,
+        "sport_id": 12,
+        "team_only": false,
+        "types": {
+          "genbhe": {
+            "abbrev": "BHE",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Ball Handling Errors",
+            "position": 1
+          },
+          "gensets": {
+            "abbrev": "SP",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Sets Played",
+            "position": 2,
+            "team_callbacks": "calc_team_sets_played"
+          }
+        },
+        "name": "General"
+      },
+      "serves": {
+        "key": "volleyball_serves",
+        "position": 3,
+        "requires": "volleyball_general",
+        "sport_id": 12,
+        "team_only": false,
+        "types": {
+          "srvace": {
+            "abbrev": "SA",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Service Aces",
+            "position": 1
+          },
+          "srverr": {
+            "abbrev": "SE",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Service Errors",
+            "position": 2
+          },
+          "srvaps": {
+            "abbrev": "SA/S",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['gensets'] == 0) {return 0} else{return (acc.values['srvace'] / acc.values['gensets'])}})()",
+            "game_or_season": "both",
+            "name": "Aces/Set",
+            "position": 3,
+            "required_fields": [
+              "srvace",
+              "gensets"
+            ]
+          },
+          "srvatt": {
+            "abbrev": "SRV",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Service Attempts",
+            "position": 4
+          },
+          "srvpct": {
+            "abbrev": "PCT",
+            "description": "Service Percentage",
+            "formatter": "decimal_3",
+            "formula": "(function () { if (acc.values['srvatt'] == 0) {return 0} else{ return ((acc.values['srvatt'] - acc.values['srverr']) / acc.values['srvatt'])}})()",
+            "game_or_season": "both",
+            "name": "Service Percentage",
+            "position": 5,
+            "required_fields": [
+              "srvatt",
+              "srverr"
+            ]
+          }
+        },
+        "name": "Serves"
+      },
+      "reception": {
+        "key": "volleyball_service_reception",
+        "position": 6,
+        "sport_id": 12,
+        "team_only": false,
+        "types": {
+          "srrec": {
+            "abbrev": "SR",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Service Receptions",
+            "position": 1
+          },
+          "srerr": {
+            "abbrev": "RE",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Receiving Errors",
+            "position": 1
+          }
+        },
+        "name": "Service Reception"
+      },
+      "set": {
+        "key": "volleyball_set",
+        "position": 2,
+        "requires": "volleyball_general",
+        "sport_id": 12,
+        "team_only": false,
+        "types": {
+          "setast": {
+            "abbrev": "A",
+            "formatter": "integer",
+            "formula": "",
+            "game_or_season": "both",
+            "name": "Assists",
+            "position": 1
+          },
+          "setaps": {
+            "abbrev": "A/S",
+            "formatter": "float_1",
+            "formula": "(function () { if (acc.values['gensets'] == 0) {return 0} else{return (acc.values['setast'] / acc.values['gensets'])}})()",
+            "game_or_season": "both",
+            "name": "Assists/Set",
+            "position": 2,
+            "required_fields": [
+              "setast",
+              "gensets"
+            ]
+          }
+        },
+        "name": "Set"
+      }
+    }
+  }
+}
