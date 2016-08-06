@@ -1,0 +1,25 @@
+{
+  "name": "se_stats",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdalt/se_stats.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jdalt/se_stats/issues"
+  },
+  "homepage": "https://github.com/jdalt/se_stats#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-merge-json": "^0.6.0",
+    "gulp-watch": "^4.3.9",
+    "lodash": "^4.14.1"
+  }
+}
