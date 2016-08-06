@@ -1,0 +1,22 @@
+{
+  "name": "se_stats",
+  "description": "Declarative sport description in json",
+  "main": "dist/sports.json",
+  "authors": [
+    "Jacob Dalton <jacobrdalton@gmail.com>"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "sports"
+  ],
+  "homepage": "https://github.com/jdalt/se_stats",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
