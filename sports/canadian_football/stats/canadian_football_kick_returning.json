@@ -1,0 +1,77 @@
+{
+  "key": "canadian_football_kick_returning",
+  "position": 6,
+  "sport_id": 26,
+  "team_only": false,
+  "types": {
+    "krgames": {
+      "abbrev": "G",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "season",
+      "games_stat": true,
+      "name": "Games played",
+      "position": 1,
+      "required_fields": null,
+      "team_callbacks": "team_games_played"
+    },
+    "krrtrn": {
+      "abbrev": "Returns",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Returns",
+      "position": 2
+    },
+    "kryds": {
+      "abbrev": "Yds",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Yards",
+      "position": 3
+    },
+    "krypr": {
+      "abbrev": "Yds/Ret",
+      "formatter": "float_1",
+      "formula": "(function () { if (acc.values['krrtrn'] == 0){return 0} else{return (acc.values['kryds'] / acc.values['krrtrn'])}})()",
+      "game_or_season": "both",
+      "name": "Yards/Return",
+      "position": 4,
+      "required_fields": [
+        "krrtrn",
+        "kryds"
+      ]
+    },
+    "krtd": {
+      "abbrev": "TD",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Touchdowns",
+      "position": 5
+    },
+    "krlng": {
+      "abbrev": "Long",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Longest Play",
+      "position": 6
+    },
+    "krmfgr": {
+      "abbrev": "MFGR",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Missed Field Goal Return",
+      "position": 7
+    },
+    "krmfgtd": {
+      "abbrev": "MFGTD",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Missed Field Goal Touch Down",
+      "position": 8
+    }
+  },
+  "name": "Kick Returning"
+}

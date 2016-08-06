@@ -1,0 +1,133 @@
+{
+  "key": "ice_hockey_goalie",
+  "name": "Goalie",
+  "position": 2,
+  "regulation_duration_required": true,
+  "sport_id": 1,
+  "types": {
+    "hkggm": {
+      "abbrev": "GP",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "season",
+      "games_stat": true,
+      "name": "Games Played",
+      "position": 1,
+      "required_fields": null,
+      "team_callbacks": "team_games_played"
+    },
+    "hkgmin": {
+      "abbrev": "MIN",
+      "formatter": "minutes_and_seconds",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Minutes",
+      "position": 2
+    },
+    "hkgwin": {
+      "abbrev": "W",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Wins",
+      "player_only": true,
+      "position": 3
+    },
+    "hkgloss": {
+      "abbrev": "L",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Losses",
+      "player_only": true,
+      "position": 4
+    },
+    "hkgtie": {
+      "abbrev": "T",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Ties",
+      "player_only": true,
+      "position": 5
+    },
+    "hkgsol": {
+      "abbrev": "SOL",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Shootout Loss",
+      "player_only": true,
+      "position": 6
+    },
+    "hkgsog": {
+      "abbrev": "SOG",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Shots on Goal",
+      "position": 7
+    },
+    "hkgsv": {
+      "abbrev": "SV",
+      "formatter": "integer",
+      "formula": "(function () { var total = acc.values['hkgsog'] - acc.values['hkggla']; if(total >= 0) { return total } else { return 0 } })()",
+      "game_or_season": "both",
+      "name": "Saves",
+      "position": 8,
+      "required_fields": [
+        "hkgsog",
+        "hkggla"
+      ]
+    },
+    "hkggla": {
+      "abbrev": "GA",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Goals Against",
+      "position": 9
+    },
+    "hkggaa": {
+      "abbrev": "GAA",
+      "formatter": "float_2",
+      "formula": "(function () { var duration = acc.regulation_duration ? acc.regulation_duration : 3600; if (acc.values['hkgmin'] == 0){ return 0 } else{ return (acc.values['hkggla'] * duration / acc.values['hkgmin'])}})()",
+      "game_or_season": "both",
+      "name": "Goals Against Average",
+      "position": 10,
+      "required_fields": [
+        "hkgmin",
+        "hkggla"
+      ]
+    },
+    "hkgspct": {
+      "abbrev": "SV %",
+      "formatter": "decimal_3",
+      "formula": "(function () { if (acc.values['hkgsog'] == 0){ return 0 } else{ return ((acc.values['hkgsog'] - acc.values['hkggla']) / acc.values['hkgsog'])}})()",
+      "game_or_season": "both",
+      "name": "Save Percentage",
+      "position": 11,
+      "required_fields": [
+        "hkgsog",
+        "hkggla"
+      ]
+    },
+    "hkgsot": {
+      "abbrev": "SO",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Shut Outs",
+      "position": 12
+    },
+    "hkgmvp": {
+      "abbrev": "MVP",
+      "formatter": "MVP",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Player of the Game Award",
+      "player_only": true,
+      "position": 13
+    }
+  }
+}

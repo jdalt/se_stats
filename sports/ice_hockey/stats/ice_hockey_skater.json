@@ -1,0 +1,211 @@
+{
+  "key": "ice_hockey_skater",
+  "name": "Skater",
+  "position": 1,
+  "sport_id": 1,
+  "types": {
+    "hksgm": {
+      "abbrev": "GP",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "season",
+      "games_stat": true,
+      "name": "Games Played",
+      "position": 1,
+      "required_fields": null,
+      "team_callbacks": "team_games_played"
+    },
+    "hksgl": {
+      "abbrev": "G",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Goals",
+      "position": 2
+    },
+    "hksast": {
+      "abbrev": "A",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Assists",
+      "position": 3
+    },
+    "hkspts": {
+      "abbrev": "PTS",
+      "formatter": "integer",
+      "formula": "(function () {return (acc.values['hksgl'] + acc.values['hksast'])})()",
+      "game_or_season": "both",
+      "name": "Points",
+      "position": 4,
+      "required_fields": [
+        "hksgl",
+        "hksast"
+      ]
+    },
+    "hkssog": {
+      "abbrev": "SOG",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Shots on Goal",
+      "position": 5
+    },
+    "hksshtpct": {
+      "abbrev": "SOG %",
+      "formatter": "percentage",
+      "formula": "(function () { if (acc.values['hkssog'] == 0){ return 0 } else{ return (acc.values['hksgl'] / acc.values['hkssog'])}})()",
+      "game_or_season": "both",
+      "name": "Shooting Percentage",
+      "position": 6,
+      "required_fields": [
+        "hkssog",
+        "hksgl"
+      ]
+    },
+    "hksppg": {
+      "abbrev": "PPG",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Power Play Goals",
+      "position": 7
+    },
+    "hksppa": {
+      "abbrev": "PPA",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Power Play Assists",
+      "position": 8
+    },
+    "hksshg": {
+      "abbrev": "SH",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Short Handed Goals",
+      "position": 9
+    },
+    "hkssha": {
+      "abbrev": "SHA",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Short Handed Assists",
+      "position": 10
+    },
+    "hkspen": {
+      "abbrev": "PEN",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Penalties",
+      "position": 11
+    },
+    "hkspim": {
+      "abbrev": "PIM",
+      "formatter": "integer_or_float_1",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Penalty Minutes",
+      "position": 12
+    },
+    "hksfow": {
+      "abbrev": "FOW",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Faceoffs Won",
+      "position": 13
+    },
+    "hksfol": {
+      "abbrev": "FOL",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Faceoffs Lost",
+      "position": 14
+    },
+    "hksto": {
+      "abbrev": "TO",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Turnovers",
+      "position": 15
+    },
+    "hkshit": {
+      "abbrev": "HIT",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Hits",
+      "position": 16
+    },
+    "hksbs": {
+      "abbrev": "BS",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Blocked Shots",
+      "position": 17
+    },
+    "hkspm": {
+      "abbrev": "+ / -",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Plus / Minus",
+      "player_only": true,
+      "position": 18
+    },
+    "hksmvp": {
+      "abbrev": "MVP",
+      "formatter": "MVP",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Player of the Game Award",
+      "player_only": true,
+      "position": 19
+    },
+    "hksgwg": {
+      "abbrev": "GW",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Game Winning Goals",
+      "player_only": true,
+      "position": 20
+    },
+    "hksfgs": {
+      "abbrev": "FG",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "First Goal",
+      "player_only": true,
+      "position": 21
+    },
+    "hksavgpts": {
+      "abbrev": "AVG PTS",
+      "formatter": "float_2",
+      "formula": "(function () { if (acc.values['hksgm'] == 0){ return 0 } else{ return ((acc.values['hksgl'] + acc.values['hksast']) / acc.values['hksgm'])}})()",
+      "game_or_season": "season",
+      "name": "Points Per Game",
+      "player_only": true,
+      "position": 22,
+      "required_fields": [
+        "hksgl",
+        "hksast"
+      ]
+    },
+    "hkshtwon": {
+      "abbrev": "SW",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "game",
+      "name": "Shootout Won",
+      "position": 23,
+      "score_value": true
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "key": "football_team_scoring",
+  "position": 9,
+  "sport_id": 11,
+  "team_only": true,
+  "types": {
+    "tsgames": {
+      "abbrev": "G",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "season",
+      "games_stat": true,
+      "name": "Games played",
+      "position": 1,
+      "required_fields": null,
+      "team_callbacks": "team_games_played"
+    },
+    "pts": {
+      "abbrev": "Pts",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Points",
+      "position": 2,
+      "score_value": true,
+      "interval_score": true,
+      "match_score": true
+    },
+    "wins": {
+      "abbrev": "W",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Wins",
+      "position": 3
+    },
+    "losses": {
+      "abbrev": "L",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Losses",
+      "position": 4
+    },
+    "ties": {
+      "abbrev": "T",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Ties",
+      "position": 5
+    },
+    "points_per_game": {
+      "abbrev": "PPG",
+      "formatter": "float_1",
+      "formula": "(function () { if (acc.values['tsgames'] == 0){ return 0 } else{ return (acc.values['pts'] / acc.values['tsgames'])}})()",
+      "game_or_season": "season",
+      "name": "Points Per Game",
+      "position": 6,
+      "required_fields": [
+        "pts"
+      ]
+    }
+  },
+  "name": "Team Scoring"
+}

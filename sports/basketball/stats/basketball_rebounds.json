@@ -1,0 +1,52 @@
+{
+  "key": "basketball_rebounds",
+  "position": 4,
+  "sport_id": 7,
+  "team_only": false,
+  "types": {
+    "bkrgp": {
+      "abbrev": "GP",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "season",
+      "games_stat": true,
+      "name": "Games Played",
+      "position": 1,
+      "team_callbacks": "team_games_played"
+    },
+    "bkrrpg": {
+      "abbrev": "RPG",
+      "formatter": "float_1",
+      "formula": "(function () { if (acc.values['bkrgp'] == 0){ return 0 } else{ return (acc.values['bkrreb'] / acc.values['bkrgp'])} })() ",
+      "game_or_season": "season",
+      "name": "Rebounds Per Game",
+      "position": 1,
+      "required_fields": [
+        "bkrreb",
+        "bkrgp"
+      ]
+    },
+    "bkrorb": {
+      "abbrev": false,
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Offensive Rebounds",
+      "position": 2
+    },
+    "bkrdrb": {
+      "abbrev": "DEF",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Defensive Rebounds",
+      "position": 3
+    },
+    "bkrreb": {
+      "abbrev": "REB",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Total Rebounds",
+      "position": 4
+    }
+  },
+  "name": "Rebounds"
+}

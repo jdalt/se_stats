@@ -1,0 +1,55 @@
+{
+  "key": "volleyball_team_scoring",
+  "position": 8,
+  "sport_id": 12,
+  "team_only": true,
+  "types": {
+    "pts": {
+      "abbrev": "Pts",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Points",
+      "position": 1,
+      "score_value": true,
+      "interval_score": true
+    },
+    "wins": {
+      "abbrev": "W",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Wins",
+      "position": 2,
+      "score_value": false
+    },
+    "losses": {
+      "abbrev": "L",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Losses",
+      "position": 3,
+      "score_value": false
+    },
+    "ties": {
+      "abbrev": "T",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Ties",
+      "position": 4,
+      "score_value": false
+    },
+    "sets": {
+      "abbrev": "Sets",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "game",
+      "name": "Sets",
+      "position": 5,
+      "match_score": true
+    }
+  },
+  "name": "Team Scoring"
+}

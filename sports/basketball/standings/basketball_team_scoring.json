@@ -1,0 +1,40 @@
+{
+  "key": "basketball_team_scoring",
+  "position": 1,
+  "sport_id": 7,
+  "team_only": true,
+  "types": {
+    "pts": {
+      "abbrev": "Pts",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Points",
+      "position": 1,
+      "score_value": true,
+      "interval_score": true,
+      "match_score": true
+    },
+    "wins": {
+      "abbrev": "W",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Wins",
+      "position": 2
+    },
+    "losses": {
+      "abbrev": "L",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Losses",
+      "position": 3
+    },
+    "ties": {
+      "abbrev": "T",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Ties",
+      "position": 4
+    }
+  },
+  "name": "Team Scoring"
+}

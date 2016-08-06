@@ -1,0 +1,72 @@
+{
+  "key": "football_punting",
+  "position": 7,
+  "sport_id": 11,
+  "team_only": false,
+  "types": {
+    "ptgames": {
+      "abbrev": "G",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "season",
+      "games_stat": true,
+      "name": "Games played",
+      "position": 1,
+      "required_fields": null,
+      "team_callbacks": "team_games_played"
+    },
+    "ptpunts": {
+      "abbrev": "Punts",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Punts",
+      "position": 2
+    },
+    "ptyds": {
+      "abbrev": "Yds",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Yards",
+      "position": 3
+    },
+    "yds_per_punt": {
+      "abbrev": "Avg",
+      "formatter": "float_1",
+      "formula": "(function () { if (acc.values['ptpunts'] == 0){return 0} else{return (acc.values['ptyds'] / acc.values['ptpunts'])}})()",
+      "game_or_season": "both",
+      "name": "Yards Per Punt",
+      "position": 4,
+      "required_fields": [
+        "ptpunts",
+        "ptyds"
+      ]
+    },
+    "pttb": {
+      "abbrev": "Touchbacks",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Touchbacks",
+      "position": 5
+    },
+    "ptin20": {
+      "abbrev": "In 20",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Punts Not Returned Past 20 yard line",
+      "position": 6
+    },
+    "ptblk": {
+      "abbrev": "Blcks",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Blocked Punts",
+      "position": 7
+    }
+  },
+  "name": "Punting"
+}

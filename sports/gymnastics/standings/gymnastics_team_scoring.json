@@ -1,0 +1,57 @@
+{
+  "key": "gymnastics_team_scoring",
+  "name": "Team Scoring",
+  "position": 3,
+  "sport_id": 29,
+  "types": {
+    "wins": {
+      "position": 1,
+      "abbrev": "W",
+      "name": "Wins",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "score_value": false
+    },
+    "losses": {
+      "position": 2,
+      "abbrev": "L",
+      "name": "Losses",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "score_value": false
+    },
+    "ties": {
+      "position": 3,
+      "abbrev": "T",
+      "name": "Ties",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "score_value": false
+    },
+    "goals": {
+      "position": 4,
+      "abbrev": "G",
+      "name": "Goals",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "score_value": true,
+      "interval_score": true,
+      "match_score": true
+    },
+    "gysgpg": {
+      "position": 5,
+      "abbrev": "GPG Avg",
+      "name": "Goals Per Game",
+      "formatter": "float_2",
+      "required_fields": [
+        "wins",
+        "losses",
+        "ties",
+        "goals"
+      ],
+      "formula": "(function () {\n  var games = acc.values['wins'] + acc.values['losses'] + acc.values['ties'];\n  if (games == 0) return 0;\n  return acc.values['goals'] / games;\n})()\n",
+      "game_or_season": "season",
+      "score_value": false
+    }
+  }
+}

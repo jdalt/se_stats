@@ -1,0 +1,16 @@
+{
+  "key": "soccer_team_stats",
+  "name": "Team",
+  "position": 4,
+  "sport_id": 5,
+  "team_only": true,
+  "types": {
+    "sotbp": {
+      "abbrev": "BP%",
+      "formatter": "integer",
+      "game_or_season": "game",
+      "name": "Ball Possession %",
+      "position": 1
+    }
+  }
+}

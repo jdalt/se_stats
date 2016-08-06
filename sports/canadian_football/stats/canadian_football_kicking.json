@@ -1,0 +1,164 @@
+{
+  "key": "canadian_football_kicking",
+  "position": 8,
+  "sport_id": 26,
+  "team_only": false,
+  "types": {
+    "kcgames": {
+      "abbrev": "G",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "season",
+      "games_stat": true,
+      "name": "Games played",
+      "position": 1,
+      "required_fields": null,
+      "team_callbacks": "team_games_played"
+    },
+    "kcfgatt": {
+      "abbrev": "FGA",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Field Goal Attempts",
+      "position": 2,
+      "required_fields": null
+    },
+    "kcfgmd": {
+      "abbrev": "FGM",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Field Goals Made",
+      "position": 3,
+      "required_fields": null
+    },
+    "kcfgpct": {
+      "abbrev": "FG Pct",
+      "formatter": "float_1",
+      "formula": "(function () {  if (acc.values['kcfgatt'] == 0){ return 0 } else{ return (acc.values['kcfgmd'] / acc.values['kcfgatt'])}})()",
+      "game_or_season": "both",
+      "name": "Field Goal Pct",
+      "position": 4,
+      "required_fields": [
+        "kcfgatt",
+        "kcfgmd"
+      ]
+    },
+    "kccatt": {
+      "abbrev": "CA",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Convert Attempts",
+      "position": 5
+    },
+    "kccmd": {
+      "abbrev": "CM",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Convert Made",
+      "position": 6
+    },
+    "kccpct": {
+      "abbrev": "Convert Pct",
+      "formatter": "float_1",
+      "formula": "(function () { if (acc.values['kccatt'] == 0){ return 0 } else{ return (acc.values['kccmd'] / acc.values['kccatt'])}})()",
+      "game_or_season": "both",
+      "name": "Convert Pct",
+      "position": 7,
+      "required_fields": [
+        "kccatt",
+        "kccmd"
+      ]
+    },
+    "kcatt1_19": {
+      "abbrev": "1-19A",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "1-19 Attempts",
+      "position": 8
+    },
+    "kcmd1_19": {
+      "abbrev": "1-19M",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "1-19 Made",
+      "position": 9
+    },
+    "kcatt20_29": {
+      "abbrev": "20-29A",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "20-29 Attempts",
+      "position": 10
+    },
+    "kcmd20_29": {
+      "abbrev": "20-29M",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "20-29 Made",
+      "position": 11
+    },
+    "kcatt30_39": {
+      "abbrev": "30-39A",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "30-39 Attempts",
+      "position": 12
+    },
+    "kcmd30_39": {
+      "abbrev": "30-39M",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "30-39 Made",
+      "position": 13
+    },
+    "kcatt40_49": {
+      "abbrev": "40-49A",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "40-49 Attempts",
+      "position": 14
+    },
+    "kcmd40_49": {
+      "abbrev": "40-49M",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "40-49 Made",
+      "position": 15
+    },
+    "kcatt50": {
+      "abbrev": "50+ A",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "50+ Attempts",
+      "position": 16
+    },
+    "kcmd50": {
+      "abbrev": "50+ M",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "50+ Made",
+      "position": 17
+    },
+    "kcsngl": {
+      "abbrev": "Single",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Single",
+      "position": 18
+    }
+  },
+  "name": "Kicking"
+}

@@ -1,0 +1,260 @@
+{
+  "key": "soccer_individual",
+  "name": "Individual",
+  "position": 1,
+  "sport_id": 5,
+  "types": {
+    "soigp": {
+      "abbrev": "GP",
+      "formatter": "integer",
+      "game_or_season": "season",
+      "games_stat": true,
+      "name": "Games Played",
+      "player_only": false,
+      "position": 1,
+      "team_callbacks": "team_games_played"
+    },
+    "soimin": {
+      "abbrev": "MIN",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Minutes Played",
+      "player_only": true,
+      "position": 2
+    },
+    "soig": {
+      "abbrev": "G",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Goals",
+      "player_only": false,
+      "position": 3
+    },
+    "soia": {
+      "abbrev": "A",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Assists",
+      "player_only": false,
+      "position": 4
+    },
+    "soipts": {
+      "abbrev": "PTS",
+      "formatter": "integer",
+      "formula": "(function () { return (2 * acc.values['soig']) + acc.values['soia'] })()",
+      "game_or_season": "both",
+      "name": "Total Points",
+      "player_only": false,
+      "position": 5,
+      "required_fields": [
+        "soig",
+        "soia"
+      ]
+    },
+    "soish": {
+      "abbrev": "SH",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Shots",
+      "player_only": false,
+      "position": 6
+    },
+    "soisog": {
+      "abbrev": "SOG",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Shots on Goal",
+      "player_only": false,
+      "position": 7
+    },
+    "soishp": {
+      "abbrev": "SHOT%",
+      "formatter": "decimal_3",
+      "formula": "(function () { if (acc.values['soisog'] == 0) return 0; return acc.values['soig'] / acc.values['soisog'] })() ",
+      "game_or_season": "both",
+      "name": "Shooting Percentage",
+      "player_only": false,
+      "position": 8,
+      "required_fields": [
+        "soig",
+        "soisog"
+      ]
+    },
+    "soicrn": {
+      "abbrev": "CRN",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Corner Kicks",
+      "player_only": false,
+      "position": 9
+    },
+    "soicrs": {
+      "abbrev": "CRS",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Crosses",
+      "player_only": false,
+      "position": 10
+    },
+    "soifba": {
+      "abbrev": "FBA",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Fast Break Attacks",
+      "player_only": false,
+      "position": 11
+    },
+    "soifc": {
+      "abbrev": "FC",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Fouls Committed",
+      "player_only": false,
+      "position": 12
+    },
+    "soifs": {
+      "abbrev": "FS",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Fouls Suffered",
+      "player_only": false,
+      "position": 13
+    },
+    "soihdr": {
+      "abbrev": "HDR",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Headers",
+      "player_only": false,
+      "position": 14
+    },
+    "soilp": {
+      "abbrev": "LP",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Long Passes",
+      "player_only": false,
+      "position": 15
+    },
+    "soioffs": {
+      "abbrev": "OFFS",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Offsides",
+      "player_only": false,
+      "position": 16
+    },
+    "soifk": {
+      "abbrev": "FK",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Free Kicks",
+      "player_only": false,
+      "position": 17
+    },
+    "soidfk": {
+      "abbrev": "DFK",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Direct Free Kicks",
+      "player_only": false,
+      "position": 18
+    },
+    "soiifk": {
+      "abbrev": "IFK",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Indirect Free Kicks",
+      "player_only": false,
+      "position": 19
+    },
+    "soifkg": {
+      "abbrev": "FKG",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Free Kick Goals",
+      "player_only": false,
+      "position": 20
+    },
+    "soipk": {
+      "abbrev": "PK",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Penalty Kicks",
+      "player_only": false,
+      "position": 21
+    },
+    "soipkg": {
+      "abbrev": "PKG",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Penalty Kick Goals",
+      "player_only": false,
+      "position": 22
+    },
+    "soitc": {
+      "abbrev": "TC",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Tackles Committed",
+      "player_only": false,
+      "position": 23
+    },
+    "soits": {
+      "abbrev": "TS",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Tackles Suffered",
+      "player_only": false,
+      "position": 24
+    },
+    "soiyc": {
+      "abbrev": "YC",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Yellow Cards",
+      "player_only": false,
+      "position": 25
+    },
+    "soiycst": {
+      "abbrev": "YCST",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Yellow Cards Standings",
+      "player_only": false,
+      "position": 26
+    },
+    "soirc": {
+      "abbrev": "RC",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Red Cards",
+      "player_only": false,
+      "position": 27
+    },
+    "soircst": {
+      "abbrev": "RCST",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Red Cards Standings",
+      "player_only": false,
+      "position": 28
+    },
+    "soiog": {
+      "abbrev": "OG",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Own Goals",
+      "player_only": false,
+      "position": 29
+    },
+    "soigwg": {
+      "abbrev": "GWG",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Game Winning Goals",
+      "player_only": false,
+      "position": 30
+    }
+  }
+}

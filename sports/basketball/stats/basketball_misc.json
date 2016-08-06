@@ -1,0 +1,120 @@
+{
+  "key": "basketball_misc",
+  "position": 5,
+  "sport_id": 7,
+  "team_only": false,
+  "types": {
+    "bkmgp": {
+      "abbrev": "GP",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "season",
+      "games_stat": true,
+      "name": "Games Played",
+      "position": 1,
+      "team_callbacks": "team_games_played"
+    },
+    "bkmast": {
+      "abbrev": "AST",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Assists",
+      "position": 1
+    },
+    "bkmapg": {
+      "abbrev": "APG",
+      "formatter": "float_1",
+      "formula": "(function () { if (acc.values['bkmgp'] == 0){ return 0 } else{ return (acc.values['bkmast'] / acc.values['bkmgp'])} })() ",
+      "game_or_season": "season",
+      "name": "Assists Per Game",
+      "position": 3,
+      "required_fields": [
+        "bkmast",
+        "bkpgp"
+      ]
+    },
+    "bkmto": {
+      "abbrev": "TO",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Turnovers",
+      "position": 4
+    },
+    "bkmtopg": {
+      "abbrev": "TOPG",
+      "formatter": "float_1",
+      "formula": "(function () { if (acc.values['bkmgp'] == 0){ return 0 } else{ return (acc.values['bkmto'] / acc.values['bkmgp'])} })() ",
+      "game_or_season": "season",
+      "name": "Turnovers Per Game",
+      "position": 5,
+      "required_fields": [
+        "bkmto"
+      ]
+    },
+    "bkmstl": {
+      "abbrev": "STL",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Steals",
+      "position": 6
+    },
+    "bkmstlpg": {
+      "abbrev": "SPG",
+      "formatter": "float_1",
+      "formula": "(function () { if (acc.values['bkmgp'] == 0){ return 0 } else{ return (acc.values['bkmstl'] / acc.values['bkmgp'])} })() ",
+      "game_or_season": "season",
+      "name": "Steals Per Game",
+      "position": 7,
+      "required_fields": [
+        "bkmstl",
+        "bkpgp"
+      ]
+    },
+    "bkmblk": {
+      "abbrev": "BLK",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Blocks",
+      "position": 8
+    },
+    "bkmblkpg": {
+      "abbrev": "BLKPG",
+      "formatter": "float_1",
+      "formula": "(function () { if (acc.values['bkmgp'] == 0){ return 0 } else{ return (acc.values['bkmblk'] / acc.values['bkmgp'])} })() ",
+      "game_or_season": "season",
+      "name": "Blocks Per Game",
+      "position": 9,
+      "required_fields": [
+        "bkmblk",
+        "bkpgp"
+      ]
+    },
+    "bkmpf": {
+      "abbrev": "PF",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Fouls",
+      "position": 10
+    },
+    "bkmpfpg": {
+      "abbrev": "PFPG",
+      "formatter": "float_1",
+      "formula": "(function () { if (acc.values['bkmgp'] == 0){ return 0 } else{ return (acc.values['bkmpf'] / acc.values['bkmgp'])} })() ",
+      "game_or_season": "season",
+      "name": "Average Fouls Per Game",
+      "position": 11,
+      "required_fields": [
+        "bkmpf",
+        "bkpgp"
+      ]
+    },
+    "bkmtf": {
+      "abbrev": "TF",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Technical Fouls",
+      "position": 12
+    }
+  },
+  "name": "Misc"
+}

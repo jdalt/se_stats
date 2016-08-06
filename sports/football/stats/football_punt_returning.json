@@ -1,0 +1,64 @@
+{
+  "key": "football_punt_returning",
+  "position": 5,
+  "sport_id": 11,
+  "team_only": false,
+  "types": {
+    "prgames": {
+      "abbrev": "G",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "season",
+      "games_stat": true,
+      "name": "Games played",
+      "position": 1,
+      "required_fields": null,
+      "team_callbacks": "team_games_played"
+    },
+    "prrtrn": {
+      "abbrev": "Returns",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Returns",
+      "position": 2
+    },
+    "prfc": {
+      "abbrev": "FC",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Fair Catches",
+      "position": 3
+    },
+    "pryds": {
+      "abbrev": "Yds",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Yards",
+      "position": 4
+    },
+    "prypr": {
+      "abbrev": "Yds/Ret",
+      "formatter": "float_1",
+      "formula": "(function () { if (acc.values['prrtrn'] == 0){return 0}else{return (acc.values['pryds'] / acc.values['prrtrn'])}})()",
+      "game_or_season": "both",
+      "name": "Yards/Return",
+      "position": 5,
+      "required_fields": [
+        "prrtrn",
+        "pryds"
+      ]
+    },
+    "prtd": {
+      "abbrev": "TD",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Touchdowns",
+      "position": 6
+    }
+  },
+  "name": "Punt Returning"
+}

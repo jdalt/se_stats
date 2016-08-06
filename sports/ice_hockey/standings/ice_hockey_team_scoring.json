@@ -1,0 +1,56 @@
+{
+  "key": "ice_hockey_team_scoring",
+  "position": 0,
+  "sport_id": 1,
+  "team_only": true,
+  "types": {
+    "pts": {
+      "abbrev": "Pts",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Points",
+      "position": 1,
+      "score_value": true,
+      "interval_score": true,
+      "match_score": true
+    },
+    "wins": {
+      "abbrev": "W",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Wins",
+      "position": 2,
+      "score_value": false
+    },
+    "losses": {
+      "abbrev": "L",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Losses",
+      "position": 3,
+      "score_value": false
+    },
+    "ties": {
+      "abbrev": "T",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Ties",
+      "position": 4,
+      "score_value": false
+    },
+    "overtime_losses": {
+      "abbrev": "OTL",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Overtime Losses",
+      "position": 5,
+      "score_value": false
+    }
+  },
+  "name": "Team Record"
+}

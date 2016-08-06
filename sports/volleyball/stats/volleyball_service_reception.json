@@ -1,0 +1,24 @@
+{
+  "key": "volleyball_service_reception",
+  "position": 6,
+  "sport_id": 12,
+  "team_only": false,
+  "types": {
+    "srrec": {
+      "abbrev": "SR",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Service Receptions",
+      "position": 1
+    },
+    "srerr": {
+      "abbrev": "RE",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Receiving Errors",
+      "position": 1
+    }
+  },
+  "name": "Service Reception"
+}

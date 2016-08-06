@@ -1,0 +1,221 @@
+{
+  "key": "baseball_pitcher",
+  "name": "Pitcher",
+  "position": 2,
+  "sport_id": 4,
+  "types": {
+    "bspgp": {
+      "abbrev": "GP",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "season",
+      "games_stat": true,
+      "name": "Games Played",
+      "position": 1,
+      "required_fields": null,
+      "team_callbacks": "team_games_played"
+    },
+    "bspwin": {
+      "abbrev": "W",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Wins",
+      "player_only": true,
+      "position": 2
+    },
+    "bsploss": {
+      "abbrev": "L",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Losses",
+      "player_only": true,
+      "position": 3
+    },
+    "bspsv": {
+      "abbrev": "SV",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Saves",
+      "player_only": true,
+      "position": 4
+    },
+    "bspsvo": {
+      "abbrev": "SVO",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Save Opportunities",
+      "player_only": true,
+      "position": 5
+    },
+    "bspsho": {
+      "abbrev": "SHO",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Shutouts",
+      "position": 6
+    },
+    "bspip": {
+      "abbrev": "IP",
+      "formatter": "IP",
+      "game_or_season": "both",
+      "name": "Innings Pitched",
+      "player_only": true,
+      "position": 7
+    },
+    "bsphit": {
+      "abbrev": "H",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Hits",
+      "position": 8
+    },
+    "bsprun": {
+      "abbrev": "R",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Runs",
+      "position": 9
+    },
+    "bsper": {
+      "abbrev": "ER",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Earned Runs",
+      "position": 10
+    },
+    "bspera": {
+      "abbrev": "ERA",
+      "formatter": "float_2",
+      "formula": "(function () { var innings = acc.regulation_duration ? acc.regulation_duration : 27; if (acc.values['bspip'] == 0){ return 0 } else{ return ((acc.values['bsper'] * innings) / acc.values['bspip'])}})()",
+      "game_or_season": "both",
+      "name": "Earned Run Average",
+      "position": 11,
+      "required_fields": [
+        "bspip",
+        "bsper"
+      ]
+    },
+    "bsphr": {
+      "abbrev": "HR",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Home Runs",
+      "position": 12
+    },
+    "bspbb": {
+      "abbrev": "BB",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Base on Balls",
+      "position": 13
+    },
+    "bspibb": {
+      "abbrev": "IBB",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Intentional Base on Balls",
+      "player_only": false,
+      "position": 14
+    },
+    "bspso": {
+      "abbrev": "K",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Strikeouts",
+      "position": 15
+    },
+    "bspqs": {
+      "abbrev": "QS",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Quality Starts",
+      "position": 16
+    },
+    "bspgs": {
+      "abbrev": "GS",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Games Started",
+      "player_only": true,
+      "position": 17
+    },
+    "bspcg": {
+      "abbrev": "CG",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Complete Games",
+      "player_only": true,
+      "position": 18
+    },
+    "bsphbp": {
+      "abbrev": "HBP",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Hit Batter",
+      "position": 19
+    },
+    "bspstrk": {
+      "abbrev": "S",
+      "formatter": "integer",
+      "game_or_season": "game",
+      "name": "Strikes Thrown",
+      "player_only": true,
+      "position": 20
+    },
+    "bsppc": {
+      "abbrev": "PC",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Pitch Count",
+      "position": 21
+    },
+    "bspbll": {
+      "abbrev": "B",
+      "formatter": "integer",
+      "game_or_season": "game",
+      "name": "Balls Thrown",
+      "player_only": true,
+      "position": 22
+    },
+    "bspwp": {
+      "abbrev": "WP",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Wild Pitch",
+      "position": 23
+    },
+    "bspab": {
+      "abbrev": "AB",
+      "description": "At Bats",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "At Bats",
+      "position": 24
+    },
+    "bspbaa": {
+      "abbrev": "BAA",
+      "formatter": "decimal_3",
+      "formula": "(function (){if (acc.values['bspab'] == 0){return 0} else{return (acc.values['bsphit'] / acc.values['bspab'])}})()",
+      "game_or_season": "both",
+      "name": "Batting Average Against",
+      "position": 25,
+      "required_fields": [
+        "bspab",
+        "bsphit"
+      ]
+    },
+    "bspwhip": {
+      "abbrev": "WHIP",
+      "formatter": "float_2",
+      "formula": "(function () {if (acc.values['bspip'] == 0){return 0} else {return (acc.values['bspbb'] + acc.values['bsphit']) * 3 / acc.values['bspip']}})()",
+      "game_or_season": "both",
+      "name": "Walks & Hits Per Inning",
+      "position": 26,
+      "required_fields": [
+        "bspip",
+        "bspbb",
+        "bsphit"
+      ]
+    }
+  }
+}

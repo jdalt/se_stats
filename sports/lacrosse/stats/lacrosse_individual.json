@@ -1,0 +1,300 @@
+{
+  "key": "lacrosse_individual",
+  "name": "Runner",
+  "position": 1,
+  "sport_id": 3,
+  "types": {
+    "lxigp": {
+      "abbrev": "GP",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "season",
+      "games_stat": true,
+      "name": "Games Played",
+      "player_only": false,
+      "position": 1,
+      "required_fields": null,
+      "team_callbacks": "team_games_played"
+    },
+    "lxigl": {
+      "abbrev": "G",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Goals",
+      "player_only": false,
+      "position": 2
+    },
+    "lxitpgl": {
+      "abbrev": "2PG",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Two Point Goals",
+      "player_only": false,
+      "position": 3
+    },
+    "lxiast": {
+      "abbrev": "A",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Assists",
+      "player_only": false,
+      "position": 4
+    },
+    "lxipts": {
+      "abbrev": "PTS",
+      "formatter": "integer",
+      "formula": "(function () {return (acc.values['lxigl'] + acc.values['lxiast'])})()",
+      "game_or_season": "both",
+      "name": "Points",
+      "player_only": false,
+      "position": 5,
+      "required_fields": [
+        "lxigl",
+        "lxiast"
+      ]
+    },
+    "lxipim": {
+      "abbrev": "PIM",
+      "formatter": "integer_or_float_1",
+      "game_or_season": "both",
+      "name": "Penalty Minutes",
+      "player_only": false,
+      "position": 6
+    },
+    "lxiinf": {
+      "abbrev": "INF",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Penalties",
+      "player_only": false,
+      "position": 7
+    },
+    "lxippg": {
+      "abbrev": "PPG",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Power Play Goals",
+      "player_only": false,
+      "position": 8
+    },
+    "lxishg": {
+      "abbrev": "SHG",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Short Handed Goals",
+      "player_only": false,
+      "position": 9
+    },
+    "lxigwg": {
+      "abbrev": "GW",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Game Winning Goals",
+      "player_only": false,
+      "position": 10
+    },
+    "lxipggl": {
+      "abbrev": "G/GP",
+      "formatter": "float_2",
+      "formula": "(function () { if (acc.values['lxigp'] == 0){ return 0 } else{ return (acc.values['lxigl'] / acc.values['lxigp'])}})()",
+      "game_or_season": "season",
+      "name": "Avg Goals Per Game",
+      "player_only": false,
+      "position": 11,
+      "required_fields": [
+        "lxigl"
+      ]
+    },
+    "lxiavepts": {
+      "abbrev": "PTS/GP",
+      "formatter": "float_2",
+      "formula": "(function () { if (acc.values['lxigp'] == 0){ return 0 } else{ return ((acc.values['lxigl'] + acc.values['lxiast']) / acc.values['lxigp'])}})()",
+      "game_or_season": "season",
+      "name": "Avg Points Per Game",
+      "player_only": false,
+      "position": 12,
+      "required_fields": [
+        "lxigl",
+        "lxiast"
+      ]
+    },
+    "lxipgpim": {
+      "abbrev": "PIM/GP",
+      "formatter": "float_1",
+      "formula": "(function () { if (acc.values['lxigp'] == 0){ return 0 } else{ return (acc.values['lxipim'] / acc.values['lxigp'])}})()",
+      "game_or_season": "season",
+      "name": "Avg Penalty Minutes Per Game",
+      "player_only": false,
+      "position": 13,
+      "required_fields": [
+        "lxipim"
+      ]
+    },
+    "lxitsa": {
+      "abbrev": "S",
+      "formatter": "integer",
+      "formula": "(function () { return acc.values['lxisog'] + acc.values['lxisoff']})()",
+      "game_or_season": "both",
+      "name": "Total Shots Attempted",
+      "player_only": false,
+      "position": 14,
+      "required_fields": [
+        "lxisog",
+        "lxisoff"
+      ]
+    },
+    "lxisog": {
+      "abbrev": "SOG",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Shots on Goal",
+      "player_only": false,
+      "position": 15
+    },
+    "lxisoff": {
+      "abbrev": "SOFF",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Shots Off-Target",
+      "player_only": false,
+      "position": 16
+    },
+    "lxishpct": {
+      "abbrev": "SHOT%",
+      "formatter": "percentage",
+      "formula": "(function () { if (acc.values['lxisog'] + acc.values['lxisoff'] == 0){ return 0 } else{ return (acc.values['lxigl']) / (acc.values['lxisog'] + acc.values['lxisoff'])}})()",
+      "game_or_season": "both",
+      "name": "Shooting Percentage",
+      "player_only": false,
+      "position": 17,
+      "required_fields": [
+        "lxisog",
+        "lxisoff",
+        "lxigl"
+      ]
+    },
+    "lxisogpct": {
+      "abbrev": "SOG%",
+      "formatter": "percentage",
+      "formula": "(function () { if (acc.values['lxisog'] + acc.values['lxisoff'] == 0){ return 0 } else{ return acc.values['lxisog'] / (acc.values['lxisog'] + acc.values['lxisoff'])}})()",
+      "game_or_season": "both",
+      "name": "Percentage of Shots On Goal",
+      "player_only": false,
+      "position": 18,
+      "required_fields": [
+        "lxisog",
+        "lxisoff"
+      ]
+    },
+    "lxipgsog": {
+      "abbrev": "SOG/GP",
+      "formatter": "float_1",
+      "formula": "(function () { if (acc.values['lxigp'] == 0){ return 0 } else{ return (acc.values['lxisog'] / acc.values['lxigp'])}})()",
+      "game_or_season": "season",
+      "name": "Avg Shots On Goal Per Game",
+      "player_only": false,
+      "position": 19,
+      "required_fields": [
+        "lxisog"
+      ]
+    },
+    "lxigb": {
+      "abbrev": "GB",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Ground Balls",
+      "player_only": false,
+      "position": 20
+    },
+    "lxilb": {
+      "abbrev": "LB",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Loose Balls",
+      "player_only": false,
+      "position": 21
+    },
+    "lxito": {
+      "abbrev": "TO",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Turnovers",
+      "player_only": false,
+      "position": 22
+    },
+    "lxifto": {
+      "abbrev": "FT",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Forced Turnovers",
+      "player_only": false,
+      "position": 23
+    },
+    "lxita": {
+      "abbrev": "TA",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Take Aways",
+      "player_only": false,
+      "position": 24
+    },
+    "lxifo": {
+      "abbrev": "FO",
+      "formatter": "integer",
+      "formula": "(function () { return acc.values['lxifow'] + acc.values['lxifol'] })()",
+      "game_or_season": "both",
+      "name": "Faceoffs",
+      "player_only": false,
+      "position": 25,
+      "required_fields": [
+        "lxifow",
+        "lxifol"
+      ]
+    },
+    "lxifow": {
+      "abbrev": "FOW",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Faceoffs Won",
+      "player_only": false,
+      "position": 26
+    },
+    "lxifol": {
+      "abbrev": "FOL",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Faceoffs Lost",
+      "player_only": false,
+      "position": 27
+    },
+    "lxifopct": {
+      "abbrev": "FO%",
+      "formatter": "percentage",
+      "formula": "(function () { if (acc.values['lxifow'] + acc.values['lxifol'] == 0){ return 0 } else{ return acc.values['lxifow']/(acc.values['lxifow'] + acc.values['lxifol'])}})()",
+      "game_or_season": "both",
+      "name": "Faceoff Percentage",
+      "player_only": false,
+      "position": 28,
+      "required_fields": [
+        "lxifow",
+        "lxifol"
+      ]
+    },
+    "lximvp": {
+      "abbrev": "MVP",
+      "formatter": "MVP",
+      "game_or_season": "both",
+      "name": "Player of the Game Award",
+      "player_only": true,
+      "position": 29
+    },
+    "lxidc": {
+      "abbrev": "DC",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Draw Controls",
+      "player_only": false,
+      "position": 30
+    }
+  }
+}

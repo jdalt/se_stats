@@ -1,0 +1,77 @@
+{
+  "key": "soccer_team_scoring",
+  "name": "Team Scoring",
+  "position": 3,
+  "sport_id": 5,
+  "types": {
+    "wins": {
+      "abbrev": "W",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Wins",
+      "position": 1,
+      "score_value": false
+    },
+    "losses": {
+      "abbrev": "L",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Losses",
+      "position": 2,
+      "score_value": false
+    },
+    "ties": {
+      "abbrev": "T",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Ties",
+      "position": 3,
+      "score_value": false
+    },
+    "goals": {
+      "abbrev": "G",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "interval_score": true,
+      "match_score": true,
+      "name": "Goals",
+      "position": 4,
+      "score_value": true
+    },
+    "sosgpg": {
+      "abbrev": "GPG Avg",
+      "formatter": "float_2",
+      "formula": "(function () { var games = acc.values['wins'] + acc.values['losses'] + acc.values['ties']; if (games == 0) return 0; return acc.values['goals'] / games; })() ",
+      "game_or_season": "season",
+      "name": "Goals Per Game",
+      "position": 5,
+      "required_fields": [
+        "wins",
+        "losses",
+        "ties",
+        "goals"
+      ],
+      "score_value": false
+    },
+    "ycard": {
+      "abbrev": "YC",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "interval_score": false,
+      "match_score": false,
+      "name": "Yellow Cards",
+      "position": 6,
+      "score_value": false
+    },
+    "rcard": {
+      "abbrev": "RC",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "interval_score": false,
+      "match_score": false,
+      "name": "Red Cards",
+      "position": 7,
+      "score_value": false
+    }
+  }
+}

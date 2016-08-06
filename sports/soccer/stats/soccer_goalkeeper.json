@@ -1,0 +1,119 @@
+{
+  "key": "soccer_goalkeeper",
+  "name": "Goalkeeper",
+  "position": 2,
+  "regulation_duration_required": true,
+  "sport_id": 5,
+  "types": {
+    "soggp": {
+      "abbrev": "GP",
+      "formatter": "integer",
+      "game_or_season": "season",
+      "games_stat": true,
+      "name": "Games Played",
+      "player_only": false,
+      "position": 1,
+      "team_callbacks": "team_games_played"
+    },
+    "sogmin": {
+      "abbrev": "MIN",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Minutes Played",
+      "player_only": true,
+      "position": 2
+    },
+    "sogga": {
+      "abbrev": "GA",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Goals against",
+      "player_only": false,
+      "position": 3
+    },
+    "sogsv": {
+      "abbrev": "SV",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Saves",
+      "player_only": false,
+      "position": 4
+    },
+    "sogpksv": {
+      "abbrev": "PKSV",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Penalty Kick Saves",
+      "player_only": false,
+      "position": 5
+    },
+    "sogfksv": {
+      "abbrev": "FKSV",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Free Kick Saves",
+      "player_only": false,
+      "position": 6
+    },
+    "sogcksv": {
+      "abbrev": "CKSV",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Corner Kick Saves",
+      "player_only": false,
+      "position": 7
+    },
+    "sogyc": {
+      "abbrev": "YC",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Yellow Cards",
+      "player_only": false,
+      "position": 8,
+      "v1_only": true
+    },
+    "sogrc": {
+      "abbrev": "RC",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Red Cards",
+      "player_only": false,
+      "position": 9,
+      "v1_only": true
+    },
+    "sogfs": {
+      "abbrev": "FS",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Fouls Suffered",
+      "player_only": false,
+      "position": 10
+    },
+    "sogsvp": {
+      "abbrev": "SV%",
+      "formatter": "decimal_3",
+      "formula": "(function () { var sog = acc.values['sogga'] + acc.values['sogsv']; if (sog == 0) return 0; return acc.values['sogsv'] / sog; })() ",
+      "game_or_season": "both",
+      "name": "Save Percentage",
+      "player_only": false,
+      "position": 11,
+      "required_fields": [
+        "sogga",
+        "sogsv"
+      ]
+    },
+    "soggaa": {
+      "abbrev": "GAA",
+      "formatter": "float_2",
+      "formula": "(function () { if (acc.values['sogmin'] == 0) return 0; var duration_minutes = acc.regulation_duration ? acc.regulation_duration / 60 : 90; return acc.values['sogga'] * duration_minutes / acc.values['sogmin'] })() ",
+      "game_or_season": "both",
+      "name": "Goals Against Average",
+      "player_only": false,
+      "position": 12,
+      "required_fields": [
+        "sogga",
+        "sogmin"
+      ]
+    }
+  }
+}

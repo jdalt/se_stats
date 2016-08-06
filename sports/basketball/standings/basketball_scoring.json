@@ -1,0 +1,130 @@
+{
+  "key": "basketball_scoring",
+  "position": 3,
+  "sport_id": 7,
+  "team_only": false,
+  "types": {
+    "bksgp": {
+      "abbrev": "GP",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "season",
+      "games_stat": true,
+      "name": "Games Played",
+      "position": 1,
+      "team_callbacks": "team_games_played"
+    },
+    "bksppg": {
+      "abbrev": "PPG",
+      "formatter": "float_1",
+      "formula": "(function () { if (acc.values['bksgp'] == 0){ return 0 } else{ return acc.values['bkspts']/ acc.values['bksgp'] } })() ",
+      "game_or_season": "season",
+      "name": "Points Per Game",
+      "player_only": true,
+      "position": 2,
+      "required_fields": [
+        "bkspts",
+        "bksgp"
+      ]
+    },
+    "bksfgm": {
+      "abbrev": "FGM",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Field Goals Made",
+      "position": 3
+    },
+    "bksfga": {
+      "abbrev": "FGA",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Field Goals Attempted",
+      "position": 4
+    },
+    "bksfgpct": {
+      "abbrev": "FG%",
+      "formatter": "decimal_3",
+      "formula": "(function () { if (acc.values['bksfga'] == 0){ return 0 } else{ return (acc.values['bksfgm'] / acc.values['bksfga'])} })() ",
+      "game_or_season": "season",
+      "name": "Field Goal Percent",
+      "position": 5,
+      "required_fields": [
+        "bksfgm",
+        "bksfga"
+      ]
+    },
+    "bksftm": {
+      "abbrev": "FTM",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Free Throws Made",
+      "position": 6
+    },
+    "bksfta": {
+      "abbrev": "FTA",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Free Throws Attempted",
+      "position": 7
+    },
+    "bksftpct": {
+      "abbrev": "FT%",
+      "formatter": "decimal_3",
+      "formula": "(function () { if (acc.values['bksfta'] == 0){ return 0 } else{ return (acc.values['bksftm'] / acc.values['bksfta'])} })() ",
+      "game_or_season": "season",
+      "name": "Freethrow Percentage",
+      "position": 8,
+      "required_fields": [
+        "bksftm",
+        "bksfta"
+      ]
+    },
+    "bks3pm": {
+      "abbrev": "3PM",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Three Point Made",
+      "position": 9
+    },
+    "bks3pa": {
+      "abbrev": "3PA",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Three Point Attempted",
+      "position": 10
+    },
+    "bks3ppct": {
+      "abbrev": "3P%",
+      "formatter": "decimal_3",
+      "formula": "(function () { if (acc.values['bks3pa'] == 0){ return 0 } else{ return (acc.values['bks3pm'] / acc.values['bks3pa'])} })() ",
+      "game_or_season": "season",
+      "name": "Three Point Percentage",
+      "position": 11,
+      "required_fields": [
+        "bks3pm",
+        "bks3pa"
+      ]
+    },
+    "bkspts": {
+      "abbrev": "PTS",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Total Points",
+      "position": 12
+    },
+    "bksptshi": {
+      "abbrev": "High",
+      "formatter": "integer",
+      "formula": "(function () { return doc.values['bkspts']})() ",
+      "function": "max",
+      "game_or_season": "season",
+      "name": "Game High Points",
+      "player_only": true,
+      "position": 14,
+      "required_fields": [
+        "bkspts"
+      ]
+    }
+  },
+  "name": "Scoring"
+}

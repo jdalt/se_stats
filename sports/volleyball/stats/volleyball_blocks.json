@@ -1,0 +1,60 @@
+{
+  "key": "volleyball_blocks",
+  "position": 5,
+  "requires": "volleyball_general",
+  "sport_id": 12,
+  "team_only": false,
+  "types": {
+    "blksolo": {
+      "abbrev": "BS",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Solo Blocks",
+      "position": 1
+    },
+    "blkast": {
+      "abbrev": "BA",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Assist Blocks",
+      "position": 2
+    },
+    "blkerr": {
+      "abbrev": "BE",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Block Errors",
+      "position": 3
+    },
+    "blktot": {
+      "abbrev": "BT",
+      "formatter": "float_1",
+      "formula": "(function () { return (acc.values['blksolo'] + acc.values['blkast'])})()",
+      "game_or_season": "both",
+      "name": "Total Blocks",
+      "position": 4,
+      "required_fields": [
+        "blksolo",
+        "blkast"
+      ],
+      "team_formula": "(function () { return (acc.values['blksolo'] + (acc.values['blkast'] * 0.5))})()"
+    },
+    "blkbps": {
+      "abbrev": "B/S",
+      "formatter": "float_1",
+      "formula": "(function () { if (acc.values['gensets'] == 0) {return 0} else{ return ((acc.values['blksolo'] + (acc.values['blkast'] * 0.5)) / acc.values['gensets'])}})()",
+      "game_or_season": "both",
+      "name": "Blocks/Set",
+      "position": 5,
+      "required_fields": [
+        "blksolo",
+        "blkast",
+        "gensets"
+      ]
+    }
+  },
+  "name": "Blocks"
+}

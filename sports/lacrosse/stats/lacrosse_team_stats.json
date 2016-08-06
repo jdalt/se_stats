@@ -1,0 +1,83 @@
+{
+  "key": "lacrosse_team_stats",
+  "position": 4,
+  "requires": "lacrosse_individual",
+  "sport_id": 3,
+  "team_only": true,
+  "types": {
+    "lxtppa": {
+      "abbrev": "PP",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Power Plays Attempted",
+      "position": 1
+    },
+    "lxtpppct": {
+      "abbrev": "PP%",
+      "formatter": "percentage",
+      "formula": "(function () { if (acc.values['lxtppa'] == 0){ return 0 } else{ return (acc.values['lxippg'] / acc.values['lxtppa'])}})()",
+      "game_or_season": "both",
+      "name": "Power Play Percentage",
+      "position": 2,
+      "required_fields": [
+        "lxtppa",
+        "lxippg"
+      ]
+    },
+    "lxtppm": {
+      "abbrev": "PPM",
+      "formatter": "float_1",
+      "game_or_season": "both",
+      "name": "Power Play Minutes",
+      "position": 3
+    },
+    "lxtpkl": {
+      "abbrev": "PK",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Penalty Kills",
+      "position": 4
+    },
+    "lxtpkga": {
+      "abbrev": "PKGA",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Penalty Kill Goals Allowed",
+      "position": 5
+    },
+    "lxtpkpct": {
+      "abbrev": "PK%",
+      "formatter": "percentage",
+      "formula": "(function () { if (acc.values['lxtpkl'] == 0){ return 0 } else{ return (1.0 - (acc.values['lxtpkga'] / acc.values['lxtpkl']))}})()",
+      "game_or_season": "both",
+      "name": "Penalty Kill Percentage",
+      "position": 6,
+      "required_fields": [
+        "lxtpkl",
+        "lxtpkga"
+      ]
+    },
+    "lxtclr": {
+      "abbrev": "C",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Clears",
+      "position": 7
+    },
+    "lxtfclr": {
+      "abbrev": "FC",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Failed Clears",
+      "position": 8
+    },
+    "lxtride": {
+      "abbrev": "R",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Rides",
+      "position": 9
+    }
+  },
+  "name": "Team"
+}

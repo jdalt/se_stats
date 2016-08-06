@@ -1,0 +1,238 @@
+{
+  "key": "baseball_batter",
+  "name": "Batter",
+  "position": 1,
+  "sport_id": 4,
+  "types": {
+    "bsbgp": {
+      "abbrev": "GP",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "season",
+      "games_stat": true,
+      "name": "Games Played",
+      "position": 1,
+      "required_fields": null,
+      "team_callbacks": "team_games_played"
+    },
+    "bsbab": {
+      "abbrev": "AB",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "At Bats",
+      "position": 2
+    },
+    "bsbrun": {
+      "abbrev": "R",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Runs",
+      "position": 3
+    },
+    "bsbhit": {
+      "abbrev": "H",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Hits",
+      "position": 4
+    },
+    "bsb1b": {
+      "abbrev": "1B",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Singles",
+      "position": 5
+    },
+    "bsb2b": {
+      "abbrev": "2B",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Doubles",
+      "position": 6
+    },
+    "bsb3b": {
+      "abbrev": "3B",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Triples",
+      "position": 7
+    },
+    "bsbhr": {
+      "abbrev": "HR",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Home Runs",
+      "position": 8
+    },
+    "bsbtb": {
+      "abbrev": "TB",
+      "formatter": "integer",
+      "formula": "(function () { return (acc.values['bsb1b'] + (acc.values['bsb2b'] * 2) + (acc.values['bsb3b'] * 3) + (acc.values['bsbhr'] * 4))})()",
+      "game_or_season": "both",
+      "name": "Total Bases",
+      "position": 9,
+      "required_fields": [
+        "bsb1b",
+        "bsb2b",
+        "bsb3b",
+        "bsbhr"
+      ]
+    },
+    "bsbbb": {
+      "abbrev": "BB",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Base on Balls",
+      "position": 10
+    },
+    "bsbibb": {
+      "abbrev": "IBB",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Intentional Base on Balls",
+      "player_only": false,
+      "position": 11
+    },
+    "bsbrbi": {
+      "abbrev": "RBI",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Runs Batted In",
+      "position": 12
+    },
+    "bsbhbp": {
+      "abbrev": "HBP",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Hit By Pitch",
+      "position": 13
+    },
+    "bsbso": {
+      "abbrev": "SO",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Strikeouts",
+      "position": 14
+    },
+    "bsbsb": {
+      "abbrev": "SB",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Stolen Bases",
+      "position": 15
+    },
+    "bsbcs": {
+      "abbrev": "CS",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Caught Stealing",
+      "position": 16
+    },
+    "bsbgdp": {
+      "abbrev": "GDP",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Ground Into Double Play",
+      "position": 17
+    },
+    "bsbavg": {
+      "abbrev": "AVG",
+      "formatter": "decimal_3",
+      "formula": "(function () { if (acc.values['bsbab'] == 0){ return 0 } else{ return (acc.values['bsbhit'] / acc.values['bsbab'])}})()",
+      "game_or_season": "both",
+      "name": "Batting Average",
+      "position": 18,
+      "required_fields": [
+        "bsbab",
+        "bsbhit"
+      ]
+    },
+    "bsbobp": {
+      "abbrev": "OBP",
+      "formatter": "decimal_3",
+      "formula": "(function () { if (acc.values['bsbab'] + acc.values['bsbhbp'] + acc.values['bsbbb'] + acc.values['bsbsac'] == 0){ return 0 } else{ return ((acc.values['bsbhit'] + acc.values['bsbbb'] + acc.values['bsbhbp']) /   (acc.values['bsbab'] + acc.values['bsbhbp'] + acc.values['bsbbb'] + acc.values['bsbsac'])   )}})()",
+      "game_or_season": "both",
+      "name": "On-Base Percentage",
+      "position": 19,
+      "required_fields": [
+        "bsbab",
+        "bsbhit",
+        "bsbbb",
+        "bsbhbp",
+        "bsbsac"
+      ]
+    },
+    "bsbslg": {
+      "abbrev": "SLG",
+      "formatter": "float_or_decimal_3",
+      "formula": "(function () { if (acc.values['bsbab'] == 0){ return 0 } else{ return ((acc.values['bsb1b'] + (acc.values['bsb2b'] * 2) + (acc.values['bsb3b'] * 3) + (acc.values['bsbhr'] * 4)) / acc.values['bsbab'])}})()",
+      "game_or_season": "both",
+      "name": "Slugging Percentage",
+      "position": 20,
+      "required_fields": [
+        "bsbab",
+        "bsb1b",
+        "bsb2b",
+        "bsb3b",
+        "bsbhr"
+      ]
+    },
+    "bsbops": {
+      "abbrev": "OPS",
+      "formatter": "float_3",
+      "formula": "(function () { var slg = 0.0; var obp = 0.0; if (acc.values['bsbab'] + acc.values['bsbbb'] + acc.values['bsbhbp'] + acc.values['bsbsac'] > 0) { obp = ((acc.values['bsbhit'] + acc.values['bsbbb'] + acc.values['bsbhbp']) / (acc.values['bsbab'] + acc.values['bsbbb'] + acc.values['bsbhbp'] + acc.values['bsbsac']) );} if (acc.values['bsbab'] > 0) { slg = (acc.values['bsb1b'] + (acc.values['bsb2b'] * 2) + (acc.values['bsb3b'] * 3) + (acc.values['bsbhr'] * 4)) / acc.values['bsbab'];} return obp + slg; })()",
+      "game_or_season": "both",
+      "name": "On-Base Plus Slugging",
+      "position": 21,
+      "required_fields": [
+        "bsbab",
+        "bsbhit",
+        "bsb1b",
+        "bsb2b",
+        "bsb3b",
+        "bsbhr",
+        "bsbbb",
+        "bsbhbp",
+        "bsbsac"
+      ]
+    },
+    "bsbsach": {
+      "abbrev": "SAC",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Sacrifice Hit",
+      "player_only": false,
+      "position": 22
+    },
+    "bsbsac": {
+      "abbrev": "SF",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Sacrifice Fly",
+      "position": 23
+    },
+    "bsbpa": {
+      "abbrev": "PA",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Plate Appearances",
+      "position": 24
+    },
+    "bsbord": {
+      "abbrev": "ORD",
+      "formatter": "integer",
+      "game_or_season": "game",
+      "player_only": true,
+      "name": "Batting Order",
+      "position": 25
+    },
+    "bsbph": {
+      "abbrev": "PH",
+      "formatter": "boolean",
+      "game_or_season": "game",
+      "player_only": true,
+      "name": "Pinch Hitter",
+      "position": 26
+    }
+  }
+}

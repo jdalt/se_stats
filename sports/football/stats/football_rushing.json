@@ -1,0 +1,82 @@
+{
+  "key": "football_rushing",
+  "position": 2,
+  "sport_id": 11,
+  "team_only": false,
+  "types": {
+    "rshgames": {
+      "abbrev": "G",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "season",
+      "games_stat": true,
+      "name": "Games played",
+      "position": 1,
+      "required_fields": null,
+      "team_callbacks": "team_games_played"
+    },
+    "rshatt": {
+      "abbrev": "Att",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Attempts",
+      "position": 2
+    },
+    "rshyd": {
+      "abbrev": "Yds",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Yards",
+      "position": 3
+    },
+    "rshavg": {
+      "abbrev": "Yds/Att",
+      "formatter": "float_1",
+      "formula": "(function () { if (acc.values['rshatt'] == 0){ return 0 } else{ return (acc.values['rshyd'] / acc.values['rshatt'])}})()",
+      "game_or_season": "both",
+      "name": "Average Yards",
+      "position": 4,
+      "required_fields": [
+        "rshatt",
+        "rshyd"
+      ]
+    },
+    "rshtd": {
+      "abbrev": "TD",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Touchdowns",
+      "position": 5
+    },
+    "rshfum": {
+      "abbrev": "FUM",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Fumbles Lost",
+      "position": 6
+    },
+    "rsh2pc": {
+      "abbrev": "2PM",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Two-Point Conversions Made",
+      "position": 7
+    },
+    "rshypg": {
+      "abbrev": "Rush YPG",
+      "formatter": "float_1",
+      "formula": "(function () { if (acc.values['rshgames'] == 0){ return 0 } else{ return (acc.values['rshyd'] / acc.values['rshgames'])}})()",
+      "game_or_season": "season",
+      "name": "Rushing Yards Per Game",
+      "position": 8,
+      "required_fields": [
+        "rshyd"
+      ]
+    }
+  },
+  "name": "Rushing"
+}

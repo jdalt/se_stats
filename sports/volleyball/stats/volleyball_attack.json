@@ -1,0 +1,59 @@
+{
+  "key": "volleyball_attack",
+  "position": 1,
+  "requires": "volleyball_general",
+  "sport_id": 12,
+  "team_only": false,
+  "types": {
+    "atkkill": {
+      "abbrev": "K",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Kills",
+      "position": 1
+    },
+    "atkerr": {
+      "abbrev": "E",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Errors",
+      "position": 2
+    },
+    "atkatt": {
+      "abbrev": "TA",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Total Attempts",
+      "position": 3
+    },
+    "atkpct": {
+      "abbrev": "PCT",
+      "formatter": "decimal_3",
+      "formula": "(function () { if (acc.values['atkatt'] == 0) {return 0} else{ return ((acc.values['atkkill'] - acc.values['atkerr']) / acc.values['atkatt'])}})()",
+      "game_or_season": "both",
+      "name": "Percentage",
+      "position": 4,
+      "required_fields": [
+        "atkkill",
+        "atkerr",
+        "atkatt"
+      ]
+    },
+    "per_set_kills": {
+      "abbrev": "K/S",
+      "formatter": "float_1",
+      "formula": "(function () { if (acc.values['gensets'] == 0) {return 0} else{ return (acc.values['atkkill'] / acc.values['gensets'])}})()",
+      "game_or_season": "both",
+      "name": "Kills/Set",
+      "position": 5,
+      "required_fields": [
+        "atkkill",
+        "gensets"
+      ]
+    }
+  },
+  "name": "Attack"
+}

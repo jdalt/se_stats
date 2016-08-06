@@ -1,0 +1,42 @@
+{
+  "key": "rugby_union_team_scoring",
+  "name": "Team Scoring",
+  "position": 2,
+  "sport_id": 16,
+  "types": {
+    "wins": {
+      "position": 1,
+      "abbrev": "W",
+      "name": "Wins",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "score_value": false
+    },
+    "losses": {
+      "position": 2,
+      "abbrev": "L",
+      "name": "Losses",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "score_value": false
+    },
+    "ties": {
+      "position": 3,
+      "abbrev": "D",
+      "name": "Draws",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "score_value": false
+    },
+    "pts": {
+      "position": 4,
+      "abbrev": "Pts",
+      "name": "Points",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "score_value": true,
+      "interval_score": true,
+      "match_score": true
+    }
+  }
+}

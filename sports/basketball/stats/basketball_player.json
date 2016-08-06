@@ -1,0 +1,48 @@
+{
+  "key": "basketball_player",
+  "position": 2,
+  "sport_id": 7,
+  "team_only": false,
+  "types": {
+    "bkpgp": {
+      "abbrev": "GP",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "season",
+      "games_stat": true,
+      "name": "Games Played",
+      "position": 1,
+      "team_callbacks": "team_games_played"
+    },
+    "bkpgs": {
+      "abbrev": "GS",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Games Started",
+      "player_only": true,
+      "position": 2
+    },
+    "bkpmin": {
+      "abbrev": "MIN",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Minutes Played",
+      "player_only": true,
+      "position": 3
+    },
+    "bkpavemin": {
+      "abbrev": "MPG",
+      "formatter": "float_1",
+      "formula": "(function () { if (acc.values['bkpgp'] == 0){ return 0 } else{ return (acc.values['bkpmin'] / acc.values['bkpgp'])} })() ",
+      "game_or_season": "season",
+      "name": "Minutes Per Game",
+      "player_only": true,
+      "position": 4,
+      "required_fields": [
+        "bkpmin",
+        "bkpgp"
+      ]
+    }
+  },
+  "name": "Player"
+}

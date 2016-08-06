@@ -1,0 +1,26 @@
+{
+  "key": "volleyball_general",
+  "position": 7,
+  "sport_id": 12,
+  "team_only": false,
+  "types": {
+    "genbhe": {
+      "abbrev": "BHE",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Ball Handling Errors",
+      "position": 1
+    },
+    "gensets": {
+      "abbrev": "SP",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Sets Played",
+      "position": 2,
+      "team_callbacks": "calc_team_sets_played"
+    }
+  },
+  "name": "General"
+}

@@ -1,0 +1,59 @@
+{
+  "key": "volleyball_serves",
+  "position": 3,
+  "requires": "volleyball_general",
+  "sport_id": 12,
+  "team_only": false,
+  "types": {
+    "srvace": {
+      "abbrev": "SA",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Service Aces",
+      "position": 1
+    },
+    "srverr": {
+      "abbrev": "SE",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Service Errors",
+      "position": 2
+    },
+    "srvaps": {
+      "abbrev": "SA/S",
+      "formatter": "float_1",
+      "formula": "(function () { if (acc.values['gensets'] == 0) {return 0} else{return (acc.values['srvace'] / acc.values['gensets'])}})()",
+      "game_or_season": "both",
+      "name": "Aces/Set",
+      "position": 3,
+      "required_fields": [
+        "srvace",
+        "gensets"
+      ]
+    },
+    "srvatt": {
+      "abbrev": "SRV",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Service Attempts",
+      "position": 4
+    },
+    "srvpct": {
+      "abbrev": "PCT",
+      "description": "Service Percentage",
+      "formatter": "decimal_3",
+      "formula": "(function () { if (acc.values['srvatt'] == 0) {return 0} else{ return ((acc.values['srvatt'] - acc.values['srverr']) / acc.values['srvatt'])}})()",
+      "game_or_season": "both",
+      "name": "Service Percentage",
+      "position": 5,
+      "required_fields": [
+        "srvatt",
+        "srverr"
+      ]
+    }
+  },
+  "name": "Serves"
+}

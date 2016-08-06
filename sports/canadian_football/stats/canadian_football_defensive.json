@@ -1,0 +1,163 @@
+{
+  "key": "canadian_football_defensive",
+  "position": 4,
+  "sport_id": 26,
+  "team_only": false,
+  "types": {
+    "defgames": {
+      "abbrev": "G",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "season",
+      "games_stat": true,
+      "name": "Games played",
+      "position": 1,
+      "required_fields": null,
+      "team_callbacks": "team_games_played"
+    },
+    "deftck": {
+      "abbrev": "Tck",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Solo Tackles",
+      "position": 2
+    },
+    "defatck": {
+      "abbrev": "ATck",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Assisted Tackles",
+      "position": 3
+    },
+    "defsttck": {
+      "abbrev": "STTck",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Special Team Tackles",
+      "position": 4
+    },
+    "defstatck": {
+      "abbrev": "STATck",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Special Team Assisted Tackles",
+      "position": 5
+    },
+    "defttck": {
+      "abbrev": "TTck",
+      "formatter": "integer",
+      "formula": "(function () { return acc.values['deftck'] + acc.values['defatck'] + acc.values['defsttck'] + acc.values['defstatck'] })()",
+      "game_or_season": "both",
+      "name": "Total Tackles",
+      "position": 6,
+      "required_fields": [
+        "deftck",
+        "defatck",
+        "defsttck",
+        "defstatck"
+      ]
+    },
+    "deftfl": {
+      "abbrev": "TFL",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Tackles For Loss",
+      "position": 7
+    },
+    "defsck": {
+      "abbrev": "Sck",
+      "formatter": "float_1",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Sacks",
+      "position": 8
+    },
+    "deffum": {
+      "abbrev": "Fum",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Fumble Recoveries",
+      "position": 9
+    },
+    "deffcfm": {
+      "abbrev": "FF",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Forced Fumbles",
+      "position": 10
+    },
+    "deftdfmb": {
+      "abbrev": "FmbTD",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Fumbles recovered for touchdowns",
+      "position": 11
+    },
+    "defint": {
+      "abbrev": "Int",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Interceptions",
+      "position": 12
+    },
+    "deftdint": {
+      "abbrev": "IntTD",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Interceptions returned for touchdowns",
+      "position": 13
+    },
+    "deftdtot": {
+      "abbrev": "TotTD",
+      "formatter": "integer",
+      "formula": "(function () { return acc.values['deftdint'] + acc.values['deftdfmb'] + acc.values['defbktd']})()",
+      "game_or_season": "both",
+      "name": "Total defensive touchdowns",
+      "position": 14,
+      "required_fields": [
+        "deftdint",
+        "deftdfmb"
+      ]
+    },
+    "defsfty": {
+      "abbrev": "Sfty",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Safeties",
+      "position": 15
+    },
+    "defblkck": {
+      "abbrev": "BK",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Blocked Kicks",
+      "position": 16
+    },
+    "defbktd": {
+      "abbrev": "BKTD",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Blocked Kick Return TD",
+      "position": 17
+    },
+    "defbkpd": {
+      "abbrev": "BKPD",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Blocked Punt Return TD",
+      "position": 18
+    },
+    "defpdef": {
+      "abbrev": "PDef",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Passes Defended",
+      "position": 19
+    }
+  },
+  "name": "Defensive"
+}

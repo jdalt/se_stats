@@ -1,0 +1,136 @@
+{
+  "key": "rugby_union_player",
+  "name": "Player",
+  "position": 1,
+  "sport_id": 16,
+  "types": {
+    "rupmat": {
+      "position": 1,
+      "abbrev": "MAT",
+      "name": "Matches",
+      "formatter": "integer",
+      "team_callbacks": "team_games_played",
+      "game_or_season": "season",
+      "games_stat": true
+    },
+    "rupst": {
+      "position": 2,
+      "abbrev": "ST",
+      "name": "Starts",
+      "formatter": "integer",
+      "game_or_season": "both"
+    },
+    "rupsb": {
+      "position": 3,
+      "abbrev": "SB",
+      "name": "Subs",
+      "formatter": "integer",
+      "game_or_season": "both"
+    },
+    "ruppts": {
+      "position": 4,
+      "abbrev": "PTS",
+      "name": "Points",
+      "formatter": "integer",
+      "game_or_season": "both"
+    },
+    "rupt": {
+      "position": 5,
+      "abbrev": "T",
+      "name": "Tries",
+      "formatter": "integer",
+      "game_or_season": "both"
+    },
+    "rupconv": {
+      "position": 6,
+      "abbrev": "CONV",
+      "name": "Conversions",
+      "formatter": "integer",
+      "game_or_season": "both"
+    },
+    "rupp": {
+      "position": 7,
+      "abbrev": "P",
+      "name": "Penalties",
+      "formatter": "integer",
+      "game_or_season": "both"
+    },
+    "rupdg": {
+      "position": 8,
+      "abbrev": "DG",
+      "name": "Drop Goals",
+      "formatter": "integer",
+      "game_or_season": "both"
+    },
+    "rupyc": {
+      "position": 9,
+      "abbrev": "YC",
+      "name": "Yellow Cards",
+      "formatter": "integer",
+      "game_or_season": "both"
+    },
+    "ruprc": {
+      "position": 10,
+      "abbrev": "RC",
+      "name": "Red Cards",
+      "formatter": "integer",
+      "game_or_season": "both"
+    },
+    "rupsp": {
+      "position": 11,
+      "abbrev": "SP",
+      "name": "Set Pieces",
+      "formatter": "integer",
+      "game_or_season": "both"
+    },
+    "rupbc": {
+      "position": 12,
+      "abbrev": "BC",
+      "name": "Ball Carries",
+      "formatter": "integer",
+      "game_or_season": "both"
+    },
+    "ruptm": {
+      "position": 13,
+      "abbrev": "TM",
+      "name": "Tackles Made",
+      "formatter": "integer",
+      "game_or_season": "both"
+    },
+    "rupts": {
+      "position": 14,
+      "abbrev": "TS",
+      "name": "Tackles Missed",
+      "formatter": "integer",
+      "game_or_season": "both"
+    },
+    "rupbl": {
+      "position": 15,
+      "abbrev": "BL",
+      "name": "Balls Lost in Contact",
+      "formatter": "integer",
+      "game_or_season": "both"
+    },
+    "rupk": {
+      "position": 16,
+      "abbrev": "K",
+      "name": "Kicks",
+      "formatter": "integer",
+      "game_or_season": "both"
+    },
+    "rupto": {
+      "position": 17,
+      "abbrev": "TO",
+      "name": "Turnovers Won",
+      "formatter": "integer",
+      "game_or_season": "both"
+    },
+    "rupsk": {
+      "position": 18,
+      "abbrev": "SK",
+      "name": "Successful Kicks",
+      "formatter": "integer",
+      "game_or_season": "both"
+    }
+  }
+}

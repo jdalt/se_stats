@@ -1,0 +1,30 @@
+{
+  "key": "volleyball_defense",
+  "position": 4,
+  "requires": "volleyball_general",
+  "sport_id": 12,
+  "team_only": false,
+  "types": {
+    "defdig": {
+      "abbrev": "D",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Digs",
+      "position": 1
+    },
+    "defdps": {
+      "abbrev": "D/S",
+      "formatter": "float_1",
+      "formula": "(function () { if (acc.values['gensets'] == 0) {return 0} else{return (acc.values['defdig'] / acc.values['gensets'])}})()",
+      "game_or_season": "both",
+      "name": "Digs/Set",
+      "position": 2,
+      "required_fields": [
+        "defdig",
+        "gensets"
+      ]
+    }
+  },
+  "name": "Defense"
+}

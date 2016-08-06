@@ -1,0 +1,41 @@
+{
+  "key": "baseball_catcher",
+  "name": "Catcher",
+  "position": 4,
+  "sport_id": 4,
+  "types": {
+    "bscpb": {
+      "abbrev": "PB",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Passed Balls",
+      "position": 2
+    },
+    "bscsba": {
+      "abbrev": "SBA",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Stolen Bases Against",
+      "position": 3
+    },
+    "bsccs": {
+      "abbrev": "CS",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Caught Stealing",
+      "position": 4
+    },
+    "bsccsp": {
+      "abbrev": "CSP",
+      "formatter": "float_2",
+      "formula": "(function () { if ((acc.values['bscsba'] + acc.values['bsccs']) == 0){ return 0 } else{ return (acc.values['bsccs'] / (acc.values['bscsba'] + acc.values['bsccs']))}})()",
+      "game_or_season": "both",
+      "name": "Caught Stealing Percentage",
+      "position": 5,
+      "required_fields": [
+        "bscsba",
+        "bsccs"
+      ]
+    }
+  }
+}

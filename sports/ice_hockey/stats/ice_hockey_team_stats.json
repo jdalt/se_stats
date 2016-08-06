@@ -1,0 +1,87 @@
+{
+  "key": "ice_hockey_team_stats",
+  "position": 3,
+  "requires": "ice_hockey_skater ice_hockey_goalie",
+  "sport_id": 1,
+  "team_only": true,
+  "types": {
+    "hktgms": {
+      "abbrev": "GP",
+      "formatter": "integer",
+      "game_or_season": "season",
+      "games_stat": true,
+      "name": "Games played",
+      "position": 1,
+      "team_callbacks": "team_games_played"
+    },
+    "hktgpg": {
+      "abbrev": "GPG",
+      "formatter": "float_2",
+      "formula": "(function () { if (acc.values['hktgms'] == 0){ return 0 } else{ return (acc.values['hksgl'] / acc.values['hktgms'])}})()",
+      "game_or_season": "season",
+      "name": "Goals Per Game Avg",
+      "position": 2,
+      "required_fields": [
+        "hksgl"
+      ]
+    },
+    "hktgaa": {
+      "abbrev": "GAPG",
+      "formatter": "float_2",
+      "formula": "(function () { if (acc.values['hktgms'] == 0){ return 0 } else{ return (acc.values['hkggla'] / acc.values['hktgms'])}})()",
+      "game_or_season": "season",
+      "name": "Goals Against Per Game",
+      "position": 3,
+      "required_fields": [
+        "hkggla"
+      ]
+    },
+    "hktppa": {
+      "abbrev": "PP",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Power Plays",
+      "position": 4
+    },
+    "hktpppct": {
+      "abbrev": "PP %",
+      "formatter": "percentage",
+      "formula": "(function () { if (acc.values['hktppa'] == 0){ return 0 } else{ return (acc.values['hksppg'] / acc.values['hktppa'])}})()",
+      "game_or_season": "both",
+      "name": "Power Play Percentage",
+      "position": 5,
+      "required_fields": [
+        "hktppa",
+        "hksppg"
+      ]
+    },
+    "hktpkl": {
+      "abbrev": "PK",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Penalty Kills",
+      "position": 6
+    },
+    "hktpkga": {
+      "abbrev": "PPGA",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Power Play Goals Allowed",
+      "position": 7
+    },
+    "hktpkpct": {
+      "abbrev": "PK %",
+      "formatter": "percentage",
+      "formula": "(function () { if (acc.values['hktpkl'] == 0){ return 0 } else{ return (1.0 - (acc.values['hktpkga'] / acc.values['hktpkl']))}})()",
+      "game_or_season": "both",
+      "name": "Penalty Kill Percentage",
+      "position": 8,
+      "required_fields": [
+        "hktpkl",
+        "hktpkga"
+      ]
+    }
+  },
+  "name": "Team"
+}

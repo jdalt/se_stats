@@ -1,0 +1,132 @@
+{
+  "key": "canadian_football_passing",
+  "position": 1,
+  "sport_id": 26,
+  "team_only": false,
+  "types": {
+    "psgames": {
+      "abbrev": "G",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "season",
+      "games_stat": true,
+      "name": "Games played",
+      "position": 1,
+      "required_fields": null,
+      "team_callbacks": "team_games_played"
+    },
+    "pscomp": {
+      "abbrev": "Comp",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Completions",
+      "position": 2
+    },
+    "psatt": {
+      "abbrev": "Att",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Attempts",
+      "position": 3
+    },
+    "pspct": {
+      "abbrev": "Comp %",
+      "formatter": "percentage",
+      "formula": "(function () { if (acc.values['psatt'] == 0) {return 0} else{  return (acc.values['pscomp'] / acc.values['psatt'])}})()",
+      "game_or_season": "both",
+      "name": "Completion Percentage",
+      "position": 4,
+      "required_fields": [
+        "psatt",
+        "pscomp"
+      ]
+    },
+    "psyds": {
+      "abbrev": "Yds",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Yards",
+      "position": 5
+    },
+    "psavgyds": {
+      "abbrev": "Yds/Att",
+      "formatter": "float_1",
+      "formula": "(function () { if (acc.values['psatt'] == 0) {return 0} else {  return (acc.values['psyds'] / acc.values['psatt'])}})()",
+      "game_or_season": "both",
+      "name": "Average Yards",
+      "position": 6,
+      "required_fields": [
+        "psatt",
+        "psyds"
+      ]
+    },
+    "ps2pc": {
+      "abbrev": "2PM",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Two-Point Conversions Made",
+      "position": 7
+    },
+    "psypg": {
+      "abbrev": "Pass YPG",
+      "formatter": "float_1",
+      "formula": "(function () { if (acc.values['psgames'] == 0){ return 0 } else{ return (acc.values['psyds'] / acc.values['psgames'])}})()",
+      "game_or_season": "season",
+      "name": "Pass Yards Per Game",
+      "position": 8,
+      "required_fields": [
+        "psyds"
+      ]
+    },
+    "pstd": {
+      "abbrev": "TD",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Touchdowns",
+      "position": 9
+    },
+    "psint": {
+      "abbrev": "Int",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Interceptions",
+      "position": 10
+    },
+    "psrat": {
+      "abbrev": "Rate",
+      "formatter": "float_1",
+      "formula": "(function () { if (acc.values['psatt'] == 0) {return 0} else{  var num1 = (((acc.values['pscomp'] / acc.values['psatt']) * 100 - 30) * 0.05); var num2 = ((acc.values['psyds'] / acc.values['psatt'] - 3) * 0.25); var num3 = (acc.values['pstd'] / acc.values['psatt'] / 0.05); var num4 = (2.375 - (acc.values['psint'] / acc.values['psatt'] * 25)); num1 = num1 < 0 ? 0.0 : (num1 > 2.375 ? 2.375 : num1); num2 = num2 < 0 ? 0.0 : (num2 > 2.375 ? 2.375 : num2); num3 = num3 < 0 ? 0.0 : (num3 > 2.375 ? 2.375 : num3); num4 = num4 < 0 ? 0.0 : (num4 > 2.375 ? 2.375 : num4); return ((num1 + num2 + num3 + num4) * 100.0 /6.0)}})()",
+      "game_or_season": "both",
+      "name": "QB Rating",
+      "position": 11,
+      "required_fields": [
+        "psatt",
+        "pscomp",
+        "psyds",
+        "pstd",
+        "psint"
+      ]
+    },
+    "pssck": {
+      "abbrev": "Sck",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Sacks",
+      "position": 12
+    },
+    "pslng": {
+      "abbrev": "Long",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Longest Play",
+      "position": 13
+    }
+  },
+  "name": "Passing"
+}

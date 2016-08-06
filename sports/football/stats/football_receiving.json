@@ -1,0 +1,88 @@
+{
+  "key": "football_receiving",
+  "position": 3,
+  "sport_id": 11,
+  "team_only": false,
+  "types": {
+    "rcgames": {
+      "abbrev": "G",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "season",
+      "games_stat": true,
+      "name": "Games played",
+      "position": 1,
+      "required_fields": null,
+      "team_callbacks": "team_games_played"
+    },
+    "rcrec": {
+      "abbrev": "Rec",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Receptions",
+      "position": 2
+    },
+    "rctar": {
+      "abbrev": "Tar",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Targets",
+      "position": 3
+    },
+    "rcyd": {
+      "abbrev": "Yds",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Yards",
+      "position": 4
+    },
+    "rcavg": {
+      "abbrev": "Yds/Rec",
+      "formatter": "float_1",
+      "formula": "(function () { if (acc.values['rcrec'] == 0){ return 0} else{return (acc.values['rcyd'] / acc.values['rcrec'])}})()",
+      "game_or_season": "both",
+      "name": "Average Yards",
+      "position": 5,
+      "required_fields": [
+        "rcrec",
+        "rcyd"
+      ]
+    },
+    "rctd": {
+      "abbrev": "TD",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Touchdowns",
+      "position": 6
+    },
+    "rc2pc": {
+      "abbrev": "2PM",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Two-Point Conversions Made",
+      "position": 7
+    },
+    "rcypg": {
+      "abbrev": "YPG",
+      "formatter": "integer",
+      "formula": "(function () { if (acc.values['rcgames'] == 0){ return 0 } else{ return (acc.values['rcyd'] / acc.values['rcgames'])}})()",
+      "game_or_season": "season",
+      "name": "Yards per game",
+      "position": 8,
+      "required_fields": [
+        "rcyd"
+      ]
+    },
+    "rcyac": {
+      "abbrev": "YAC",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Yards after catch",
+      "position": 9
+    }
+  },
+  "name": "Receiving"
+}

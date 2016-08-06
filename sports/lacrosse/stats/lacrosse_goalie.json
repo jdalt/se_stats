@@ -1,0 +1,139 @@
+{
+  "key": "lacrosse_goalie",
+  "name": "Goaltender",
+  "position": 2,
+  "regulation_duration_required": true,
+  "sport_id": 3,
+  "types": {
+    "lxggm": {
+      "abbrev": "GP",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "season",
+      "games_stat": true,
+      "name": "Games Played",
+      "player_only": false,
+      "position": 1,
+      "required_fields": null,
+      "team_callbacks": "team_games_played"
+    },
+    "lxgmin": {
+      "abbrev": "MIN",
+      "formatter": "minutes_and_seconds",
+      "game_or_season": "both",
+      "name": "Minutes Played",
+      "player_only": true,
+      "position": 2
+    },
+    "lxgwin": {
+      "abbrev": "W",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Wins",
+      "player_only": true,
+      "position": 3
+    },
+    "lxgloss": {
+      "abbrev": "L",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Losses",
+      "player_only": true,
+      "position": 4
+    },
+    "lxgtie": {
+      "abbrev": "T",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Ties",
+      "player_only": true,
+      "position": 5
+    },
+    "lxgsog": {
+      "abbrev": "SOG",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Shots on Goal Against",
+      "position": 6
+    },
+    "lxggla": {
+      "abbrev": "GA",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Goals Against",
+      "position": 7
+    },
+    "lxgtpgla": {
+      "abbrev": "2GA",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Two Point Goals Against",
+      "position": 8
+    },
+    "lxggaa": {
+      "abbrev": "GAA",
+      "formatter": "float_2",
+      "formula": "(function () { var duration = acc.regulation_duration ? acc.regulation_duration : 3600; if (acc.values['lxgmin'] == 0){ return 0 } else{ return (acc.values['lxggla'] * duration / acc.values['lxgmin'])}})()",
+      "game_or_season": "both",
+      "name": "Goals Against Average",
+      "position": 9,
+      "required_fields": [
+        "lxggla",
+        "lxgmin"
+      ]
+    },
+    "lxgsv": {
+      "abbrev": "SV",
+      "formatter": "integer",
+      "formula": "(function () { return Math.max(0, acc.values['lxgsog'] - acc.values['lxggla']) })()",
+      "game_or_season": "both",
+      "name": "Saves",
+      "position": 10,
+      "required_fields": [
+        "lxgsog",
+        "lxggla"
+      ]
+    },
+    "lxgspct": {
+      "abbrev": "SV%",
+      "formatter": "decimal_3",
+      "formula": "(function () { if (acc.values['lxgsog'] == 0){ return 0 } else{ return Math.max(0, acc.values['lxgsog'] - acc.values['lxggla']) / acc.values['lxgsog']}})()",
+      "game_or_season": "both",
+      "name": "Save Percentage",
+      "position": 11,
+      "required_fields": [
+        "lxggla",
+        "lxgsog"
+      ]
+    },
+    "lxggb": {
+      "abbrev": "GB",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Groundballs",
+      "position": 12
+    },
+    "lxglb": {
+      "abbrev": "LB",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Looseballs",
+      "position": 13
+    },
+    "lxgsho": {
+      "abbrev": "SO",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Shut Outs",
+      "position": 14
+    },
+    "lxgmvp": {
+      "abbrev": "MVP",
+      "formatter": "MVP",
+      "game_or_season": "both",
+      "name": "Player of the Game Award",
+      "player_only": true,
+      "position": 15
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "key": "gymnastics_individual",
+  "name": "Individual",
+  "position": 1,
+  "sport_id": 29,
+  "types": {
+    "gyigp": {
+      "position": 1,
+      "abbrev": "GP",
+      "name": "Games Played",
+      "formatter": "integer",
+      "team_callbacks": "team_games_played",
+      "game_or_season": "season",
+      "games_stat": true,
+      "player_only": false
+    },
+    "gyimin": {
+      "position": 2,
+      "abbrev": "MIN",
+      "name": "Minutes Played",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "player_only": true
+    },
+    "gyig": {
+      "position": 3,
+      "abbrev": "G",
+      "name": "Goals",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "player_only": false
+    }
+  }
+}

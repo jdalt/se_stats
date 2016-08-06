@@ -1,0 +1,30 @@
+{
+  "key": "volleyball_set",
+  "position": 2,
+  "requires": "volleyball_general",
+  "sport_id": 12,
+  "team_only": false,
+  "types": {
+    "setast": {
+      "abbrev": "A",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Assists",
+      "position": 1
+    },
+    "setaps": {
+      "abbrev": "A/S",
+      "formatter": "float_1",
+      "formula": "(function () { if (acc.values['gensets'] == 0) {return 0} else{return (acc.values['setast'] / acc.values['gensets'])}})()",
+      "game_or_season": "both",
+      "name": "Assists/Set",
+      "position": 2,
+      "required_fields": [
+        "setast",
+        "gensets"
+      ]
+    }
+  },
+  "name": "Set"
+}

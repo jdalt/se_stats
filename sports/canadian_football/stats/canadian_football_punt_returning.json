@@ -1,0 +1,63 @@
+{
+  "key": "canadian_football_punt_returning",
+  "position": 5,
+  "sport_id": 26,
+  "team_only": false,
+  "types": {
+    "prgames": {
+      "abbrev": "G",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "season",
+      "games_stat": true,
+      "name": "Games played",
+      "position": 1,
+      "required_fields": null,
+      "team_callbacks": "team_games_played"
+    },
+    "prrtrn": {
+      "abbrev": "Returns",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Returns",
+      "position": 2
+    },
+    "pryds": {
+      "abbrev": "Yds",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Yards",
+      "position": 3
+    },
+    "prypr": {
+      "abbrev": "Yds/Ret",
+      "formatter": "float_1",
+      "formula": "(function () { if (acc.values['prrtrn'] == 0){return 0}else{return (acc.values['pryds'] / acc.values['prrtrn'])}})()",
+      "game_or_season": "both",
+      "name": "Yards/Return",
+      "position": 4,
+      "required_fields": [
+        "prrtrn",
+        "pryds"
+      ]
+    },
+    "prtd": {
+      "abbrev": "TD",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Touchdowns",
+      "position": 5
+    },
+    "prlng": {
+      "abbrev": "Long",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Longest Play",
+      "position": 6
+    }
+  },
+  "name": "Punt Returning"
+}

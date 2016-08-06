@@ -1,0 +1,94 @@
+{
+  "key": "baseball_fielder",
+  "name": "Fielder",
+  "position": 3,
+  "sport_id": 4,
+  "types": {
+    "bsfgp": {
+      "abbrev": "GP",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "season",
+      "games_stat": true,
+      "name": "Games Played",
+      "position": 1,
+      "required_fields": null,
+      "team_callbacks": "team_games_played"
+    },
+    "bsfip": {
+      "abbrev": "IP",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Innings Played",
+      "position": 2
+    },
+    "bsftc": {
+      "abbrev": "TC",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Total Chances",
+      "position": 3
+    },
+    "bsfpo": {
+      "abbrev": "PO",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Putouts",
+      "position": 4
+    },
+    "bsfast": {
+      "abbrev": "A",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Assists",
+      "position": 5
+    },
+    "bsferr": {
+      "abbrev": "E",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Errors",
+      "position": 6
+    },
+    "bsfdp": {
+      "abbrev": "DP",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Double Plays",
+      "position": 7
+    },
+    "bsfgs": {
+      "abbrev": "GS",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Games Started",
+      "player_only": true,
+      "position": 8
+    },
+    "bsffp": {
+      "abbrev": "FP",
+      "formatter": "decimal_3",
+      "formula": "(function () { if ((acc.values['bsfast'] + acc.values['bsfpo'] + acc.values['bsferr']) == 0){ return 0 } else{ return ((acc.values['bsfast'] + acc.values['bsfpo']) / (acc.values['bsfast'] + acc.values['bsfpo'] + acc.values['bsferr']))}})()",
+      "game_or_season": "both",
+      "name": "Fielding Percentage",
+      "position": 9,
+      "required_fields": [
+        "bsfast",
+        "bsfpo",
+        "bsferr"
+      ]
+    },
+    "bsfrf": {
+      "abbrev": "RF",
+      "formatter": "float_2",
+      "formula": "(function () { if (acc.values['bsfgp'] == 0){ return 0 } else{ return ((acc.values['bsfast'] + acc.values['bsfpo']) / acc.values['bsfgp'])}})()",
+      "game_or_season": "season",
+      "name": "Range Factor",
+      "position": 10,
+      "required_fields": [
+        "bsfast",
+        "bsfpo"
+      ]
+    }
+  }
+}

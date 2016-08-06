@@ -1,0 +1,126 @@
+{
+  "key": "canadian_football_team_offense",
+  "position": 10,
+  "requires": "canadian_football_passing canadian_football_rushing",
+  "sport_id": 26,
+  "team_only": true,
+  "types": {
+    "togames": {
+      "abbrev": "G",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "season",
+      "games_stat": true,
+      "name": "Games played",
+      "position": 1,
+      "required_fields": null,
+      "team_callbacks": "team_games_played"
+    },
+    "tmo1d": {
+      "abbrev": "1st Downs",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "First Downs",
+      "position": 2
+    },
+    "tmo3da": {
+      "abbrev": "3rd Down Att",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Third Down Attempts",
+      "position": 3
+    },
+    "tmo3dc": {
+      "abbrev": "3rd Down Conv",
+      "formatter": "integer",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Third Down Conversions",
+      "position": 4
+    },
+    "tmo3dpct": {
+      "abbrev": "3rd Down Conv %",
+      "formatter": "percentage",
+      "formula": "(function () { if (acc.values['tmo3da'] == 0){return 0} else{return (acc.values['tmo3dc'] / acc.values['tmo3da'])}})()",
+      "game_or_season": "both",
+      "name": "Third Down Conversions Percentage",
+      "position": 5,
+      "required_fields": [
+        "tmo3da",
+        "tmo3dc"
+      ]
+    },
+    "tmotod": {
+      "abbrev": "Turnover on Downs",
+      "formatter": "integer",
+      "formula": "(function () { return acc.values['tmo3da'] - acc.values['tmo3dc']})()",
+      "game_or_season": "both",
+      "name": "Turnover on Downs",
+      "position": 6,
+      "required_fields": [
+        "tmo3da",
+        "tmo3dc"
+      ]
+    },
+    "tmotop": {
+      "abbrev": "Time of Pos",
+      "description": "Time of Possession",
+      "formatter": "minutes_and_seconds",
+      "formula": "",
+      "game_or_season": "both",
+      "name": "Time of Possession",
+      "position": 7
+    },
+    "tmotot": {
+      "abbrev": "TOT YRD",
+      "description": "Total Offense",
+      "formatter": "integer",
+      "formula": "(function () { return acc.values['psyds'] + acc.values['rshyd']})()",
+      "game_or_season": "both",
+      "name": "Total Offense",
+      "position": 8,
+      "required_fields": [
+        "psyds",
+        "rshyd"
+      ]
+    },
+    "tmoloss": {
+      "abbrev": "Loss",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Team Loss",
+      "position": 9
+    },
+    "tmonet": {
+      "abbrev": "Net Offense",
+      "formatter": "integer",
+      "formula": "(function () { return acc.values['tmotot'] - acc.values['tmoloss']})()",
+      "game_or_season": "both",
+      "name": "Net Offense",
+      "position": 10,
+      "required_fields": [
+        "tmoloss",
+        "tmotot"
+      ]
+    },
+    "tmopen": {
+      "abbrev": "PEN",
+      "description": "Total Penalties",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Penalties",
+      "position": 11
+    },
+    "tmopyd": {
+      "abbrev": "PEN YRD",
+      "description": "Total Penalty Yards",
+      "formatter": "integer",
+      "game_or_season": "both",
+      "name": "Penalty Yards",
+      "position": 12
+    }
+  },
+  "name": "Team Stats"
+}
