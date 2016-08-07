@@ -1,5 +1,5 @@
 {
-  "key": "baseball_batter",
+  "key": "batter",
   "name": "Batter",
   "position": 1,
   "sport_id": 4,
@@ -32,6 +32,15 @@
     "bsbhit": {
       "abbrev": "H",
       "formatter": "integer",
+      "derive_order": 1,
+      "derive": {
+        "$sum": [
+          "$v.batter.bsb1b",
+          "$v.batter.bsb2b",
+          "$v.batter.bsb3b",
+          "$v.batter.bsbhr"
+        ]
+      },
       "game_or_season": "both",
       "name": "Hits",
       "position": 4
@@ -67,7 +76,15 @@
     "bsbtb": {
       "abbrev": "TB",
       "formatter": "integer",
-      "formula": "(function () { return (acc.values['bsb1b'] + (acc.values['bsb2b'] * 2) + (acc.values['bsb3b'] * 3) + (acc.values['bsbhr'] * 4))})()",
+      "derive_order": 1,
+      "derive": {
+        "$sum": [
+          "$v.batter.bsb1b",
+          { "$multiply": [2, "$v.batter.bsb2b"] },
+          { "$multiply": [3, "$v.batter.bsb3b"] },
+          { "$multiply": [4, "$v.batter.bsbhr"] }
+        ]
+      },
       "game_or_season": "both",
       "name": "Total Bases",
       "position": 9,
@@ -138,7 +155,13 @@
     "bsbavg": {
       "abbrev": "AVG",
       "formatter": "decimal_3",
-      "formula": "(function () { if (acc.values['bsbab'] == 0){ return 0 } else{ return (acc.values['bsbhit'] / acc.values['bsbab'])}})()",
+      "derive_order": 2,
+      "derive": {
+        "$divide": [
+          "$v.batter.bsbhit",
+          "$v.batter.bsbab"
+        ]
+      },
       "game_or_season": "both",
       "name": "Batting Average",
       "position": 18,
@@ -150,7 +173,26 @@
     "bsbobp": {
       "abbrev": "OBP",
       "formatter": "decimal_3",
-      "formula": "(function () { if (acc.values['bsbab'] + acc.values['bsbhbp'] + acc.values['bsbbb'] + acc.values['bsbsac'] == 0){ return 0 } else{ return ((acc.values['bsbhit'] + acc.values['bsbbb'] + acc.values['bsbhbp']) /   (acc.values['bsbab'] + acc.values['bsbhbp'] + acc.values['bsbbb'] + acc.values['bsbsac'])   )}})()",
+      "derive_order": 2,
+      "derive": {
+        "$divide": [
+          {
+            "$sum": [
+              "$v.batter.bsbhit",
+              "$v.batter.bsbbb",
+              "$v.batter.bsbhbp"
+            ]
+          },
+          {
+            "$sum": [
+              "$v.batter.bsbab",
+              "$v.batter.bsbhbp",
+              "$v.batter.bsbbb",
+              "$v.batter.bsbsac"
+            ]
+          }
+        ]
+      },
       "game_or_season": "both",
       "name": "On-Base Percentage",
       "position": 19,
@@ -165,35 +207,37 @@
     "bsbslg": {
       "abbrev": "SLG",
       "formatter": "float_or_decimal_3",
-      "formula": "(function () { if (acc.values['bsbab'] == 0){ return 0 } else{ return ((acc.values['bsb1b'] + (acc.values['bsb2b'] * 2) + (acc.values['bsb3b'] * 3) + (acc.values['bsbhr'] * 4)) / acc.values['bsbab'])}})()",
+      "derive_order": 2,
+      "derive": {
+        "$divide": [
+          "$v.batter.bsbtb",
+          "$v.batter.bsbab"
+        ]
+      },
       "game_or_season": "both",
       "name": "Slugging Percentage",
       "position": 20,
       "required_fields": [
-        "bsbab",
-        "bsb1b",
-        "bsb2b",
-        "bsb3b",
-        "bsbhr"
+        "bsbtb",
+        "bsbab"
       ]
     },
     "bsbops": {
       "abbrev": "OPS",
       "formatter": "float_3",
-      "formula": "(function () { var slg = 0.0; var obp = 0.0; if (acc.values['bsbab'] + acc.values['bsbbb'] + acc.values['bsbhbp'] + acc.values['bsbsac'] > 0) { obp = ((acc.values['bsbhit'] + acc.values['bsbbb'] + acc.values['bsbhbp']) / (acc.values['bsbab'] + acc.values['bsbbb'] + acc.values['bsbhbp'] + acc.values['bsbsac']) );} if (acc.values['bsbab'] > 0) { slg = (acc.values['bsb1b'] + (acc.values['bsb2b'] * 2) + (acc.values['bsb3b'] * 3) + (acc.values['bsbhr'] * 4)) / acc.values['bsbab'];} return obp + slg; })()",
+      "derive_order": 3,
+      "derive": {
+        "$sum": [
+          "$v.batter.bsbobp",
+          "$v.batter.bsbslg"
+        ]
+      },
       "game_or_season": "both",
       "name": "On-Base Plus Slugging",
       "position": 21,
       "required_fields": [
-        "bsbab",
-        "bsbhit",
-        "bsb1b",
-        "bsb2b",
-        "bsb3b",
-        "bsbhr",
-        "bsbbb",
-        "bsbhbp",
-        "bsbsac"
+        "bsbobp",
+        "bsbslg"
       ]
     },
     "bsbsach": {
